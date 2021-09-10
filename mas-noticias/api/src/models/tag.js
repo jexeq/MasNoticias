@@ -2,24 +2,16 @@ const { DataTypes } = require("sequelize")
 
 module.exports = (sequelize) => {
 
-    sequelize.define("stat", {
+    sequelize.define("tag", {
 
         id: {
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true
         },
-        likes: {
-            type: DataTypes.INTEGER,
-            defaultValue: 0
-        },
-        comments: {
-            type: DataTypes.INTEGER,
-            defaultValue: 0
-        },
-        shares: {
-            type: DataTypes.INTEGER,
-            defaultValue: 0
-        },
+        name: {
+            type: DataTypes.STRING,
+            allowNull: false
+        }
     });
 }

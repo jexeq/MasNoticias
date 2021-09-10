@@ -10,11 +10,11 @@ module.exports = (sequelize) => {
             primaryKey: true
         },
         report: {
-            type: DataTypes.JSONTYPE,
+            type: DataTypes.JSONB,
             allowNull: false
         },
         date: {
-            type: DataTypes.DATEONLY,
+            type: DataTypes.STRING,
             allowNull: false
         }
     });
