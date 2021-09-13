@@ -35,9 +35,6 @@ const { Publicity, Report, Section, Stat, Tag, User, Weather } = sequelize.model
 
 
 
-// Aca vendrian las relaciones
-// Product.hasMany(Reviews);
-
 Section.hasMany(Report);
 Report.belongsTo(Section);
 

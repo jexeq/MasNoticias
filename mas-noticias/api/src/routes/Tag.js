@@ -57,3 +57,5 @@ router.delete("/:tagId", async function (req, res, next) {
         next(err);
     }
 })
+
+module.exports = router;
