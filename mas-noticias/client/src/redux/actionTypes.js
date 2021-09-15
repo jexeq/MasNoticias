@@ -19,11 +19,14 @@ export const GET_SECTIONS = "get_sections";
 export const DELETE_SECTION = "delete_section";
 
 export const CREATE_TAG = "create_tag";
+export const GET_TAG = "get_tag";
 export const DELETE_TAG = "delete_taf";
 
 export const GET_WEATHER = "get_weather";
 
 export const CREATE_PUBLICITY = "create_publicity";
+export const GET_PUBLICITY = "get_publicity";
 export const UPDATE_PUBLICITY = "update_publicity";
+export const DELETE_PUBLICITY = "delete_publicity";
 
 

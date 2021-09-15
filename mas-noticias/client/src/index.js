@@ -5,14 +5,20 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import axios from "axios";
+import { Provider } from "react-redux";
+import ConfigureStore from "./redux/store/index";
 
 axios.defaults.baseURL = process.env.REACT_APP_API || "http://localhost:3001"
 
+const store = ConfigureStore();
+
 ReactDOM.render(
   <React.StrictMode>
+    <Provider store = {store}>
     <BrowserRouter>
     <App />
     </BrowserRouter>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

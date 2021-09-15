@@ -1,4 +1,4 @@
-import * as TYPES from "../types";
+import * as TYPES from "../../actionTypes";
 
 const initialState = {
     sections: [],
@@ -15,4 +15,4 @@ const sectionReducer = (state = initialState, action) => {
     }
 }
 
-export default reportReducer;
+export default sectionReducer;

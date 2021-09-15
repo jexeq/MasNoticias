@@ -1,12 +1,15 @@
 import logo from '../../images/mas-noticias.png';
 import "./NavBar.css";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import WeatherReport from '../weather/Weather';
+import { getWeather } from '../../redux/actions/weather/weatherActions';
 
 export default function NavBar () {
 
+    const dispatch = useDispatch();
     const [toFind, setToFind] = useState("")
-
-
+    const weather = useSelector(state=>state.weatherReducer.weather.report)
 
             function onChangeHandler (e) {
 
@@ -14,6 +17,10 @@ export default function NavBar () {
                 setToFind(e.target.value);
                 console.log("toFind: " , toFind)
             }
+
+    useEffect( ()=> {
+        dispatch(getWeather());
+    },[])        
 
     return (
         <div className="nav-container">
@@ -26,6 +33,8 @@ export default function NavBar () {
                 <button type="submit">Buscar</button>
                 </form>
             </div>
+            {weather?<WeatherReport/>:<p>Loading...</p>}
+            
         </div>
     )
 }
