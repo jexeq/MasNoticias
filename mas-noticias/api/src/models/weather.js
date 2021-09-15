@@ -13,8 +13,20 @@ module.exports = (sequelize) => {
             type: DataTypes.JSONB,
             allowNull: false
         },
-        date: {
-            type: DataTypes.DATE,
+        hour: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        day: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        month: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        year: {
+            type: DataTypes.INTEGER,
             allowNull: false
         }
     });

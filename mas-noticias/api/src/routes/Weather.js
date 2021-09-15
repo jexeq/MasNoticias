@@ -5,22 +5,31 @@ const {lte} = Op;
 const Axios = require("axios");
 const moment = require("moment");
 const {OPEN_KEY} = process.env;
+const MonthToInt = require("../utils/MonthToInt");
 
 
 router.get("/", async function( req, res, next) {
-    var rightNow = new Date()
+    var rightNow = new Date();
+    var splitedNow = rightNow.toString().split(" ");
+    console.log("splitedNow" , splitedNow)
+
+    var dayNumber = parseInt(splitedNow[2]);
+    var monthNumber = MonthToInt(splitedNow[1]);
+    var yearNumber = parseInt(splitedNow[3]);
+    var hour = parseInt(splitedNow[4].split(":")[0]);
+   
 
     try {
-        
-        // var weatherReport = Weather.findOne({where: {
-        //     date: {
-        //         [lte]: 10800
-        //     }
-        // }})
+        var weatherReport = await Weather.findOne({where: {
+            day: dayNumber,
+            month: monthNumber,
+            year: yearNumber,
+            hour: hour
+        }})
 
-        var weatherReport = await Weather.findOne()
+        console.log("existe reporte previo? " , weatherReport);
 
-        console.log("exite reporte?: ", weatherReport)
+       
 
         if(weatherReport) {
             console.log("habia reporte previo")
@@ -29,15 +38,19 @@ router.get("/", async function( req, res, next) {
 
             try {
 
-                const newWeatherReport = await Axios.get("http://api.openweathermap.org/data/2.5/forecast?q=tucuman&units=metric&appid=fde32ee04ad23a59b670b9190df15d5c")
+                const newWeatherReport = await Axios.get(`http://api.openweathermap.org/data/2.5/forecast?q=tucuman&units=metric&appid=${OPEN_KEY}`)
     
-                console.log("respuesta de openWeather: " , newWeatherReport.data )
+               
                 try {
 
                     console.log("intentando crear nuevo reporte")
                     var newWeather = await Weather.create({
-                        report: newWeatherReport.data,
-                        date: rightNow
+                        report: newWeatherReport.data.list,
+                        hour: hour,
+                        year: yearNumber,
+                        month: monthNumber,
+                        day: dayNumber
+                        
                     })
 
                     return res.send(newWeather)
