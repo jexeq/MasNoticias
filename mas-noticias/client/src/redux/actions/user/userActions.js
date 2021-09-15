@@ -1,5 +1,5 @@
 import axios from 'axios';
-import * as TYPES from "../actionTypes";
+import * as TYPES from "../../actionTypes";
 
 export const getUser = (id) => {
     return async  (dispatch) => {
@@ -29,5 +29,16 @@ export const deleteUser = (params) => {
     }
 }
 
+export const clearUser = () => {
+    return (dispatch) => {
+        return dispatch({type: TYPES.CLEAR_USER})
+    }
+}
 
+export const updateUser = (user) => {
+    return async  (dispatch) => {
+        const res = await axios.put('/user', user)
+        return dispatch({ type: TYPES.DELETE_USER, payload: res.data })
+    }
+}
 
