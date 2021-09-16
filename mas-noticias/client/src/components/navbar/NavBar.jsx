@@ -28,7 +28,7 @@ export default function NavBar () {
             {/* <h1 className="nav-title"> MAS NOTICIAS</h1> */}
             {/* <button onClick={Searchbar}>Buscar</button> */}
             <div>
-                <form>
+                <form className="searchbar">
                 <input type="text" value={toFind} onChange={onChangeHandler}/>
                 <button type="submit">Buscar</button>
                 </form>

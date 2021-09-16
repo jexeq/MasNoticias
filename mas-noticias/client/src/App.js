@@ -3,6 +3,7 @@ import { Route } from "react-router-dom";
 
 //components
 import Landing from "./views/Landing";
+import WeatherReport from "./components/weather/Weather";
 
 import './App.css';
 

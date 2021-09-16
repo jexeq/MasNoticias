@@ -1,0 +1,13 @@
+.weather-main {
+    position: fixed;
+    right: 30px;
+    width: fit-content;
+    height: fit-content;
+    padding: 0%;
+}
+
+.weather-button{
+    padding: 0%;
+    margin: 2px solid white;
+    border-radius: 7px;
+}
