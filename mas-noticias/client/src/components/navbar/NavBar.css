@@ -25,10 +25,9 @@
     font-weight: bolder;
     margin: 10px;
     color: white;
-    
 }
 
 .searchbar{
     position: fixed;
-    left: 400px;
+    left: 30%;
 }

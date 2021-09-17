@@ -1,18 +1,20 @@
-import { getWeather } from '../../redux/actions/weather/weatherActions';
-import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+
+import { useSelector } from 'react-redux';
 import WeatherCard from './weatherCard';
+import {useHistory} from 'react-router-dom';
 import "./weather.css";
 
 export default function WeatherReport () {
-    const dispatch = useDispatch();
+    const history = useHistory();
     const weather = useSelector(state=>state.weatherReducer.weather)
-    const [expand, setExpand] = useState(false)
+   
+    function onRedirect () {
+        history.push("/fullWeather")
+    }
 
-    // console.log("weather" , weather.report[0])
     return (
-        <div className="weather-main">
-            <button className="weather-button">
+        <div className="weather-main" title="ver pronóstico">
+            <button className="weather-button" onClick={onRedirect}>
                 <WeatherCard singlereport= {weather.report[0]}/>
             </button>
         </div>

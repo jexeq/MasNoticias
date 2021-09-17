@@ -11,3 +11,12 @@
     margin: 2px solid white;
     border-radius: 7px;
 }
+
+.tooltip span {
+    display:none;
+}
+.tooltip:hover span {
+    display:block;
+    position:fixed;
+    overflow:hidden;
+}
