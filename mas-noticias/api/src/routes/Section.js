@@ -40,7 +40,7 @@ router.post("/", async function ( req, res, next) {
 })
 
 router.delete("/:id", async function ( req, res, next) {
-    const id= req.params;
+    const {id} = req.params;
 
     try {
         await Section.destroy({where:{id:id}})
