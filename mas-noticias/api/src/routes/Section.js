@@ -16,15 +16,13 @@ router.get("/", async function( req, res, next) {
 
 router.post("/", async function ( req, res, next) {
     const {name} = req.body;
-    console.log("name:" , name)
-    console.log("Section " , Section)
-    console.log("Section Keys: " , Object.keys(Section))
+    const nameOk =  name[0].toUpperCase() + name.slice(1)
 
     try {
         var [newSection, createdSection] = await Section.findOrCreate({
-            where: {name: name},
+            where: {name: nameOk},
             defaults: {
-                name:name
+                name:nameOk
             }
         })
         console.log("newSection " ,newSection)

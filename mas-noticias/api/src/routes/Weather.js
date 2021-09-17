@@ -9,9 +9,10 @@ const MonthToInt = require("../utils/MonthToInt");
 
 
 router.get("/", async function( req, res, next) {
+    
     var rightNow = new Date();
     var splitedNow = rightNow.toString().split(" ");
-    console.log("splitedNow" , splitedNow)
+   
 
     var dayNumber = parseInt(splitedNow[2]);
     var monthNumber = MonthToInt(splitedNow[1]);
@@ -27,12 +28,12 @@ router.get("/", async function( req, res, next) {
             hour: hour
         }})
 
-        console.log("existe reporte previo? " , weatherReport);
+       
 
        
 
         if(weatherReport) {
-            console.log("habia reporte previo")
+            
             return res.send(weatherReport);
         }else {
 
@@ -43,7 +44,7 @@ router.get("/", async function( req, res, next) {
                
                 try {
 
-                    console.log("intentando crear nuevo reporte")
+                    
                     var newWeather = await Weather.create({
                         report: newWeatherReport.data.list,
                         hour: hour,
