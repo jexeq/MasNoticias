@@ -32,6 +32,7 @@
     "sequelize-cli": "^6.2.0"
   },
   "dependencies": {
+    "@sendgrid/mail": "^7.4.6",
     "moment": "^2.29.1"
   }
 }

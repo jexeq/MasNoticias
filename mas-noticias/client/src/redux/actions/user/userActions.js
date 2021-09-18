@@ -42,3 +42,32 @@ export const updateUser = (user) => {
     }
 }
 
+export const getGoogleUser = (user) => {
+    return async (dispatch) => {
+        try { const res = await axios.get('/user/' + user.id)
+        console.log("googlereducer - respuesta del back: " ,res.data)
+        if(res.data.email!==undefined) return dispatch({type: TYPES.GET_USER, payload: res.data})
+        } catch(err) {
+            console.log("No encontro el usuario en la DB")
+            const userNew = await axios.post('/user', user)
+            console.log("y esta es la respuesta del back al intentar crear usuario: " , userNew.data)
+            return dispatch({ type: TYPES.CREATE_USER, payload: userNew.data })
+        }
+    }    
+    
+}
+
+export const getFacebookUser = (user) => {
+    return async (dispatch) => {
+        try { const res = await axios.get('/user/' + user.id)
+        console.log("facebookReducer - respuesta del back: " ,res.data)
+        if(res.data.email!==undefined) return dispatch({type: TYPES.GET_USER, payload: res.data})
+        } catch(err) {
+            console.log("No encontro el usuario en la DB")
+            const userNew = await axios.post('/user', user)
+            console.log("y esta es la respuesta del back al intentar crear usuario: " , userNew.data)
+            return dispatch({ type: TYPES.CREATE_USER, payload: userNew.data })
+        }
+    }    
+    
+}

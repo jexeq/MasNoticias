@@ -14,6 +14,7 @@ const userReducer = (state = initialState, action) => {
         case TYPES.UPDATE_USER: return {...state, user: action.payload}
         case TYPES.DELETE_USER: return {...state, user: {} }
         case TYPES.CLEAR_USER: return {...state, user: {} }
+        case TYPES.GET_GOOGLE_USER: return {...state, user: action.payload}
         
         default:                  return state;
     }

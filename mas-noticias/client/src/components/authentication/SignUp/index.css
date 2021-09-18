@@ -1,0 +1,16 @@
+.danger {
+  color: red;
+}
+
+.password-cont {
+  color: red;
+  font-size: smaller;
+}
+
+.username-error {
+  font-size: smaller;
+}
+
+.separador {
+  margin-left: 18px;
+}

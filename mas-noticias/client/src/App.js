@@ -5,6 +5,8 @@ import { Route } from "react-router-dom";
 import Landing from "./views/Landing";
 import FullWeather from "./components/weather/fullWeather";
 import SectionCreator from "./components/section/sectionCreator";
+import SignInPage from "./components/authentication/SignIn/index";
+
 
 import './App.css';
 
@@ -14,6 +16,7 @@ function App() {
       <Route path="/" component={Landing}/>
       <Route path="/fullWeather"component={FullWeather}/>
       <Route path="/create-section" component={SectionCreator}/>
+      <Route path="/signin" component={SignInPage}/>
     </React.Fragment>
   );
 }

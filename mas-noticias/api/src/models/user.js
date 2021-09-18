@@ -22,17 +22,13 @@ module.exports = (sequelize) => {
             unique: true,
             allowNull: false
         },
-        isSudo: {
-            type: DataTypes.BOOLEAN,
-            defaultValue: false,
+        type: {
+            type: DataTypes.ENUM("sudo","admin","editor", "guest"),
+            defaultValue: "guest"
         },
-        isAdmin: {
+        active: {
             type: DataTypes.BOOLEAN,
-            defaultValue: false,
-        },
-        isEditor: {
-            type: DataTypes.BOOLEAN,
-            defaultValue: false,
-        },
+            defaultValue: false
+        }
     });
 }

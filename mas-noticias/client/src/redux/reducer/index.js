@@ -5,6 +5,7 @@ import sectionReducer from "../actions/section/sectionReducer";
 import tagReducer from '../actions/tag/tagReducer';
 import userReducer from '../actions/user/userReducer';
 import weatherReducer from '../actions/weather/weatherReducer';
+import mailReducer from '../actions/email/emailReducer';
 
 const rootReducer = combineReducers(
     {
@@ -13,7 +14,8 @@ const rootReducer = combineReducers(
         sectionReducer,
         tagReducer,
         userReducer,
-        weatherReducer
+        weatherReducer,
+        mailReducer
     }
 );
 

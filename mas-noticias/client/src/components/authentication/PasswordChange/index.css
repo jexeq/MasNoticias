@@ -1,0 +1,60 @@
+.fieldset {
+    margin-bottom: 2rem;
+    outline: none;
+}
+
+.account .legend {
+    margin-bottom: 1rem;
+    display: block;
+    text-transform: uppercase;
+    font-weight: 600;
+    position: relative;
+}
+
+.legend, legend {
+    font-size: 1rem;
+    
+}
+
+.field {
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.field .label, .field label {
+    margin-right: 30px;
+    line-height: 24px;
+    padding: 6px 0;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.field.required .control {
+    position: relative;
+}
+
+.input-text, .control input {
+    color: #888888;
+    display: block;
+    width: 100%;
+    padding: 6px 20px;
+    font-size: 12px;
+    line-height: 24px;
+    min-height: 50px;
+    background: #f6f6f6;
+    border: 0;
+}
+
+#password-confirmation {
+outline: none;
+border-radius: 0;
+box-shadow: none;
+}
+
+.actions-toolbar {
+    flex-direction: row;
+    display: flex;
+    margin: 0 -.25rem;
+
+}
