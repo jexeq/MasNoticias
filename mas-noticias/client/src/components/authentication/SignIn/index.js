@@ -9,6 +9,7 @@ import { PasswordForgetLink } from '../PasswordForget/index';
 import { withFirebase } from '../../firebase/index';
 import { getUser, clearUser } from '../../../redux/actions/user/userActions';
 import { GoogleButton } from './GoogleSignIn';
+import { FacebookButton } from './FacebookSignIn';
 
 
 
@@ -54,7 +55,7 @@ function SignInFormBase(props) {
   };
 
   useEffect(() => {
-    if (user.active !== undefined) {
+    if (user?.active !== undefined) {
       //verifica el estado active del usuario
       if (user.active === true) {
         //verifica si es admin
@@ -90,7 +91,7 @@ function SignInFormBase(props) {
   const isInvalid = (password === '' || email === '');
 
   return (
-    <div className="container" style={{ marginTop: "18%" }}>
+    <div className="container" style={{ marginTop: "5%" }}>
       <div className="row content d-flex justify-content-center">
         <div className="col-md-5">
           <div className="box shadow bg-white p-4">
@@ -131,6 +132,7 @@ function SignInFormBase(props) {
                 <PasswordForgetLink />
                 <SignUpLink />
                 <GoogleButton props={props} />
+                <FacebookButton props={props} />
               </div>
             </form>
           </div>

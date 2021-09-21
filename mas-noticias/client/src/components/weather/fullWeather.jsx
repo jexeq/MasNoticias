@@ -1,26 +1,27 @@
 
 import { useSelector } from "react-redux";
-import { useEffect } from "react";
+// import { useEffect } from "react";
+import "./weather.css";
 
 export default function FullWeather () {
 
     const weather = useSelector( state=> state.weatherReducer.weather)
 
     return (
-        <div>
-            <table className="d-table-cell ms-5">
+        <div className="container d-flex flex-column justify-content-center align-items-center">
+            <table className="d-table-cell ">
                 <thead>
                     <tr>
-                        <th>hora</th>
-                        <th>fecha</th>
-                        <th>temperatura</th>
-                        <th>icono</th>
-                        <th>humedad</th>
+                        <th className="th">hora</th>
+                        <th className="th">fecha</th>
+                        <th className="th">temperatura</th>
+                        <th className="th">icono</th>
+                        <th className="th">humedad</th>
                         {/* <th>viento</th> */}
                     </tr>
                 </thead>
                     {weather.report.length>0&&weather.report.map(e=>(
-                        <tbody>
+                        <tbody className="table table-hover table-bordered">
                             <tr>
                                 <td>{e.dt_txt.split(" ")[1]}</td>
                                 <td>{e.dt_txt.split(" ")[0]}</td>

@@ -10,6 +10,7 @@
     "babel": "^6.23.0",
     "babel-core": "^6.26.3",
     "bootstrap": "^5.1.1",
+    "ember-cli-sri": "^2.0.0",
     "firebase": "^8.8.1",
     "firebase-app": "0.0.1",
     "popperjs-core": "^2.5.0",
@@ -22,7 +23,7 @@
     "redux": "^4.1.1",
     "redux-thunk": "^2.3.0",
     "sweetalert": "^2.1.2",
-    "sweetalert2": "^11.1.4",
+    "sweetalert2": "^11.1.6",
     "sweetalert2-react-content": "^4.1.1",
     "web-vitals": "^1.1.2"
   },

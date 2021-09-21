@@ -15,7 +15,7 @@ import './index.css';
 
 
 const SignUpPage = () => (
-  <div style={{marginTop: "200px"}}>
+  <div style={{marginTop: "5%"}}>
     <SignUpForm />
   </div>
 );
@@ -32,13 +32,12 @@ function SignUpFormBase(props) {
 
   const storeUser = useSelector(state => state.userReducer.user)
   const dispatch = useDispatch();
-  const [region, setRegion] = useState([])
-  const [apiCity, setApiCity] = useState([])
+  
 
 
   var [state, setState] = useState(initial_state)
-  var [loading, setLoading] = useState(true)
-  var [userError, setUserError] = useState(false)
+  // var [loading, setLoading] = useState(true)
+ 
   var [emailError, setEmailError] = useState(false)
 
   const onSubmitHandler = async (e) => {
@@ -72,22 +71,12 @@ function SignUpFormBase(props) {
       ...state,
       [e.target.name]: e.target.value
     })
-    if (e.target.name === "user_name") {
-      if (e.target.value.length > 3) {
-        var validated = await validateUserName(e.target.value)
-        setUserError(validated)
-
-      } else { setUserError(false) }
-    }
+    
     if (e.target.name === "email") {
-      if (e.target.value.includes("@") && e.target.value.includes(".com")) {
+      
         var validated = await validateUserEmail(e.target.value)
         setEmailError(validated)
-      } else {
-        if (e.target.value.length > 0) {
-          setEmailError(true)
-        } else { setEmailError(false) }
-      }
+      
     }
   }
 
@@ -106,7 +95,7 @@ function SignUpFormBase(props) {
         title:"Correcto",
         text:"Verifica tu casilla de correo por favor",
         confirmButtonText:"Ok",
-        confirmButtonColor:"#ee8589"
+        confirmButtonColor:"#FF3001"
       })
       dispatch(sendEmailConfirmation(storeUser))
       dispatch(clearUser())
@@ -116,30 +105,26 @@ function SignUpFormBase(props) {
 
 
 
-  return !loading ? (
-    <div className="container mt-5">
+  return  (
+    <div className="container">
       <h3 className="mb-4 text-center fs-1">Registrarse</h3>
-      <form onSubmit={onSubmitHandler}>
-        <div className="row">
+      <form onSubmit={onSubmitHandler} >
+        <div className="row items-center">
           <div className="col-md-6">
             <div className="mb-3 mt-3">
-              <label style={{ marginLeft: "3px" }}>Nombre de usuario</label>
+              <label style={{ marginLeft: "3px" }}>Nombre</label>
               <input
                 name="name"
                 value={name}
                 onChange={onChangeHandler}
                 type="text"
-                placeholder="Nombre de Usuario"
+                placeholder="Nombre"
                 className="form-control"
               />
             </div>
             <div hidden={name.length > 3 || name.length === 0}
               className="alert alert-primary" role="alert">
               El Nombre de usuario debe contar con al menos 4 caracteres
-            </div>
-            <div hidden={!(userError)}
-              class="alert alert-danger" role="alert">
-              El nombre de usuario ya esta en uso
             </div>
            
             <div className="mb-3 mt-3">
@@ -165,7 +150,10 @@ function SignUpFormBase(props) {
               />
             </div>
             <div hidden={!emailError} className="alert alert-danger" role="alert">
-              El email no tiene el formato adecuado o ya se encuentra registrado
+              El email ya se encuentra registrado
+            </div>
+            <div hidden={email.length>0?email.includes("@")?true:false:true} className="alert alert-danger" role="alert">
+              El email debe incluir @
             </div>
             <div className="mb-3 mt-3">
               <label style={{ marginLeft: "3px" }}>Contraseña</label>
@@ -196,19 +184,20 @@ function SignUpFormBase(props) {
           
         </div>
         <div className="d-grip gap-2 mb-3 text-center mt-4">
-          <button className="btn btn-dark btn-lg border-0 rounded-0" disabled={isInvalid || userError || emailError} type="submit">Registrarse</button>
+          <button className="btn btn-dark btn-lg border-0 rounded-0" disabled={isInvalid || emailError} type="submit">Registrarse</button>
         </div>
         {error && <p className='text-danger text-center'>{error.message}</p>}
       </form>
     </div>
-  ) : (<h2 className="text-center text-dark mt-5">Cargando...</h2>);
+  )
+  //  : (<h2 className="text-center text-dark mt-5">Cargando...</h2>);
 }
 
 const SignUpLink = () => {
-  return (<p>
+  return (<div>
     <hr />
     <NavLink className="text-dark" to={"/signup"}>crear cuenta</NavLink>
-  </p>)
+  </div>)
 }
 
 const SignUpForm = compose(

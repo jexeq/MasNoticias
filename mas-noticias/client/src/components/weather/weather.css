@@ -20,3 +20,11 @@
     position:fixed;
     overflow:hidden;
 }
+
+.th {
+    margin: 0px 10px 0px 10px;
+}
+
+.twidht80{
+    width: 70vw;
+}

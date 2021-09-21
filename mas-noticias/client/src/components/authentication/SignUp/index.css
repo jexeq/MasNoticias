@@ -14,3 +14,10 @@
 .separador {
   margin-left: 18px;
 }
+
+.items-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

@@ -30,6 +30,10 @@ export default function SectionCreator () {
     }
     
     function checkError (data) {
+
+            if(!data){
+                setError("la Sección no puede estar vacía")
+            }
        
             if(data?.length>1&&data?.length<4) {
                 setError("la Sección debe tener al menos 4 caracteres")
@@ -71,6 +75,8 @@ export default function SectionCreator () {
         checkError(capitalyzed);
        
     }
+
+    console.log("error es ahora:" , error);
     
     return (
         <div className="sections-main-container">
@@ -87,7 +93,7 @@ export default function SectionCreator () {
             <form onSubmit={submitHandler}>
                 <input type="text" value={userInput} onChange={onChangeHandler} placeholder="Nombre de la Sección"/>
                 <label >{error.length>1?error:null}</label>
-                <button type="submit" onClick={confirmSection}>Confirmar</button>
+                <button type="submit" onClick={confirmSection} disabled={ !userInput || error}>Confirmar</button>
             </form>
 
         </div>

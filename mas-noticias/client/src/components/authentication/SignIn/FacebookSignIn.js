@@ -1,13 +1,13 @@
 import { withFirebase } from '../../firebase/index'
 import './google.css';
-import { useState, useEffect } from 'react';
+import {  useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getGoogleUser, clearUser, getUser } from '../../../redux/actions/user/userActions';
+import { getFacebookUser, clearUser } from '../../../redux/actions/user/userActions';
 import { useHistory } from 'react-router-dom';
 import { sendEmailConfirmation } from '../../../redux/actions/email/emailActions';
 
 
-const GoogleButton = (props) => {
+const FacebookButton = (props) => {
   const history = useHistory();
   return (<div >
     <RenderButton props={props} history={history} />
@@ -16,15 +16,15 @@ const GoogleButton = (props) => {
 
 
 
-const GoogleBase = (props) => {
+const FacebookBase = (props) => {
   
   const { history } = props
   const dispatch = useDispatch();
   const storeUser = useSelector(state => state.userReducer.user);
 
-  function handleGoogle(e) {
+  function handleFacebook(e) {
     props.firebase
-      .doSignInWithGoogle()
+      .doSignInwithFacebook()
       .then(credentials => {
         //capturo datos con credentials.additionalUserInfo.profile  .email o .family_name o .given_name
         var user = {
@@ -34,7 +34,7 @@ const GoogleBase = (props) => {
           lastname: credentials.additionalUserInfo.profile.family_name,
         }
         console.log("userfromFirebase: " , user)
-        dispatch(getGoogleUser(user))
+        dispatch(getFacebookUser(user))
         // console.log("paso el dispatch?")
       })
       .catch(err => alert(err.message))
@@ -42,7 +42,7 @@ const GoogleBase = (props) => {
 
   useEffect(() => {
     console.log("se ejecuto dispatch")
-  }, [getGoogleUser])
+  }, [getFacebookUser])
 
 
   useEffect(() => {
@@ -83,24 +83,24 @@ const GoogleBase = (props) => {
         className="btn btn-outline-dark"
         role="button"
         style={{ textTransform: "none" }}
-        onClick={(e) => handleGoogle(e)}
+        onClick={(e) => handleFacebook(e)}
       >
         <img
           width="20px"
           height="20px"
           style={{ marginBottom: 3, marginRight: 5 }}
-          alt="Google sign-in"
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"
+          alt="Facebook sign-in"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Facebook_f_logo_%282019%29.svg/220px-Facebook_f_logo_%282019%29.svg.png"
         />
-        Ingresar con Google
+        Ingresar con Facebook
       </a>
     </div>
 
   )
 }
 
-const RenderButton = withFirebase(GoogleBase)
+const RenderButton = withFirebase(FacebookBase)
 
-export default GoogleButton;
+export default FacebookButton;
 
-export { RenderButton, GoogleButton };
+export { RenderButton, FacebookButton };

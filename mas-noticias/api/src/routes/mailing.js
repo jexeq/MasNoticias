@@ -1,12 +1,13 @@
 const sgMail = require('@sendgrid/mail');
 const router = require('express').Router();
 
-const { SENDGRID_API_KEY } = process.env;
+const  SENDGRID_API_KEY  = process.env.SENDGRID_API_KEY;
 
 sgMail.setApiKey(SENDGRID_API_KEY);
-
+ 
 router.post('/user', (req, res) => {
 
+  console.log("SENDGRID_API_KEY", SENDGRID_API_KEY)
   const { email, id } = req.body;
 
  
@@ -154,7 +155,7 @@ ol ol ol ol {
 </table><table class="module" role="module" data-type="text" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;" data-muid="13d36c46-b515-4bdf-ad3c-edafb5c1c151" data-mc-module-version="2019-10-22">
 <tbody>
   <tr>
-    <td style="padding:20px 15px 15px 15px; line-height:26px; text-align:inherit; background-color:#ee8585;" height="100%" valign="top" bgcolor="#ee8585" role="module-content"><div><div style="font-family: inherit; text-align: center"><span style="font-size: 24px; font-family: arial, helvetica, sans-serif; color: #ffffff"><strong>Araceli Merceria</strong></span></div><div></div></div></td>
+    <td style="padding:20px 15px 15px 15px; line-height:26px; text-align:inherit; background-color:#FA3004;" height="100%" valign="top" bgcolor="#FA3004" role="module-content"><div><div style="font-family: inherit; text-align: center"><span style="font-size: 24px; font-family: arial, helvetica, sans-serif; color: #ffffff"><strong>Mas Noticias</strong></span></div><div></div></div></td>
   </tr>
 </tbody>
 </table><table border="0" cellpadding="0" cellspacing="0" align="center" width="100%" role="module" data-type="columns" style="padding:50px 20px 50px 20px;" bgcolor="#776969" data-distribution="1">
@@ -174,7 +175,7 @@ ol ol ol ol {
   <tr>
     <td style="padding:50px 30px 30px 30px; line-height:28px; text-align:inherit; background-color:#ffffff;" height="100%" valign="top" bgcolor="#ffffff" role="module-content"><div><div style="font-family: inherit; text-align: inherit"><span style="font-size: 20px; font-family: &quot;trebuchet ms&quot;, helvetica, sans-serif; color: #656565">Hola!</span></div>
 <div style="font-family: inherit; text-align: inherit"><br></div>
-<div style="font-family: inherit; text-align: inherit"><span style="font-size: 20px; font-family: &quot;trebuchet ms&quot;, helvetica, sans-serif; color: #656565">Estimado usuario necesitamos verificar su cuenta por favor hacer click en el siguiente enlace para continuar con la creación de su cuenta!</span></div>
+<div style="font-family: inherit; text-align: inherit"><span style="font-size: 20px; font-family: &quot;trebuchet ms&quot;, helvetica, sans-serif; color: #656565">Estimado usuario: hacer click en el siguiente enlace para continuar con la habilitación de su cuenta!</span></div>
 <div style="font-family: inherit; text-align: inherit"><br></div><div></div></div></td>
   </tr>
 </tbody>
@@ -185,8 +186,8 @@ ol ol ol ol {
         <table border="0" cellpadding="0" cellspacing="0" class="wrapper-mobile" style="text-align:center;">
           <tbody>
             <tr>
-            <td align="center" bgcolor="#EE8585" class="inner-td" style="border-radius:6px; font-size:16px; text-align:center; background-color:inherit;">
-              <a href=${`http://localhost:3000/AccountConfirmation?email=${email}&id=${id}`} style="background-color:#EE8585; border:0px solid 0; border-color:0; border-radius:0px; border-width:0px; color:#ffffff; display:inline-block; font-size:16px; font-weight:300; letter-spacing:0px; line-height:normal; padding:15px 5px 15px 5px; text-align:center; text-decoration:none; border-style:solid; font-family:trebuchet ms,helvetica,sans-serif;" target="_blank">Confirmar mi cuenta</a>
+            <td align="center" bgcolor="#FA3004" class="inner-td" style="border-radius:6px; font-size:16px; text-align:center; background-color:inherit;">
+              <a href=${`http://localhost:3000/AccountConfirmation?email=${email}&id=${id}`} style="background-color:#FA3004; border:0px solid 0; border-color:0; border-radius:0px; border-width:0px; color:#ffffff; display:inline-block; font-size:16px; font-weight:300; letter-spacing:0px; line-height:normal; padding:15px 5px 15px 5px; text-align:center; text-decoration:none; border-style:solid; font-family:trebuchet ms,helvetica,sans-serif;" target="_blank">Confirmar mi cuenta</a>
             </td>
             </tr>
           </tbody>
@@ -198,7 +199,7 @@ ol ol ol ol {
 <tbody>
   <tr>
     <td style="padding:40px 100px 50px 30px; line-height:26px; text-align:inherit; background-color:#FFFFFF;" height="100%" valign="top" bgcolor="#FFFFFF" role="module-content"><div><div style="font-family: inherit; text-align: inherit">Gracias!</div>
-<div style="font-family: inherit; text-align: inherit"><span style="font-family: &quot;trebuchet ms&quot;, helvetica, sans-serif; font-size: 16px; color: #656565">Araceli merceria</span></div><div></div></div></td>
+<div style="font-family: inherit; text-align: inherit"><span style="font-family: &quot;trebuchet ms&quot;, helvetica, sans-serif; font-size: 16px; color: #656565">Mas Noticias</span></div><div></div></div></td>
   </tr>
 </tbody>
 </table></td>
