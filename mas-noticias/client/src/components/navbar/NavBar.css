@@ -3,7 +3,7 @@
     height: 70px;
     margin: 10px;
     border-radius: 70%;
-    position: fixed;
+    position: static;
     left: 50px;
     top: 13px;
 }
@@ -15,6 +15,7 @@
     height: 110px;
     width: 100vw;
     background-color: black;
+    position: static;
 }
 
 .nav-title {
@@ -28,6 +29,6 @@
 }
 
 .searchbar{
-    position: fixed;
+    position: static;
     left: 30%;
 }

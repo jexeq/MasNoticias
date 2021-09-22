@@ -81,21 +81,20 @@ const ReactFirebaseFileUpload = ({ storeImages, setStoreImages }) => {
     }
 
     return (
-        <div className="container">
-            <progress value={progress} max="100" />
-            <br />
-            <br />
-            <input className="btn btn-" type="file" multiple onChange={handleChange2} />
-            <button id="buttonupload" hidden={!(images.length > 0)} onClick={(e) => handleUpload(e, setUrls)}>Upload</button>
-            <br />
-            <br />
+        <div className="uploader-container">
+            <progress value={progress} max="100" hidden={progress===0}/>
+            
+            <input className="file-input" type="file" multiple onChange={handleChange2} />
+            <button className="btn1" hidden={!(images.length > 0)} onClick={(e) => handleUpload(e, setUrls)}>Upload</button>
+            
             {urls.length > 0 ? urls.map((url, i) => (
-                <div className="container" key={i}> <img
-                    style={{ width: "250px" }}
-                    src={url || "http://via.placeholder.com/300"}
-                    alt="firebase-image"
-                />
-                    <button name={i} value={url} onClick={quitImageHandler}>X</button>
+                <div className="img-container" key={i}> 
+                    <img
+                        style={{ width: "150px" }}
+                        src={url || "http://via.placeholder.com/300"}
+                        alt="firebase-image"
+                    />
+                    <button className="btn1" name={i} value={url} onClick={quitImageHandler}>quitar</button>
                 </div>
             )) : null}
         </div>

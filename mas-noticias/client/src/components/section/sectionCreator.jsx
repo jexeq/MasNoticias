@@ -75,8 +75,6 @@ export default function SectionCreator () {
         checkError(capitalyzed);
        
     }
-
-    console.log("error es ahora:" , error);
     
     return (
         <div className="sections-main-container">

@@ -1,6 +1,6 @@
 .weather-main {
-    position: fixed;
-    right: 30px;
+    position: relative;
+    left: 10vw;
     width: fit-content;
     height: fit-content;
     padding: 0%;
