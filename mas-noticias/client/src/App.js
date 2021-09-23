@@ -11,6 +11,7 @@ import PasswordForgetPage from "./components/authentication/PasswordForget";
 import AccountConfirmation from "./components/authentication/Account/AccountConfirmation";
 import UsersAdmin from "./components/admin/users/index";
 import ReportCreator from'./components/report/reportCreator/ReportCreator';
+import TagCreator from './components/tag/TagCreator';
 import './App.css';
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
       <Route path="/AccountConfirmation" component={AccountConfirmation}/>
       <Route path="/admin/users" component={UsersAdmin}/>
       <Route path="/create-report" component={ReportCreator} />
+      <Route path="/create-tag" component={TagCreator} />
     </React.Fragment>
   );
 }

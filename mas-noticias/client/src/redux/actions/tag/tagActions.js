@@ -1,16 +1,24 @@
 import axios from 'axios';
 import * as TYPES from "../../actionTypes";
 
-export const getTags = () => {
+export const getAllTags = () => {
     return async  (dispatch) => {
         const res = await axios.get('/tag/')
-        return dispatch({ type: TYPES.GET_TAG, payload: res.data })
+        return dispatch({ type: TYPES.GET_ALL_TAG, payload: res.data })
     }
 }
 
-export const createTag = (tag) => {
+export const getTagsBySectionId = (sectionId) => {
     return async  (dispatch) => {
-        const res = await axios.post('/tag/', tag)
+        const res = await axios.get(`/tag/${sectionId}`)
+        return dispatch({ type: TYPES.GET_TAG_BY_SECTION, payload: res.data })
+    }
+}
+
+
+export const createTag = (tagName, sectionId) => {
+    return async  (dispatch) => {
+        const res = await axios.post('/tag/', {tagName: tagName, sectionId: sectionId})
         return dispatch({ type: TYPES.CREATE_TAG, payload: res.data })
     }
 }

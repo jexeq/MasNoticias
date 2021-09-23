@@ -2,15 +2,15 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 import { useDispatch } from 'react-redux';
-import { clearUser } from '../../../redux/actions/user/index';
+import { clearUser } from '../../../redux/actions/user/userActions';
 
-import { withFirebase } from '../../FireBase/context';
+import { withFirebase } from '../../firebase/index';
 
 
 function LogOutButton() {
   
   return (
-    <SignOutButton />
+    <SignOutButton className="btn-logOut" />
   )
 }
 
@@ -18,13 +18,12 @@ function LogOutButton() {
 function SignOutButtonBase(props) {
   const dispatch = useDispatch();
   
-
   function clickHandler() {
     
     try {
       props.firebase.doSignOut();
       
-      localStorage.setItem("pg_merceria", "guest")
+      localStorage.setItem("mas-noticias", "guest")
       
       localStorage.setItem("admin", null)
       dispatch(clearUser());
@@ -37,8 +36,7 @@ function SignOutButtonBase(props) {
 
   return (
 
-    <button type="button" onClick={clickHandler} className="btn btn-block btn-black rm-border">
-
+    <button type="button" onClick={clickHandler} >
       Salir
     </button>
   );

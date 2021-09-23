@@ -47,7 +47,7 @@ module.exports = (sequelize) => {
             allowNull: true
         },
         photo3: {
-            type: DataTypes.STRING,
+            type: DataTypes.ARRAY(DataTypes.STRING),
             allowNull: true
         },
         footer3: {

@@ -21,7 +21,8 @@ export const GET_SECTIONS = "get_sections";
 export const DELETE_SECTION = "delete_section";
 
 export const CREATE_TAG = "create_tag";
-export const GET_TAG = "get_tag";
+export const GET_ALL_TAG = "get_all_tag";
+export const GET_TAG_BY_SECTION = "get_tag_by_section";
 export const DELETE_TAG = "delete_taf";
 
 export const GET_WEATHER = "get_weather";

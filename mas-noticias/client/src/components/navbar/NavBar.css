@@ -12,6 +12,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-around;
     height: 110px;
     width: 100vw;
     background-color: black;
@@ -31,4 +32,11 @@
 .searchbar{
     position: static;
     left: 30%;
+}
+
+.btn-nav{
+    position: relative;
+    right: 0%;
+    font-size: 90%;
+    color: white;
 }

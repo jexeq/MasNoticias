@@ -38,19 +38,19 @@ const { Publicity, Report, Section, Stat, Tag, User, Weather } = sequelize.model
 
 
 Section.hasMany(Report);
-Report.belongsTo(Section);
+// Report.belongsTo(Section);
 
 Section.hasMany(Tag);
-Tag.belongsTo(Section);
+// Tag.belongsTo(Section);
 
 User.hasMany(Report);
-Report.belongsTo(User);
+// Report.belongsTo(User);
 
 Report.hasOne(Stat);
 Stat.belongsTo(Report);
 
 User.hasMany(Publicity);
-Publicity.belongsTo(User);
+// Publicity.belongsTo(User);
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

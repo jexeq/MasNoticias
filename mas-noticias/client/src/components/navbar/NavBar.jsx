@@ -3,38 +3,48 @@ import "./NavBar.css";
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import WeatherReport from '../weather/Weather';
+import LogOutButton from '../authentication/SignOut';
 import { getWeather } from '../../redux/actions/weather/weatherActions';
+import { getUser } from '../../redux/actions/user/userActions';
+import { NavLink } from 'react-router-dom';
 
 export default function NavBar () {
 
     const dispatch = useDispatch();
     const [toFind, setToFind] = useState("")
     const weather = useSelector(state=>state.weatherReducer.weather.report)
+    const storeUser = useSelector(state => state.userReducer.user)
+    const userId = localStorage.getItem("mas-noticias")
 
-            function onChangeHandler (e) {
-
+        function onChangeHandler (e) {
                 e.preventDefault();
                 setToFind(e.target.value);
                 console.log("toFind: " , toFind)
-            }
+        }
 
     useEffect( ()=> {
         dispatch(getWeather());
+        dispatch(getUser(userId));
     },[])        
 
     return (
         <div className="nav-container">
-            <img className="logo1" src={logo} alt="image"/>
-            {/* <h1 className="nav-title"> MAS NOTICIAS</h1> */}
-            {/* <button onClick={Searchbar}>Buscar</button> */}
-            <div>
+            <NavLink to="/">
+                <img className="logo1" src={logo} alt="image"/>
+            </NavLink>
+            
+            {/* <div>
                 <form className="searchbar">
                 <input type="text" value={toFind} onChange={onChangeHandler}/>
                 <button type="submit">Buscar</button>
                 </form>
-            </div>
+            </div> */}
             {weather?<WeatherReport/>:<p>Loading...</p>}
-            
+            {!storeUser && <NavLink to='/signin'> 
+                <button className='btn btn-dark btn-nav btn-lg border-0 rounded-0'>Ingresar </button>
+            </NavLink>}
+            <div className='btn-nav'>{storeUser?.email}</div>
+            {storeUser&&<LogOutButton/>}
         </div>
     )
 }

@@ -86,7 +86,7 @@ const ReactFirebaseFileUpload = ({ storeImages, setStoreImages }) => {
             
             <input className="file-input" type="file" multiple onChange={handleChange2} />
             <button className="btn1" hidden={!(images.length > 0)} onClick={(e) => handleUpload(e, setUrls)}>Upload</button>
-            
+            <hr />
             {urls.length > 0 ? urls.map((url, i) => (
                 <div className="img-container" key={i}> 
                     <img
@@ -97,6 +97,7 @@ const ReactFirebaseFileUpload = ({ storeImages, setStoreImages }) => {
                     <button className="btn1" name={i} value={url} onClick={quitImageHandler}>quitar</button>
                 </div>
             )) : null}
+            <hr />
         </div>
     );
 };

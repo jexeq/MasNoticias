@@ -13,6 +13,21 @@ router.get("/", async function( req, res, next) {
     }
 })
 
+router.get("/:sectionId" , async function (req, res, next) {
+    const {sectionId} = req.params;
+
+    try {
+        const sectionOk = Section.findByPk(sectionId, {include:{model: Tag}})
+        if(sectionOk) {
+            return res.send(sectionOk)
+        }else{
+            throw new Error("no se encontró la sección")
+        }
+    }catch (err) {
+
+    }
+})
+
 router.post("/", async function(req, res, next) {
     const {tagName, sectionId} = req.body;
 
@@ -33,10 +48,10 @@ router.post("/", async function(req, res, next) {
         if(!prevSection) {
             throw new Error ("No se encontró la sección indicada")
         }else {
-           await prevSection.setTag(newTag)
+           await prevSection.addTags(newTag)
         }
 
-        return res.send("se creó una nueva etiqueta: " , newTag)
+        return res.send("se creó una nueva etiqueta: ")
 
     }catch (err) {
         next(err);
