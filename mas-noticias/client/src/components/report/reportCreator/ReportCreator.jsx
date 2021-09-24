@@ -7,6 +7,7 @@ import  ControlledEditor  from './TextEditor';
 import ReactFirebaseFileUpload from '../../fileUploader/FileUploader';
 import FullReportCard from '../reportCard/fullReportCard';
 import checkReportErrors from './checkReportErrors';
+import TagCreator from '../../tag/TagCreator';
 import './reportCreator.css';
 
 export default function ReportCreator () {
@@ -36,7 +37,8 @@ export default function ReportCreator () {
     var [paragraph2, setParagraph2] = useState();
     var [paragraph3, setParagraph3] = useState();
     var [images, setImages] = useState([]);
-    var [section, setSection] = useState()
+    var [section, setSection] = useState();
+    var [tag, setTag] = useState();
     var sectionOptions = [];
 
     var {title1, title2, footer1, footer2, footer3} = reportBody;
@@ -110,27 +112,23 @@ export default function ReportCreator () {
             <form onSubmit={onSubmitHandler}>
                 <div className='form-container'>
                     <h1>Formulario de creación de Noticias</h1>
-                    <select  id="section" onChange={onSelectHandler}>
-                        <option value="" defaultValue=" - Seleccionar - "> - Seleccionar - </option>
-                        {allSections.map( (s, i)=>{
-                            return (
-                                <option key={s.id} name={s.name} value={s.id}>{s.name}</option>
-                                )
-                            })}
-                    </select>
-                    <label className="required-field">* Elegir Sección (campo obligatorio)</label>
+                    <label className="required-field" hidden={section}>* Elegir Sección (campo obligatorio)</label>
+                    <TagCreator higherSection={section} setHigherSection={setSection} higherTag={tag} setHigherTag={setTag}/>
+                    {tag&&<label htmlFor="tag-selected">Etiqueta Seleccionada:</label>}
+                    {tag&&<h5 id={"tag-selected"}>{tag.name}</h5>}
                     <br />
                     <input type="text" placeholder="Título Principal" name="title1" value={title1} onChange={onChangeHandler}/>
-                    <label className="required-field">* Título es un campo obligatorio</label>
+                    <label className="required-field" hidden={!(title1.length === 0)}>* Título es un campo obligatorio</label>
                     <br />
                     <input type="text" placeholder="Título Secundario" name="title2" value={title2} onChange={onChangeHandler}/>
-                    <label className="required-field">* Título 2 es un campo obligatorio</label>
+                    <label className="required-field" hidden={!(title2.length === 0)}>* Título 2 es un campo obligatorio</label>
                     <br />
                     <div>
                         <label>Imágenes</label>
                         <ReactFirebaseFileUpload storeImages={images} setStoreImages={setImages}/>
+                        <label className="required-field" hidden={!(images.length === 0)}>* La Noticia debe tener al menos una imagen</label>
                         <br />
-                        <p>La primera imagen será utilizada como principal</p>    
+                        <h5 hidden={(images.length === 0)}>La primera imagen será utilizada como principal</h5>    
                     </div>
                     <br />
                     <div>
@@ -162,7 +160,7 @@ export default function ReportCreator () {
             <div>
                 <h2>previsualizacion</h2>
                 <br />
-                    {FullReportCard(reportBody)}
+                    {FullReportCard(reportBody, section)}
                 
             </div>
         </div>

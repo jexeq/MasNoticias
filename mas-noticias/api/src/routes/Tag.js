@@ -17,8 +17,9 @@ router.get("/:sectionId" , async function (req, res, next) {
     const {sectionId} = req.params;
 
     try {
-        const sectionOk = Section.findByPk(sectionId, {include:{model: Tag}})
+        const sectionOk = await Section.findByPk(sectionId, {include:{model: Tag}})
         if(sectionOk) {
+            console.log("seccion encontrada: ", sectionOk)
             return res.send(sectionOk)
         }else{
             throw new Error("no se encontró la sección")
@@ -32,6 +33,13 @@ router.post("/", async function(req, res, next) {
     const {tagName, sectionId} = req.body;
 
     try {
+        if(tagName.length<3) {
+            throw new Error("El nombre de la etiqueta debe tener al menos 4 caracteres")
+        }
+        if(!sectionId) {
+            throw new Error("El id de la Sección asociada debe ser provisto")
+        }
+
         var [newTag, previuosTag] = await Tag.findOrCreate({
             where: {name: tagName},
             default: {
