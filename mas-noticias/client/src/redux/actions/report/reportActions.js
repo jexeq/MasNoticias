@@ -36,9 +36,9 @@ export const updateReport = (report) => {
     }
 }
 
-export const createReport = (report) => {
+export const createReport = (body) => {
     return async (dispatch) => {
-        const res = await axios.post("/report/" , report) 
+        const res = await axios.post("/report/" , body) 
         return dispatch({type: TYPES.CREATE_REPORT, payload: res.data})
     }
 }

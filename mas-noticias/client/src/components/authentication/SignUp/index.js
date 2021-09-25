@@ -88,8 +88,10 @@ function SignUpFormBase(props) {
       email === '' ||
       name === '');
 
+  // useEffect(()=> {}, [])    
+
   useEffect(() => {
-    if (storeUser.email) {
+    if (storeUser?.email) {
       Swal.fire({
         icon:"success",
         title:"Correcto",

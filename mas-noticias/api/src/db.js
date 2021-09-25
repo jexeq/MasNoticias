@@ -46,8 +46,10 @@ Section.hasMany(Tag);
 User.hasMany(Report);
 // Report.belongsTo(User);
 
+Report.hasOne(Tag)
+
 Report.hasOne(Stat);
-Stat.belongsTo(Report);
+// Stat.belongsTo(Report);
 
 User.hasMany(Publicity);
 // Publicity.belongsTo(User);

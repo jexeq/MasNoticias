@@ -58,9 +58,10 @@ export default function ReportCreator () {
             dispatch(createReport({
                 user: storeUser,
                 section: section,
-                tag: null,
+                tag: tag,
                 report: reportBody
             }))
+            setTimeout(()=>{alert("se envió el formulario")}, 600)
         }else{
             alert("Todos los Campos Obligatorios deben ser Completados")
         }
@@ -118,7 +119,7 @@ export default function ReportCreator () {
                     <textarea  className='input-creator' placeholder="Título Secundario" name="title2" value={title2} onChange={onChangeHandler}/>    
                     <label className="required-field" hidden={!(title2.length === 0)}>* Título 2 es un campo obligatorio</label>
                     <br />
-                    <div>
+                    <div className='uploader-container'>
                         <label>Imágenes</label>
                         <ReactFirebaseFileUpload storeImages={images} setStoreImages={setImages}/>
                         <label className="required-field" hidden={!(images.length === 0)}>* La Noticia debe tener al menos una imagen</label>

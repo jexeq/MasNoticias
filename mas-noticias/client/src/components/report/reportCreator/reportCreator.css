@@ -23,3 +23,10 @@
     width: 70vw;
     height: auto;
 }
+
+.uploader-container{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    border: 1px solid black;
+}

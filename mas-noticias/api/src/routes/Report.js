@@ -51,14 +51,39 @@ router.post("/", async function(req, res, next) {
         if(!reportCreated) {
             res.status(400).send("Ya existe un reporte con este título")
         }else {
-            
-            await newReport.setSection(section);
-            await newReport.setTag(tag);
-            await newReport.setUser(user);
+            try {
+                let sectionOk = await Section.findByPk(section.id)
+                if(sectionOk){
+
+                    await sectionOk.addReport(newReport);
+                }else{
+                    return res.send("no se encontró la sección")
+                }
+
+            }catch(err) {return res.send(err)}
+
+
+            try {
+                let tagOk = await Tag.findByPk(tag.id)
+                if(tagOk){
+                    await newReport.addTag(tag);
+                }else{
+                    return res.send("no se encontró la etiqueta")
+                }
+            }catch(err) {return res.send(err)}
+
+            try {
+                let userOk= User.findByPk(user.id)
+                if(userOk){
+                    await User.addReport(newReport);
+                }else{
+                    return res.send("no se encontró el usuario")
+                }
+            }catch(err) {return res.send(err)}
 
             const reportStat = Stat.create();
 
-            await newReport.setStat(reportStat.id);
+            await newReport.addStat(reportStat);
         }
 
         res.status(200).send("Reporte creado exitosamente");
@@ -69,7 +94,7 @@ router.post("/", async function(req, res, next) {
 })
 
 router.delete("/:id", async function (req, res, next) {
-    const id = req.params;
+    const {id} = req.params;
 
     try {
         await Report.destroy({where: {id: id}});
