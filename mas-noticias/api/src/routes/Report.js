@@ -22,6 +22,23 @@ router.get("/", function (req, res, next){
     }
 })
 
+router.get("/:id", async function (req, res, next){
+    let {id} = req.params;
+    try{
+        // var reportOk = await Report.findByPk(id, {include: [{model: User, attributes: ["id", "email"]},{model: Section, attributes:["id", "name"]}, {model: Tag, attributes:["id", "name"]}, {model: Stat}] })
+        var reportOk = await Report.findByPk(id, {include: [{model: Section, attributes:["id", "name"]}, {model: Tag, attributes:["id", "name"]}, {model: Stat}] })
+        // var reportOk = await Report.findByPk(id)
+        console.log(reportOk)
+        if(reportOk) {
+            return res.send(reportOk);
+        }else{
+            throw new Error("no se encontro el reporte")
+        }
+    }catch(err) {
+        next(err);
+    }
+})
+
 router.post("/", async function(req, res, next) {
 
     const {user , report, section, tag} = req.body;
@@ -53,6 +70,7 @@ router.post("/", async function(req, res, next) {
         }else {
             try {
                 let sectionOk = await Section.findByPk(section.id)
+                console.log("sectionOk es" ,sectionOk)
                 if(sectionOk){
 
                     await sectionOk.addReport(newReport);
@@ -65,15 +83,17 @@ router.post("/", async function(req, res, next) {
 
             try {
                 let tagOk = await Tag.findByPk(tag.id)
+                console.log("tagOk es" ,tagOk)
                 if(tagOk){
-                    await newReport.addTag(tag);
+                    await tagOk.addReport(newReport);
                 }else{
                     return res.send("no se encontró la etiqueta")
                 }
             }catch(err) {return res.send(err)}
 
             try {
-                let userOk= User.findByPk(user.id)
+                let userOk= await User.findByPk(user.id)
+                console.log("userOk es" ,userOk)
                 if(userOk){
                     await User.addReport(newReport);
                 }else{

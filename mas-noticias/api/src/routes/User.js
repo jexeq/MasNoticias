@@ -6,7 +6,7 @@ const { Op } = require("sequelize");
 router.get("/", async function( req, res, next) {
     try {
         var allUsers = await User.findAll({include:[{model: Report, attributes: ["id", "title1"]}]})
-        console.log("allUsers: " ,allUsers)
+        // console.log("allUsers: " ,allUsers)
        return  res.send(allUsers)
 
     }catch(err){

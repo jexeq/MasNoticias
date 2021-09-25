@@ -29,7 +29,7 @@ export default function ReportCreator () {
         paragraph3: '',
         photo3: [],
         footer3: '',
-        date: ''
+        date: new Date()
     }
 
     var [reportBody, setReportBody] = useState(initial_state);
