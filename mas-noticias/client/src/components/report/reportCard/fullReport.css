@@ -3,9 +3,10 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    max-width: 90vw;
+    width: fill;
     height: auto;
-    
+    margin: 0%;
+    padding: 0%;
     
 } 
 
@@ -21,7 +22,67 @@
 }
 
 .main-img{
-    width: auto;
+    display: inline;
+    width: fill;
     height: auto;
+    width: 90vw;
+}
+
+.second-img{
+    display: inline;
+    width: fill;
+    height: auto;
+    width: 90vw;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.header-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: left;
+    border: 1px solid grey;
+    
+}
+
+.title1{
+    display: inline;
+    color: white;
+    background-color: red;
+    width: fill;
+    padding: 0 0 2% 0;
+}
+
+.title2{
+    display: inline;
+    color: grey;
+    background-color: white;
+    width: 85vw;
+    margin-left: 2%;
+    margin-top: 2%;
+}
+
+.img-foot {
+    font-size: smaller  ;
+}
+
+.report-section {
+    color: white;
+    background-color: orange;
+    display: flex;
+    flex-direction: row;
+    
+}
+
+.paragraphs{
     width: 80vw;
+    margin-left: 2%;
+}
+
+.publicity-container{
+    width: 80vw;
+    margin-left: 2%;
+    color: orange;
+    background-color: palevioletred;
 }

@@ -50,13 +50,7 @@ export default function ReportCreator () {
         })
     } 
 
-    function onSelectHandler (e) {
-        var selectedSection = document.getElementById("section").value;
-        setSection(selectedSection);
-        var preSelect = document.getElementById("section")
-        var selectedSectionText = preSelect.options[preSelect.selectedIndex].text;
-        console.log("option seleccionada: " ,selectedSectionText)
-    }
+    
 
     function onSubmitHandler (e) {
         e.preventDefault();
@@ -112,15 +106,16 @@ export default function ReportCreator () {
             <form onSubmit={onSubmitHandler}>
                 <div className='form-container'>
                     <h1>Formulario de creación de Noticias</h1>
+                    <hr />
                     <label className="required-field" hidden={section}>* Elegir Sección (campo obligatorio)</label>
                     <TagCreator higherSection={section} setHigherSection={setSection} higherTag={tag} setHigherTag={setTag}/>
                     {tag&&<label htmlFor="tag-selected">Etiqueta Seleccionada:</label>}
                     {tag&&<h5 id={"tag-selected"}>{tag.name}</h5>}
                     <br />
-                    <input type="text" placeholder="Título Principal" name="title1" value={title1} onChange={onChangeHandler}/>
+                    <input className='input-creator' type="text" placeholder="Título Principal" name="title1" value={title1} onChange={onChangeHandler}/>
                     <label className="required-field" hidden={!(title1.length === 0)}>* Título es un campo obligatorio</label>
                     <br />
-                    <input type="text" placeholder="Título Secundario" name="title2" value={title2} onChange={onChangeHandler}/>
+                    <textarea  className='input-creator' placeholder="Título Secundario" name="title2" value={title2} onChange={onChangeHandler}/>    
                     <label className="required-field" hidden={!(title2.length === 0)}>* Título 2 es un campo obligatorio</label>
                     <br />
                     <div>
@@ -145,11 +140,11 @@ export default function ReportCreator () {
                         <ControlledEditor paragraph={paragraph3} setParagraph={setParagraph3}/>
                     </div>
                     <br />        
-                    <input type="text" placeholder="Pie de Foto 1" name="footer1" value={footer1} onChange={onChangeHandler}/>
+                    <input className='input-creator' type="text" placeholder="Pie de Foto 1" name="footer1" value={footer1} onChange={onChangeHandler}/>
                     <br />
-                    <input type="text" placeholder="Pie de Foto 2" name="footer2" value={footer2} onChange={onChangeHandler}/>
+                    <input className='input-creator' type="text" placeholder="Pie de Foto 2" name="footer2" value={footer2} onChange={onChangeHandler}/>
                     <br />
-                    <input type="text" placeholder="Pie de Foto 3" name="footer3" value={footer3} onChange={onChangeHandler}/>
+                    <input className='input-creator' type="text" placeholder="Pie de Foto 3" name="footer3" value={footer3} onChange={onChangeHandler}/>
                     <br />        
                 </div>
                 <div>
@@ -160,8 +155,7 @@ export default function ReportCreator () {
             <div>
                 <h2>previsualizacion</h2>
                 <br />
-                    {FullReportCard(reportBody, section)}
-                
+                    {FullReportCard(reportBody, section, tag)}
             </div>
         </div>
     )

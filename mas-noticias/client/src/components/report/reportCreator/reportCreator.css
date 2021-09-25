@@ -18,3 +18,8 @@
     border: 1px solid black;
     max-width: 98vw;
 }
+
+.input-creator{
+    width: 70vw;
+    height: auto;
+}
