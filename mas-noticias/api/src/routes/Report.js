@@ -70,7 +70,7 @@ router.post("/", async function(req, res, next) {
         }else {
             try {
                 let sectionOk = await Section.findByPk(section.id)
-                console.log("sectionOk es" ,sectionOk)
+                // console.log("sectionOk es" ,sectionOk)
                 if(sectionOk){
 
                     await sectionOk.addReport(newReport);
@@ -83,7 +83,7 @@ router.post("/", async function(req, res, next) {
 
             try {
                 let tagOk = await Tag.findByPk(tag.id)
-                console.log("tagOk es" ,tagOk)
+                // console.log("tagOk es" ,tagOk)
                 if(tagOk){
                     await tagOk.addReport(newReport);
                 }else{
@@ -93,20 +93,29 @@ router.post("/", async function(req, res, next) {
 
             try {
                 let userOk= await User.findByPk(user.id)
-                console.log("userOk es" ,userOk)
+                // console.log("userOk es" ,userOk)
                 if(userOk){
-                    await User.addReport(newReport);
+                    await userOk.addReport(newReport);
                 }else{
                     return res.send("no se encontró el usuario")
                 }
             }catch(err) {return res.send(err)}
 
-            const reportStat = Stat.create();
+            try{
+                let reportStat = await Stat.create({likes: 0, comments: 0, shares: 0});
+                console.log("reportStat es " , reportStat)
+                if(reportStat) {
 
-            await newReport.addStat(reportStat);
+                    await reportStat.setReport(newReport);
+                }else{
+                    console.log("error creando stat")
+                    return res.send("no se encontró la estadística")
+                }  
+    
+            }catch(err) {return res.send(err)}
         }
-
-        res.status(200).send("Reporte creado exitosamente");
+        console.log("reporte creado exitosamente")
+        res.status(200).send(newReport);
 
     }catch (err) {
         next(err);
