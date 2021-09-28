@@ -4,14 +4,14 @@ import * as TYPES from "../../actionTypes";
 export const getReportById = (reportId) => {
     return async  (dispatch) => {
         const res = await axios.get('/report/' + reportId)
-        return dispatch({ type: TYPES.GET_USER, payload: res.data })
+        return dispatch({ type: TYPES.GET_REPORT_BY_ID, payload: res.data })
     }
 }
 
-export const getLastReports = () => {
+export const getweekReports = () => {
     return async (dispatch) => {
-        const res = await axios.get("/report/last_reports")
-        return dispatch({type: TYPES.GET_LAST_REPORTS, payload: res.data})
+        const res = await axios.get("/report/week_reports")
+        return dispatch({type: TYPES.GET_WEEK_REPORTS, payload: res.data})
     }
 }
 
@@ -29,13 +29,26 @@ export const getReportTag = (tagId) => {
     }
 }
 
-export const updateReport = (report) => {
+export const updateReport = (body) => {
     return async (dispatch) => {
-        const res = await axios.put(`/report/${report.id}` , report)
+        const res = await axios.put(`/report/${body.report.id}` , body)
         return dispatch({type: TYPES.UPDATE_REPORT, payload: res.data})
     }
 }
 
+export const updateReportStatus = (reportId, newStatus) => {
+    return async (dispatch) => {
+        const res = await axios.put(`/report/update-status/${reportId}`, {newStatus: newStatus});
+        return dispatch({type: TYPES.UPDATE_REPORT_STATUS, payload: res.data})
+    }
+}
+
+export const updateReportPriority = (reportId, newPriority) => {
+    return async (dispatch) => {
+        const res = await axios.put(`/report/update-priority/${reportId}`, {newPriority: newPriority});
+        return dispatch({type: TYPES.UPDATE_REPORT_PRIORITY, payload: res.data})
+    }
+}
 export const createReport = (body) => {
     return async (dispatch) => {
         const res = await axios.post("/report/" , body) 

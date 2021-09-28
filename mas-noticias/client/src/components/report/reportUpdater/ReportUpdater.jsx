@@ -1,47 +1,59 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createReport } from '../../../redux/actions/report/reportActions'
+import { updateReport, getReportById } from '../../../redux/actions/report/reportActions'
 import { getSections } from '../../../redux/actions/section/sectionActions';
 import { getUser } from '../../../redux/actions/user/userActions';
-import  ControlledEditor  from '../TextEditor'
+import  ControlledEditor  from '../TextEditor';
 import ReactFirebaseFileUpload from '../../fileUploader/FileUploader';
 import FullReportCard from '../reportCard/fullReportCard';
 import checkReportErrors from '../checkReportErrors';
 import TagCreator from '../../tag/TagCreator';
-import './reportCreator.css';
+import concatImages from "../concatImages";
+import '../reportCreator/reportCreator.css';
 
-export default function ReportCreator () {
+export default function ReportUpdater (props) {
     const dispatch = useDispatch();
     const allSections = useSelector(state=>state.sectionReducer.sections);
     const storeUser = useSelector( state=> state.userReducer.user);
     const [loading, setLoading] = useState(true);
     const userId = localStorage.getItem("mas-noticias")
+    const {reportId} = props.match.params;
+    // const { prevReport, prevSection, prevTag, prevUser} = props.prevReport;
+    const prevReport = useSelector( state => state.reportReducer.report)
+    
+    const prevUser = prevReport.user;
+    // console.log("reportId es " , reportId)
 
     var initial_state = {
-        title1: '',
-        title2: '',
-        photo1: '',
-        footer1: '',
-        paragraph1: '',
-        photo2: '',
-        footer2: '',
-        paragraph2: '',
-        paragraph3: '',
-        photo3: [],
-        footer3: '',
-        date: new Date()
+        title1: prevReport?.title1,
+        title2: prevReport?.title2,
+        photo1: prevReport?.photo1,
+        footer1: prevReport?.footer1,
+        paragraph1: prevReport?.paragraph1,
+        photo2: prevReport?.photo2,
+        footer2: prevReport?.footer2,
+        paragraph2: prevReport?.paragraph2,
+        paragraph3: prevReport?.paragraph3,
+        photo3: prevReport?.photo3,
+        footer3: prevReport?.footer3,
+        date: prevReport?.date
     }
 
-    var [reportBody, setReportBody] = useState(initial_state);
+    
+
+    var [reportBody, setReportBody] = useState();
     var [paragraph1, setParagraph1] = useState();
     var [paragraph2, setParagraph2] = useState();
     var [paragraph3, setParagraph3] = useState();
-    var [images, setImages] = useState([]);
+    var [images, setImages] = useState();
     var [section, setSection] = useState();
     var [tag, setTag] = useState();
     var sectionOptions = [];
 
-    var {title1, title2, footer1, footer2, footer3} = reportBody;
+    if(reportBody!==undefined){
+
+        var {title1, title2, footer1, footer2, footer3} = reportBody;
+    }
 
     function onChangeHandler (e) {
         e.preventDefault();
@@ -54,9 +66,9 @@ export default function ReportCreator () {
 
     function onSubmitHandler (e) {
         e.preventDefault();
-        if(!checkReportErrors(reportBody, section, storeUser)) {
-            dispatch(createReport({
-                user: storeUser,
+        if(!checkReportErrors(reportBody, section, prevUser)) {
+            dispatch(updateReport({
+                user: prevUser,
                 section: section,
                 tag: tag,
                 report: reportBody
@@ -69,6 +81,7 @@ export default function ReportCreator () {
 
     useEffect(()=>{
         dispatch(getSections())
+        dispatch(getReportById(reportId))
         if(!storeUser) {
             dispatch(getUser(userId))
         }
@@ -88,25 +101,51 @@ export default function ReportCreator () {
 
     useEffect(()=>{
         setLoading(true)
-        setReportBody({...reportBody, photo1: images[0], photo2: images[1], photo3: images.slice(2)})
-        console.log("photo3 es: " , reportBody.photo3)
-        setLoading(false)
+        if(images){
+
+            setReportBody({...reportBody, photo1: images[0], photo2: images[1], photo3: images.slice(2)})
+            // console.log("photo3 es: " , reportBody.photo3)
+            setLoading(false)
+        }
     },[images])
 
     useEffect(()=>{
-        if(allSections?.length >0) {
+        if(allSections?.length >0 && prevReport?.id!==undefined) {
             allSections.forEach(s => {
                 sectionOptions.push(s.name)
             });
-            setLoading(false)
+            if(prevReport.id){
+
+                // var prevImages = concatImages(prevReport.photo1, prevReport.photo2. prevReport.photo3)
+                setReportBody(initial_state)
+                setParagraph1(prevReport.paragraph1) 
+                setParagraph2(prevReport.paragraph2)
+                setParagraph3(prevReport.paragraph3)
+                setSection(prevReport.section)
+                setTag(prevReport.tag)
+                if(prevReport.photo1){
+                    
+                    if(prevReport.photo2){
+                        if(prevReport.photo3){
+                            setImages(concatImages(prevReport?.photo1, prevReport?.photo2. prevReport?.photo3))
+                        }else{
+                            setImages(concatImages(prevReport.photo1, prevReport.photo2))
+                        }
+                    }else{
+                        setImages(concatImages(prevReport.photo1))
+                    }
+
+                    setLoading(false)
+                }
+            }
         }
-    },[allSections])
+    },[allSections, prevReport])
 
     return !loading&&(
         <div className='main-container'>
             <form onSubmit={onSubmitHandler}>
                 <div className='form-container'>
-                    <h1>Formulario de creación de Noticias</h1>
+                    <h1>Formulario de edisión de Noticias</h1>
                     <hr />
                     <label className="required-field" hidden={section}>* Elegir Sección (campo obligatorio)</label>
                     <TagCreator higherSection={section} setHigherSection={setSection} higherTag={tag} setHigherTag={setTag}/>
@@ -122,9 +161,9 @@ export default function ReportCreator () {
                     <div className='uploader-container'>
                         <label>Imágenes</label>
                         <ReactFirebaseFileUpload storeImages={images} setStoreImages={setImages}/>
-                        <label className="required-field" hidden={!(images.length === 0)}>* La Noticia debe tener al menos una imagen</label>
+                        <label className="required-field" hidden={!(images?.length === 0)}>* La Noticia debe tener al menos una imagen</label>
                         <br />
-                        <h5 hidden={(images.length === 0)}>La primera imagen será utilizada como principal</h5>    
+                        <h5 hidden={(images?.length === 0)}>La primera imagen será utilizada como principal</h5>    
                     </div>
                     <br />
                     <div>
@@ -149,7 +188,7 @@ export default function ReportCreator () {
                     <br />        
                 </div>
                 <div>
-                    <button type="submit">Crear Noticia</button>
+                    <button type="submit">Actualizar Noticia</button>
                 </div>
             </form>
             <br />

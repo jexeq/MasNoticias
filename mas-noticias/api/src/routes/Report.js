@@ -2,20 +2,44 @@ const {Report, Section, Stat, Tag, User} = require("../db");
 const router = require('express').Router();
 const { Op } = require("sequelize");
 
-router.get("/", function (req, res, next){
+router.get("/week_reports", async function (req, res, next){
 
     try {
         
-        var allReports = Report.findAll(
-            {include:[
+        // var allReports = await Report.findAll(
+        //     {
+        //     include:[
+        //         {model: Section, attributes: ["name"]},
+        //         {model: Tag, attributes: ["name"]},
+        //         {model: Stat , attributes: ["likes", "comments", "shares"]},
+        //         {model: User, attributes: ["id", "email", "name", "lastname"]}
+        //     ],
+        //     // offset: 20,
+        //     // limit: 20
+        // })
+
+        var allReports = await Report.findAll(
+            {
+            where: {
+                date: {
+                    [Op.gt]: new Date(new Date() - (24 * 60 * 60 * 1000 * 7)  )
+                }
+            },
+            include:[
                 {model: Section, attributes: ["name"]},
                 {model: Tag, attributes: ["name"]},
                 {model: Stat , attributes: ["likes", "comments", "shares"]},
-                {model: User, attributes: ["id", "email"]}
-            ]}
-        )
+                {model: User, attributes: ["id", "email", "name", "lastname"]}
+            ],
+            // offset: 20,
+            limit: 20
+        })
 
-        res.status(200).json(allReports);
+        // var allReports = await Report.findAll();
+        
+        // console.log("allReports: " , allReports)
+
+        return res.status(200).send(allReports);
 
     } catch (err) {
         next(err);
@@ -25,10 +49,10 @@ router.get("/", function (req, res, next){
 router.get("/:id", async function (req, res, next){
     let {id} = req.params;
     try{
-        // var reportOk = await Report.findByPk(id, {include: [{model: User, attributes: ["id", "email"]},{model: Section, attributes:["id", "name"]}, {model: Tag, attributes:["id", "name"]}, {model: Stat}] })
-        var reportOk = await Report.findByPk(id, {include: [{model: Section, attributes:["id", "name"]}, {model: Tag, attributes:["id", "name"]}, {model: Stat}] })
+        var reportOk = await Report.findByPk(id, {include: [{model: User, attributes: ["id", "email"]},{model: Section, attributes:["id", "name"]}, {model: Tag, attributes:["id", "name"]}, {model: Stat}] })
+        // var reportOk = await Report.findByPk(id, {include: [{model: Section, attributes:["id", "name"]}, {model: Tag, attributes:["id", "name"]}, {model: Stat}] })
         // var reportOk = await Report.findByPk(id)
-        console.log(reportOk)
+        console.log("reportOk: ", reportOk)
         if(reportOk) {
             return res.send(reportOk);
         }else{
@@ -119,6 +143,44 @@ router.post("/", async function(req, res, next) {
 
     }catch (err) {
         next(err);
+    }
+})
+
+router.put("/update-status/:reportId", async function(req, res, next){
+    const {reportId} = req.params;
+    const {newPriority} = req.body;
+    // console.log("newPriority es: ", newPriority)
+    try{
+        const reportOk = await Report.findByPk(reportId);
+        if(reportOk){
+            reportOk.status = newPriority;
+            reportOk.save()
+
+            return res.send("reporte actualizado correctamente")
+        }else{
+            throw new Error("no se encontró el reporte")
+        }
+    }catch (err){
+        next(err)
+    }
+})
+
+router.put("/update-priority/:reportId", async function(req, res, next){
+    const {reportId} = req.params;
+    const {newPriority} = req.body;
+    console.log("newPriority es: ", newPriority)
+    try{
+        const reportOk = await Report.findByPk(reportId);
+        if(reportOk){
+            reportOk.priority = newPriority;
+            reportOk.save()
+
+            return res.send(reportOk)
+        }else{
+            throw new Error("no se encontró el reporte")
+        }
+    }catch (err){
+        next(err)
     }
 })
 

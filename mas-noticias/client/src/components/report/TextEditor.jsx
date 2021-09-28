@@ -1,17 +1,29 @@
-import React, { Component } from 'react';
-import { useState } from 'react';
-import { EditorState, convertToRaw } from 'draft-js';
+import React from 'react';
+import { useState, useEffect } from 'react';
+import { EditorState, convertToRaw, ContentState, convertFromHTML } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import draftToHtml from 'draftjs-to-html';
-import '../../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import htmlToDraft from 'html-to-draftjs';
+import '../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import './textEditor.css';
 
 
  function ControlledEditor (props) {
 
-    const {setParagraph} = props;
-    const [state, setState] = useState({editorState : EditorState.createEmpty()}) ;
+    const {paragraph, setParagraph} = props;
+    const [state, setState] = useState({editorState: null}) ;
+
+    useEffect(()=>{
+
+      if(!paragraph){
+          setState({editorState : EditorState.createEmpty()});
+        }else{
+            setState({editorState: EditorState.createWithContent(ContentState.createFromBlockArray(convertFromHTML(paragraph)))})
+          }
+        },[])
+
     const { editorState } = state;
+    
 
   function onEditorStateChange (editorState)  {
     setState( { editorState } );
@@ -23,6 +35,7 @@ import './textEditor.css';
     return (
       <Editor
         editorState={editorState}
+        
         wrapperClassName="text-editor-wrapper"
         toolbarClassName="text-editor-toolbar"
         editorClassName="text-editor-container"

@@ -11,9 +11,11 @@ export const GET_FACEBOOK_USER = "get_facebook_user";
 export const GET_REPORT_BY_ID = "get_report";
 export const GET_REPORTS_BY_SECTION = "get_reports_by_section";
 export const GET_REPORTS_BY_TAG = "get_reports_by_tag";
-export const GET_LAST_REPORTS = "get_last_reports";
+export const GET_WEEK_REPORTS = "get_week_reports";
 export const CREATE_REPORT = "create_report";
 export const UPDATE_REPORT = "update_report";
+export const UPDATE_REPORT_STATUS = "update_report_status";
+export const UPDATE_REPORT_PRIORITY = "update_report_priority";
 export const DELETE_REPORT = "delete_report";
 
 export const CREATE_SECTION = "create_section";
