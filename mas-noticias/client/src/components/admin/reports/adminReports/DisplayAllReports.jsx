@@ -1,19 +1,32 @@
 import { getweekReports } from '../../../../redux/actions/report/reportActions';
+import { getUser } from '../../../../redux/actions/user/userActions';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ChangeReportStatus from './ChangeReportStatus';
 import ChangeReportPriority from './ChangeReportPriority';
 import { NavLink } from "react-router-dom";
+import { useHistory } from 'react-router';
 
 export default function DisplayAllReports () {
+    const history = useHistory();
     const dispatch = useDispatch();
     const storeReports = useSelector(state => state.reportReducer.reports);
+    const storeUser = useSelector( state => state.userReducer.user);
+    const userId = localStorage.getItem("mas-noticias")
     const [loading, setLoading] = useState(true);
     const [selectedReport, setSelectedReport] = useState(null)
     
 
     useEffect(()=>{
         dispatch(getweekReports())
+        if(userId === "guest" || !userId) {
+            history.push("/not-found")
+        }else if (!storeUser){
+            dispatch(getUser(userId))
+        }else if (storeUser.type !== "admin" || storeUser.type !== "sudo"){
+            history.push("/not-found")
+        }
+        
     },[])
 
     useEffect(()=>{

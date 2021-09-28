@@ -13,6 +13,7 @@ import UsersAdmin from "./components/admin/users/index";
 import ReportCreator from'./components/report/reportCreator/ReportCreator';
 import DisplayAllReports from './components/admin/reports/adminReports/DisplayAllReports';
 import ReportUpdater from './components/report/reportUpdater/ReportUpdater';
+import NotFound from "./components/notFound/NotFound";
 import './App.css';
 
 function App() {
@@ -29,7 +30,7 @@ function App() {
       <Route exact path="/admin/reports" component={DisplayAllReports}/>
       <Route path="/create-report" component={ReportCreator} />
       <Route path="/admin/reports/edit-report/:reportId" component={ReportUpdater}/>
-      
+      <Route path="/not-found" component={NotFound}/>
     </React.Fragment>
   );
 }

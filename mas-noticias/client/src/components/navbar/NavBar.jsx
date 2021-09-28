@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import WeatherReport from '../weather/Weather';
 import LogOutButton from '../authentication/SignOut';
+import CheckUser from '../utils/CheckUser';
 import { getWeather } from '../../redux/actions/weather/weatherActions';
 import { getUser } from '../../redux/actions/user/userActions';
 import { NavLink } from 'react-router-dom';
@@ -24,7 +25,10 @@ export default function NavBar () {
 
     useEffect( ()=> {
         dispatch(getWeather());
-        dispatch(getUser(userId));
+        if(!storeUser){
+
+            dispatch(getUser(userId));
+        }
     },[])        
 
     return (

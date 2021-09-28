@@ -95,7 +95,7 @@ export default function UsersAdmin(props) {
               <th>Email</th>
               <th>Usuario</th>
               <th>Estado</th>
-              <th>Administrador</th>
+              <th>Tipo</th>
               <th>check</th>
             </tr>
           </thead>
