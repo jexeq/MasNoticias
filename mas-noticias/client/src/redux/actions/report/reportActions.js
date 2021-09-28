@@ -31,6 +31,7 @@ export const getReportTag = (tagId) => {
 
 export const updateReport = (body) => {
     return async (dispatch) => {
+        console.log("estp es body en el reducer: " , body)
         const res = await axios.put(`/report/${body.report.id}` , body)
         return dispatch({type: TYPES.UPDATE_REPORT, payload: res.data})
     }

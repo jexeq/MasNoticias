@@ -25,6 +25,7 @@ export default function ReportUpdater (props) {
     // console.log("reportId es " , reportId)
 
     var initial_state = {
+        id: prevReport?.id,
         title1: prevReport?.title1,
         title2: prevReport?.title2,
         photo1: prevReport?.photo1,
@@ -64,7 +65,7 @@ export default function ReportUpdater (props) {
 
     
 
-    function onSubmitHandler (e) {
+    function onSubmitHandler2 (e) {
         e.preventDefault();
         if(!checkReportErrors(reportBody, section, prevUser)) {
             dispatch(updateReport({
@@ -143,7 +144,7 @@ export default function ReportUpdater (props) {
 
     return !loading&&(
         <div className='main-container'>
-            <form onSubmit={onSubmitHandler}>
+            <form onSubmit={onSubmitHandler2}>
                 <div className='form-container'>
                     <h1>Formulario de edisión de Noticias</h1>
                     <hr />

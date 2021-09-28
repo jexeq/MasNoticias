@@ -184,6 +184,57 @@ router.put("/update-priority/:reportId", async function(req, res, next){
     }
 })
 
+router.put("/:reportId", async function(req, res, next){
+    const {reportId} = req.params;
+    const { user, section, tag, report } = req.body;
+    try{
+        const prevReport = await Report.findByPk(reportId, {include:[{model: User},{model: Section}, {model: Tag},{model: Stat}]})
+        if(prevReport){
+            prevReport.title1= report.title1;
+            prevReport.title2= report.title2;
+            prevReport.paragraph1 = report.paragraph1;
+            prevReport.paragraph2 = report.paragraph2;
+            prevReport.paragraph3 = report.paragraph3;
+            prevReport.footer1 = report.footer1;
+            prevReport.footer2 = report.footer2;
+            prevReport.footer3 = report.footer3;
+            prevReport.photo1 = report.photo1;
+            prevReport.photo2 = report.photo2;
+            prevReport.photo3 = report.photo3;
+            await prevReport.save();
+
+            if(prevReport.tag.id !== tag.id) {
+                try {
+                    const newTag = await Tag.findByPk(tag.id)
+                    await prevReport.setTag(newTag)
+                }catch (err) {
+                    throw new Error(err)
+                    return;
+                }
+            }
+
+            if(prevReport.section.id!== section.id){
+                try{
+                    const newSection = await Section.findByPk(section.id)
+                    await prevReport.setSection(newSection)
+
+                }catch (err) {
+                    throw new Error(err)
+                    return;
+                }
+            }
+
+            const completeReport = await Report.findByPk(reportId, {include:[{model: User},{model: Section}, {model: Tag},{model: Stat}]})
+
+            return res.send(completeReport)
+
+        }else{
+            throw new Error("no se encontró el reporte")
+            return;
+        }
+    }catch (err) {next(err)}
+})
+
 router.delete("/:id", async function (req, res, next) {
     const {id} = req.params;
 
