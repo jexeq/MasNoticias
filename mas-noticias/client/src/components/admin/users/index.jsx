@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllUser } from "../../../redux/actions/user/userActions";
-
+import { getAllUser, getUser } from "../../../redux/actions/user/userActions";
+import { useHistory } from "react-router";
 
 import SetAdminUser from "./SetAdminUser";
 import SetEditorUser from "./SetEditorUser";
@@ -11,11 +11,13 @@ import ForcePasswordResetButton from "./ForcePSWreset";
 
 
 export default function UsersAdmin(props) {
+  const history = useHistory();
   const dispatch = useDispatch();
   var [usersSelected, setUsersSelected] = useState([]);
   const [changed, setChanged] = useState(false);
   const [loading, setLoading] = useState(true);
-
+  const userId = localStorage.getItem("mas-noticias");
+  const storeUser = useSelector((state) => state.userReducer.user)
   const storeUsers = useSelector((state) => state.userReducer.users);
 
 
@@ -34,7 +36,19 @@ export default function UsersAdmin(props) {
 
   useEffect(() => {
     dispatch(getAllUser());
+    if(!storeUser){
+      dispatch(getUser(userId))
+    }
   }, []);
+
+  useEffect(() => {
+    if(storeUser?.id){
+      if(storeUser.type === "admin" || storeUser.type === "sudo" )
+      {}else{
+        history.push("/not-found")
+      }
+    }
+  }, [storeUser])
 
   useEffect(() => {
     var checkeds = document.getElementsByClassName("checkbox");
@@ -57,13 +71,14 @@ export default function UsersAdmin(props) {
       <h1 className="text-center mt-4">Control de usuarios</h1>
       <div className="table">
         <div id="tableleft" className="d-table-cell me-5">
+          {storeUser?.type === "sudo" &&
           <div className="mt-3">
             <SetAdminUser
               users={usersSelected}
               changed={changed}
               setChanged={setChanged}
             />
-          </div>
+          </div>}
           <div className="mt-3">
             <SetEditorUser
               users={usersSelected}

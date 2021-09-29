@@ -30,7 +30,7 @@ export default function NavBar () {
         }
     },[])        
 
-    return storeUser&&(
+    return (
         <div>
             <div className="nav-container">
                 <NavLink to="/">
@@ -50,13 +50,23 @@ export default function NavBar () {
                 <div className='btn-nav'>{storeUser?.email}</div>
                 {storeUser&&<LogOutButton/>}
             </div>
-            {(storeUser.type === "admin" || storeUser.type === "editor" || storeUser.type === "sudo" )&&(
+            {(storeUser?.type === "admin" || storeUser?.type === "editor" || storeUser?.type === "sudo" )&&(
                 <div className="editor-navBar">
                     <div className="editor-options">
                     <NavLink className='links' to="/create-report">Crear Noticia</NavLink>
                     </div>
                     <div className="editor-options">
                     <NavLink className='links' to="/admin/reports">Administrar Noticias</NavLink>
+                    </div>
+                </div>
+            )}
+            {(storeUser?.type === "sudo")&&(
+                <div className="editor-navBar">
+                    <div className="editor-options">
+                    <NavLink className='links' to="/admin/users">Administrar Usuarios</NavLink>
+                    </div>
+                    <div className="editor-options">
+                    <NavLink className='links' to="/create-section">Administrar Secciones</NavLink>
                     </div>
                 </div>
             )}

@@ -29,7 +29,7 @@ export default function SetAdminUser(props) {
   return (
     <div>
       <button id="buttonusers" onClick={(e) => toogleAdmin(e, users)}>
-        Otorgar / Quitar Permisos de Administrador
+        Otorgar / Quitar Permisos de Admin
       </button>
     </div>
   );

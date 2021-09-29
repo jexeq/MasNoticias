@@ -28,6 +28,7 @@ export default function ChangeReportStatus(props) {
         <label htmlFor={props.report.id}>Seleccionar</label>
         <br />
         <select name="report-status" id={props.report.id} onChange={selectStatusHandler}>
+        <option key="seleccionar" value="">--seleccionar--</option>
             {validStatus.map( (e, index) => {
                 if(e!== currentStatus) {
                     return <option key={index} value={e}>{e}</option>

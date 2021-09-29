@@ -30,7 +30,7 @@ export default function DisplayAllReports () {
 
     useEffect(()=>{
         if(storeUser?.id){
-            if (storeUser.type === "admin" || storeUser.type === "sudo"){
+            if (storeUser.type === "admin" || storeUser.type === "sudo" || storeUser.type === "editor"){
  
             }else {
                 history.push("/not-found")
@@ -60,11 +60,15 @@ export default function DisplayAllReports () {
             <div>
                 {selectedReport&&(
                     <div>
+                        {(storeUser.type === "admin"||storeUser.type === "sudo") && (<div>
                         <ChangeReportStatus report={selectedReport} />
                         <ChangeReportPriority report={selectedReport} />
+                        </div>)}
+                        <hr />
                         <NavLink to={`/admin/reports/edit-report/${selectedReport.id}`}>
                             <button>Editar el Contenido de la Noticia</button>
                         </NavLink>
+                        <hr />
                     </div>)}
                 <table>
                     <thead>

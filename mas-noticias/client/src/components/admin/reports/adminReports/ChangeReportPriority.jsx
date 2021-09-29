@@ -30,14 +30,16 @@ export default function ChangeReportPriority(props) {
         <label htmlFor={props.report.id}>Seleccionar</label>
         <br />
         <select name="report-priority" id={props.report.id} onChange={selectPriorityHandler}>
+            <option key="seleccionar" value="">--seleccionar--</option>
             {validPriority.map( (e, index) => {
                 if(e!== currentPriority) {
                     return <option key={index} value={e}>{e}</option>
                 }
             })}
         </select>
-        <hr />
+        <br />
         {currentPriority!==newPriority&& <button onClick={updatePriorityHandler}>Cambiar Prioridad</button> }
+        <hr />
         </form>
 
     </div>

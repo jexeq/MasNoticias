@@ -1,0 +1,39 @@
+.landing-cont{
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+}
+
+.landing-body{
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    height: auto;
+}
+
+.left-column{
+    display: flex;
+    flex-direction: column;
+    width: 10vw;
+    height: fit-content;
+    background-color: blanchedalmond;
+}
+
+.center-column{
+    display: flex;
+    flex-direction: column;
+    margin-top: 3vh;
+    width: 70vw;
+    height: auto;
+    border-left: 1px solid grey;
+    border-right: 1px solid grey;
+    justify-content: flex-start;
+}
+
+.right-column{
+    display: flex;
+    flex-direction: column;
+    width: 20vw;
+    height: fit-content;
+}

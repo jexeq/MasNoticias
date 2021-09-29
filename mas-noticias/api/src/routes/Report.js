@@ -19,7 +19,7 @@ router.get("/week_reports", async function (req, res, next){
                 {model: Stat , attributes: ["likes", "comments", "shares"]},
                 {model: User, attributes: ["id", "email", "name", "lastname"]}
             ],
-            order: [["date", "ASC"]],
+            order: [["priority", "DESC"]],
             limit: 20
         })
 
