@@ -5,18 +5,6 @@ const { Op } = require("sequelize");
 router.get("/week_reports", async function (req, res, next){
 
     try {
-        
-        // var allReports = await Report.findAll(
-        //     {
-        //     include:[
-        //         {model: Section, attributes: ["name"]},
-        //         {model: Tag, attributes: ["name"]},
-        //         {model: Stat , attributes: ["likes", "comments", "shares"]},
-        //         {model: User, attributes: ["id", "email", "name", "lastname"]}
-        //     ],
-        //     // offset: 20,
-        //     // limit: 20
-        // })
 
         var allReports = await Report.findAll(
             {
@@ -31,13 +19,11 @@ router.get("/week_reports", async function (req, res, next){
                 {model: Stat , attributes: ["likes", "comments", "shares"]},
                 {model: User, attributes: ["id", "email", "name", "lastname"]}
             ],
-            // offset: 20,
+            order: [["date", "ASC"]],
             limit: 20
         })
 
-        // var allReports = await Report.findAll();
         
-        // console.log("allReports: " , allReports)
 
         return res.status(200).send(allReports);
 
@@ -148,12 +134,12 @@ router.post("/", async function(req, res, next) {
 
 router.put("/update-status/:reportId", async function(req, res, next){
     const {reportId} = req.params;
-    const {newPriority} = req.body;
+    const {newStatus} = req.body;
     // console.log("newPriority es: ", newPriority)
     try{
         const reportOk = await Report.findByPk(reportId);
         if(reportOk){
-            reportOk.status = newPriority;
+            reportOk.status = newStatus;
             reportOk.save()
 
             return res.send("reporte actualizado correctamente")
