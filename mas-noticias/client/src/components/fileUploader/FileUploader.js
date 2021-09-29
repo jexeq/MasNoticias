@@ -66,12 +66,21 @@ const ReactFirebaseFileUpload = ({ storeImages, setStoreImages }) => {
         if (urls.length > 0) {
             setStoreImages(urls)
         }
+        
 
     }, [urls])
 
     useEffect(() => {
         if (storeImages?.length > 0 && urls.length === 0) setUrls(storeImages)
+        
     }, [storeImages])
+
+    useEffect(()=>{
+        return ()=>{
+            setUrls([])
+            setStoreImages([])
+        }
+    },[])
 
 
     function quitImageHandler(e) {

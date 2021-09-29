@@ -63,3 +63,9 @@ export const deleteReport = (reportId) => {
         return dispatch({type: TYPES.DELETE_REPORT, payload: res.data})
     }
 }
+
+export const clearReports = () => {
+    return async (dispatch) => {
+        return dispatch({type: TYPES.CLEAR_REPORTS})
+    }
+}

@@ -1,4 +1,4 @@
-import { getweekReports } from '../../../../redux/actions/report/reportActions';
+import { getweekReports, clearReports } from '../../../../redux/actions/report/reportActions';
 import { getUser } from '../../../../redux/actions/user/userActions';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -19,15 +19,24 @@ export default function DisplayAllReports () {
 
     useEffect(()=>{
         dispatch(getweekReports())
-        if(userId === "guest" || !userId) {
-            history.push("/not-found")
-        }else if (!storeUser){
-            dispatch(getUser(userId))
-        }else if (storeUser.type !== "admin" || storeUser.type !== "sudo"){
+        if(userId === "guest") {
             history.push("/not-found")
         }
-        
+        if (!storeUser){
+            dispatch(getUser(userId))
+        }
+        return ()=>{dispatch(clearReports())}
     },[])
+
+    useEffect(()=>{
+        if(storeUser?.id){
+            if (storeUser.type === "admin" || storeUser.type === "sudo"){
+ 
+            }else {
+                history.push("/not-found")
+            }
+        }
+    },[storeUser])
 
     useEffect(()=>{
         if(storeReports?.length > 0) {

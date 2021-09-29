@@ -40,3 +40,26 @@
     font-size: 90%;
     color: white;
 }
+
+.editor-navBar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    background-color: lightcoral;
+    height: 7vh;
+}
+
+.editor-options{
+    border: 2px solid grey;
+    text-decoration: none;
+    background-color: whitesmoke;
+    padding: 1%;
+    border-radius: 10%;
+}
+
+.links{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}

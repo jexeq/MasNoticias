@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateReport, getReportById } from '../../../redux/actions/report/reportActions'
+import { updateReport, getReportById, clearReports } from '../../../redux/actions/report/reportActions'
 import { getSections } from '../../../redux/actions/section/sectionActions';
 import { getUser } from '../../../redux/actions/user/userActions';
 import  ControlledEditor  from '../TextEditor';
@@ -40,8 +40,6 @@ export default function ReportUpdater (props) {
         date: prevReport?.date
     }
 
-    
-
     var [reportBody, setReportBody] = useState();
     var [paragraph1, setParagraph1] = useState();
     var [paragraph2, setParagraph2] = useState();
@@ -52,7 +50,6 @@ export default function ReportUpdater (props) {
     var sectionOptions = [];
 
     if(reportBody!==undefined){
-
         var {title1, title2, footer1, footer2, footer3} = reportBody;
     }
 
@@ -62,8 +59,6 @@ export default function ReportUpdater (props) {
             ...reportBody , [e.target.name]:e.target.value
         })
     } 
-
-    
 
     function onSubmitHandler2 (e) {
         e.preventDefault();
@@ -86,7 +81,24 @@ export default function ReportUpdater (props) {
         if(!storeUser) {
             dispatch(getUser(userId))
         }
+
+        return ()=>{
+            setImages([])
+            setParagraph1("")
+            setParagraph2("")
+            setParagraph3("")
+            setReportBody({})
+            setSection({})
+            setTag({})
+            dispatch(clearReports())
+            console.log("se limpiaron los estados")
+            console.log("images: " , images)
+            console.log("reportBody: " , reportBody)
+        }
+        
     },[])
+
+    
 
     useEffect(()=>{
         setReportBody({...reportBody, paragraph1: paragraph1})
@@ -124,10 +136,12 @@ export default function ReportUpdater (props) {
                 setParagraph3(prevReport.paragraph3)
                 setSection(prevReport.section)
                 setTag(prevReport.tag)
-                if(prevReport.photo1){
-                    
-                    if(prevReport.photo2){
-                        if(prevReport.photo3){
+                if(prevReport.photo1.length > 0){
+                    console.log("ReportUpdater: entro al 1 if")
+                    if(prevReport.photo2.length > 0 ){
+                        console.log("ReportUpdater: entro al 2 if")
+                        if(prevReport.photo3.length > 0 ){
+                            console.log("ReportUpdater: entro al 3 if")
                             setImages(concatImages(prevReport?.photo1, prevReport?.photo2. prevReport?.photo3))
                         }else{
                             setImages(concatImages(prevReport.photo1, prevReport.photo2))

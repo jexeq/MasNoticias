@@ -17,10 +17,15 @@ import './textEditor.css';
 
       if(!paragraph){
           setState({editorState : EditorState.createEmpty()});
-        }else{
-            setState({editorState: EditorState.createWithContent(ContentState.createFromBlockArray(convertFromHTML(paragraph)))})
-          }
-        },[])
+      }else{
+          setState({editorState: EditorState.createWithContent(ContentState.createFromBlockArray(convertFromHTML(paragraph)))})
+      }
+
+      return ()=>{
+        setState({editorState: null})
+        console.log("TEXTE EDITOR: state" ,state)
+      }
+    },[])
 
     const { editorState } = state;
     
