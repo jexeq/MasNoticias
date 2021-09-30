@@ -1,10 +1,11 @@
 import { useEffect } from 'react';
 import './fullReport.css';
 
-export default function FullReportCard (report, section, tag) {
-    const {title1, title2, footer1, footer2, footer3, paragraph1, paragraph2, paragraph3, photo1, photo2, photo3} = report;
-    // console.log("photo3 dentro de full report card: " ,photo3)
-    
+export default function FullReportCard (props) {
+    const {title1, title2, footer1, footer2, footer3, paragraph1, paragraph2, paragraph3, photo1, photo2, photo3} = props.report;
+    // console.log("esto esreport" ,report)
+    const tag = props.tag;
+    const section = props.section
     
     return (
         <div className="report-container">

@@ -15,6 +15,7 @@ import ReportCreator from'./components/report/reportCreator/ReportCreator';
 import DisplayAllReports from './components/admin/reports/adminReports/DisplayAllReports';
 import ReportUpdater from './components/report/reportUpdater/ReportUpdater';
 import NotFound from "./components/notFound/NotFound";
+import ReportDetail from './views/ReportDetail';
 import './App.css';
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
       <Route path="/create-report" component={ReportCreator} />
       <Route path="/admin/reports/edit-report/:reportId" component={ReportUpdater}/>
       <Route path="/not-found" component={NotFound}/>
+      <Route path="/report/:reportId" component={ReportDetail}/>
     </React.Fragment>
   );
 }
