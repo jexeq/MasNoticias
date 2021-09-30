@@ -5,7 +5,7 @@ module.exports = (sequelize) => {
     sequelize.define("publicity", {
 
         id: {
-            type: DataTypes.UUID,
+            type: DataTypes.STRING,
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true
         },
@@ -28,6 +28,15 @@ module.exports = (sequelize) => {
         url: {
             type: DataTypes.STRING,
             allowNull: false
+        },
+        type: {
+            type: DataTypes.ENUM("small", "medium", "large", "banner"),
+            defaultValue: "small"
+        },
+        state: {
+            type: DataTypes.ENUM("active", "paused", "finished"),
+            defaultValue: "paused"
+
         }
     });
 }

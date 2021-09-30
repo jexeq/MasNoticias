@@ -6,6 +6,7 @@ const Tag = require("./Tag");
 const User = require("./User");
 const Weather = require("./Weather");
 const Mail = require("./mailing");
+const Publicity = require("./Publicity");
 
 
 
@@ -17,6 +18,7 @@ router.use("/section", Section);
 router.use("/user", User)
 router.use("/weather" , Weather);
 router.use("/mail" , Mail);
+router.use("/publicity", Publicity);
 
 
 
