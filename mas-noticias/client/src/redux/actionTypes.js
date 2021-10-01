@@ -31,6 +31,7 @@ export const DELETE_TAG = "delete_taf";
 export const GET_WEATHER = "get_weather";
 
 export const CREATE_PUBLICITY = "create_publicity";
+export const GET_ALL_PUBLICITY = "get_all_publicity";
 export const GET_PUBLICITY = "get_publicity";
 export const UPDATE_PUBLICITY = "update_publicity";
 export const DELETE_PUBLICITY = "delete_publicity";

@@ -66,8 +66,6 @@ const ReactFirebaseFileUpload = ({ storeImages, setStoreImages }) => {
         if (urls.length > 0) {
             setStoreImages(urls)
         }
-        
-
     }, [urls])
 
     useEffect(() => {

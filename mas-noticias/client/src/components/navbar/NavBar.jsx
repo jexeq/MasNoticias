@@ -68,6 +68,9 @@ export default function NavBar () {
                     <div className="editor-options">
                     <NavLink className='links' to="/create-section">Administrar Secciones</NavLink>
                     </div>
+                    <div className="editor-options">
+                    <NavLink className='links' to="/admin/publicity">Administrar Publicidades</NavLink>
+                    </div>
                 </div>
             )}
 

@@ -7,8 +7,8 @@ router.get("/all-publicity", async function (req, res, next) {
     try {
         const allPublicity = await Publicity.findAll(
             {
-                include: [{model: User}],
-                order: [ "createdAt", "DESC"]
+                include: [{model: User, attributes: ["email"]}],
+                order: [ "createdAt"]
             });
         
         if(allPublicity) {
@@ -28,11 +28,13 @@ router.post("/", async function (req, res, next){
     var { publicity, user } = req.body;
 
     if(!publicity.init) {
-        publicity.init = new Date()
+        publicity.init = new Date().toString()
+        console.log("se creo init" , publicity.init)
     }
 
     if(!publicity.end) {
-        publicity.end = new Date( new Date() + (1000 * 60 * 60 * 24 * 7))
+        publicity.end = new Date( new Date() + (1000 * 60 * 60 * 24 * 7)).toString()
+        console.log("se creo init" , publicity.end)
     }
 
     try {

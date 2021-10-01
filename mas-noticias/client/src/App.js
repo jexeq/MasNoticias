@@ -16,6 +16,8 @@ import DisplayAllReports from './components/admin/reports/adminReports/DisplayAl
 import ReportUpdater from './components/report/reportUpdater/ReportUpdater';
 import NotFound from "./components/notFound/NotFound";
 import ReportDetail from './views/ReportDetail';
+import PublicityCreator from "./components/admin/publicity/PublicityCreator";
+import PublicityManager from "./components/admin/publicity/PublicityManager";
 import './App.css';
 
 function App() {
@@ -35,6 +37,8 @@ function App() {
       <Route path="/admin/reports/edit-report/:reportId" component={ReportUpdater}/>
       <Route path="/not-found" component={NotFound}/>
       <Route path="/report/:reportId" component={ReportDetail}/>
+      <Route path="/admin/create-publicity" component={PublicityCreator}/>
+      <Route path="/admin/publicity" component={PublicityManager}/>
     </React.Fragment>
   );
 }
