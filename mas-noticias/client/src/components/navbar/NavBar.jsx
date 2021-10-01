@@ -52,24 +52,24 @@ export default function NavBar () {
             </div>
             {(storeUser?.type === "admin" || storeUser?.type === "editor" || storeUser?.type === "sudo" )&&(
                 <div className="editor-navBar">
-                    <div className="editor-options">
-                    <NavLink className='links' to="/create-report">Crear Noticia</NavLink>
+                    <div >
+                    <NavLink className='btn btn-dark' to="/create-report">Crear Noticia</NavLink>
                     </div>
-                    <div className="editor-options">
-                    <NavLink className='links' to="/admin/reports">Administrar Noticias</NavLink>
+                    <div >
+                    <NavLink className='btn btn-dark' to="/admin/reports">Administrar Noticias</NavLink>
                     </div>
                 </div>
             )}
             {(storeUser?.type === "sudo")&&(
                 <div className="editor-navBar">
-                    <div className="editor-options">
-                    <NavLink className='links' to="/admin/users">Administrar Usuarios</NavLink>
+                    <div >
+                    <NavLink className='btn btn-dark' to="/admin/users">Administrar Usuarios</NavLink>
                     </div>
-                    <div className="editor-options">
-                    <NavLink className='links' to="/create-section">Administrar Secciones</NavLink>
+                    <div >
+                    <NavLink className='btn btn-dark' to="/create-section">Administrar Secciones</NavLink>
                     </div>
-                    <div className="editor-options">
-                    <NavLink className='links' to="/admin/publicity">Administrar Publicidades</NavLink>
+                    <div >
+                    <NavLink className='btn btn-dark' to="/admin/publicity">Administrar Publicidades</NavLink>
                     </div>
                 </div>
             )}
