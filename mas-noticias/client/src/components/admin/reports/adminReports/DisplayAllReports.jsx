@@ -55,21 +55,9 @@ export default function DisplayAllReports () {
 
 
     return !loading&&(
-        <div>
+        <div className='container align-items-c'>
             <h1>Listado de noticias</h1>
             <div>
-                {selectedReport&&(
-                    <div>
-                        {(storeUser.type === "admin"||storeUser.type === "sudo") && (<div>
-                        <ChangeReportStatus report={selectedReport} />
-                        <ChangeReportPriority report={selectedReport} />
-                        </div>)}
-                        <hr />
-                        <NavLink to={`/admin/reports/edit-report/${selectedReport.id}`}>
-                            <button>Editar el Contenido de la Noticia</button>
-                        </NavLink>
-                        <hr />
-                    </div>)}
                 <table>
                     <thead>
                         <tr>
@@ -91,6 +79,7 @@ export default function DisplayAllReports () {
                                 <td>{r.priority}</td>
                                 <td>
                                     <input type="radio"
+                                            name='select-report'
                                             value={r.id}
                                             onChange={(e)=>selectReport(e)}
                                             />
@@ -99,6 +88,19 @@ export default function DisplayAllReports () {
                         ))}
                     </tbody>
                 </table>
+                <hr />
+                {selectedReport&&(
+                    <div>
+                        {(storeUser.type === "admin"||storeUser.type === "sudo") && (<div>
+                        <ChangeReportStatus report={selectedReport} />
+                        <ChangeReportPriority report={selectedReport} />
+                        </div>)}
+                        <hr />
+                        <NavLink to={`/admin/reports/edit-report/${selectedReport.id}`}>
+                            <button>Editar el Contenido de la Noticia</button>
+                        </NavLink>
+                        <hr />
+                    </div>)}
             </div>
         </div>
     )

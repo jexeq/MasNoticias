@@ -10,7 +10,7 @@ import { withFirebase } from '../../firebase/index';
 function LogOutButton() {
   
   return (
-    <SignOutButton className="btn-logOut" />
+    <SignOutButton  />
   )
 }
 
@@ -36,7 +36,7 @@ function SignOutButtonBase(props) {
 
   return (
 
-    <button type="button" onClick={clickHandler} >
+    <button className="btn btn-dark" type="button" onClick={clickHandler} >
       Salir
     </button>
   );

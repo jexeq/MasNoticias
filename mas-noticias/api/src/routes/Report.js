@@ -195,7 +195,7 @@ router.put("/:reportId", async function(req, res, next){
                     await prevReport.setTag(newTag)
                 }catch (err) {
                     throw new Error(err)
-                    return;
+                    
                 }
             }
 
@@ -206,7 +206,7 @@ router.put("/:reportId", async function(req, res, next){
 
                 }catch (err) {
                     throw new Error(err)
-                    return;
+                    
                 }
             }
 

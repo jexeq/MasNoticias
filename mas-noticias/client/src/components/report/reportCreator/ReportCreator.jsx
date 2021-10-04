@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from 'react-router-dom';
 import { createReport } from '../../../redux/actions/report/reportActions'
 import { getSections } from '../../../redux/actions/section/sectionActions';
 import { getUser } from '../../../redux/actions/user/userActions';
@@ -11,6 +12,7 @@ import TagCreator from '../../tag/TagCreator';
 import './reportCreator.css';
 
 export default function ReportCreator () {
+    const history = useHistory()
     const dispatch = useDispatch();
     const allSections = useSelector(state=>state.sectionReducer.sections);
     const storeUser = useSelector( state=> state.userReducer.user);
@@ -61,7 +63,9 @@ export default function ReportCreator () {
                 tag: tag,
                 report: reportBody
             }))
-            setTimeout(()=>{alert("se envió el formulario")}, 600)
+            setTimeout(()=>{
+                alert("se envió el formulario")
+                history.push("/admin/reports")}, 600)
         }else{
             alert("Todos los Campos Obligatorios deben ser Completados")
         }
@@ -153,11 +157,11 @@ export default function ReportCreator () {
                 </div>
             </form>
             <br />
-            <div>
+            {reportBody&&<div>
                 <h2>previsualizacion</h2>
                 <br />
-                    {FullReportCard(reportBody, section, tag)}
-            </div>
+                    <FullReportCard report={reportBody} section={section} tag={tag}/>
+            </div>}
         </div>
     )
 }

@@ -18,6 +18,8 @@ import NotFound from "./components/notFound/NotFound";
 import ReportDetail from './views/ReportDetail';
 import PublicityCreator from "./components/admin/publicity/PublicityCreator";
 import PublicityManager from "./components/admin/publicity/PublicityManager";
+import ChangePublicityState from './components/admin/publicity/ChangePublicityState';
+
 import './App.css';
 
 function App() {
@@ -38,7 +40,8 @@ function App() {
       <Route path="/not-found" component={NotFound}/>
       <Route path="/report/:reportId" component={ReportDetail}/>
       <Route path="/admin/create-publicity" component={PublicityCreator}/>
-      <Route path="/admin/publicity" component={PublicityManager}/>
+      <Route exact path="/admin/publicity" component={PublicityManager}/>
+      <Route path="/admin/publicity/state/:publicityId" component={ChangePublicityState}/>
     </React.Fragment>
   );
 }

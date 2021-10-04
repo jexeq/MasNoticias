@@ -1,0 +1,14 @@
+.pub-main-cont{
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+}
+
+
+.pub-actions-container{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border: 1px solid grey;
+    margin: 0 25px 0 0;
+}

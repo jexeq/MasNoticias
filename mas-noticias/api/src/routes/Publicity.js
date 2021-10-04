@@ -24,6 +24,46 @@ router.get("/all-publicity", async function (req, res, next) {
     }
 })
 
+router.get("/:publicityId", async function (req, res, next) {
+    const {publicityId} = req.params;
+    try {
+
+        const publictyOk = await Publicity.findByPk(publicityId)
+
+        if(publictyOk) {
+            console.log("Publicity Route: esto es publicityOk" , publictyOk)
+            return res.send(publictyOk)
+        }else{
+            throw new Error ("no se encontró la publicidad")
+        }
+
+    }catch (err) {
+        next(err)
+    }
+})
+
+router.put("/state", async function (req, res, next) {
+    const { id, state } = req.body;
+
+    try {
+        var publicityPrev = await Publicity.findByPk(id);
+
+        publicityPrev.state = state;
+        await publicityPrev.save();
+
+        const afterChangePub = await Publicity.findByPk(id);
+
+        if(afterChangePub.state === state) {
+            return res.send(afterChangePub)
+        }else{
+            throw new Error ("error al cambiar el estado")
+        }
+
+    }catch (err) {
+        next(err);
+    }
+})
+
 router.post("/", async function (req, res, next){
     var { publicity, user } = req.body;
 
