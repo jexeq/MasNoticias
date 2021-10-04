@@ -34,6 +34,7 @@ export const CREATE_PUBLICITY = "create_publicity";
 export const GET_ALL_PUBLICITY = "get_all_publicity";
 export const GET_PUBLICITY_BY_ID = "get_publicity_by_id";
 export const UPDATE_PUBLICITY_STATE = "update_publicity_state";
+export const UPDATE_PUBLICITY_PRIORITY = "update_publicity_priority";
 export const DELETE_PUBLICITY = "delete_publicity";
 export const CLEAR_PUBLICITY = "clear_publicity";
 

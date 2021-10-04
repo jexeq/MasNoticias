@@ -54,19 +54,24 @@ export default function PublicityManager () {
                     <NavLink to={`/admin/publicity/state/${selectedPublicity.id}`}>
                         <button className='btn btn-dark'> Cambiar el Estado de una Publicidad </button>
                     </NavLink>}
+                    <hr />
+                    {selectedPublicity&&
+                    <NavLink to={`/admin/publicity/priority/${selectedPublicity.id}`}>
+                        <button className='btn btn-dark'> Cambiar Prioridad de una Publicidad </button>
+                    </NavLink>}
                 </div>
                 <div className='container'>
-                    <table className="d-table-cell">
-                        <thead className="table-responsive">
-                            <th>Owner</th>
-                            <th> Type </th>
-                            <th> State </th>
-                            <th> Priority </th>
-                            <th> Select </th>
+                    <table className="table">
+                        <thead className="table-responsive ">
+                            <th> Propietario</th>
+                            <th> Tipo </th>
+                            <th> Estado </th>
+                            <th> Prioridad </th>
+                            <th> Seleccionar </th>
                         </thead>
-                        <tbody>
+                        <tbody >
                             {storePublicities.map( p => 
-                                <tr key={p.id}>
+                                <tr key={p.id} className='table-hover'>
                                     <td>{p.owner}</td>
                                     <td>{p.type}</td>
                                     <td>{p.state}</td>

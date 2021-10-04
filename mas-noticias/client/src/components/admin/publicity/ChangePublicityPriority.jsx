@@ -1,21 +1,21 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
-import { getPublicity, updatePublicityState, clearPublicity } from "../../../redux/actions/publicity/publicityActions";
+import { getPublicity, updatePublicityPriority, clearPublicity } from "../../../redux/actions/publicity/publicityActions";
 
 
-export default function ChangePublicityState (props) {
+export default function ChangePublicityPriority (props) {
     const dispatch = useDispatch();
     const history = useHistory();
     const storePublicity = useSelector( state => state.publicityReducer.publicity);
     const { publicityId } = props.match.params;
     const [loading, setLoading] = useState(true)
-    const [ selectedState, setSelectedState ] = useState()
+    const [ selectedPriority, setSelectedPriority ] = useState()
 
     function updateStateHandler(e) {
-        dispatch(updatePublicityState({
+        dispatch(updatePublicityPriority({
             id: storePublicity.id,
-            state: selectedState
+            priority: selectedPriority
         }))
         
             alert("se envió el formulario");
@@ -25,7 +25,7 @@ export default function ChangePublicityState (props) {
 
     function selectStateHanlder (e) {
         e.preventDefault();
-        setSelectedState(e.target.value)
+        setSelectedPriority(e.target.value)
     }
     
     useEffect(()=>{
@@ -48,18 +48,19 @@ export default function ChangePublicityState (props) {
             <div className='container'>
                 <label> PROPIETARIO: </label>
                 <h6>{storePublicity.owner}</h6>
-                <label > estado actual: </label>
-                <p>{storePublicity.state}</p>
+                <label > Prioridad actual: </label>
+                <p>{storePublicity.priority}</p>
             </div>
             <form onSubmit={updateStateHandler}>
                 <select name="select-state" id="" onChange={selectStateHanlder}>
                     <option value=""> - seleccionar - </option>
-                    <option value="active"> - Activa - </option>
-                    <option value="paused"> - Pausada - </option>
-                    <option value="finished"> - Finalizada - </option>
+                    <option value={1}> - 1 - </option>
+                    <option value={2}> - 2 - </option>
+                    <option value={3}> - 3 - </option>
+                    <option value={4}> - 4 - </option>
                 </select>
                 <hr />
-                <button className='btn btn-dark' disabled={!selectedState}> Enviar </button>
+                <button className='btn btn-dark' disabled={!selectedPriority}> Enviar </button>
             </form>
         </div>
     )

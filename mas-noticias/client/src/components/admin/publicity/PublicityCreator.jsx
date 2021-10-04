@@ -40,8 +40,8 @@ export default function PublicityCreator () {
         console.log("publicity es: " , publicity)
     },[publicity])
 
-    var { owner, init, end, priority, url, type, state } = publicity;
-
+    // var { owner, init, end, priority, url, type, state } = publicity;
+    var { owner } = publicity;
     function ownerHandler (e) {
         e.preventDefault();
         setPublicity({...publicity, owner: e.target.value})

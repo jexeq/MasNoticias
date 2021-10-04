@@ -64,6 +64,29 @@ router.put("/state", async function (req, res, next) {
     }
 })
 
+router.put("/priority", async function (req, res, next) {
+    const { id, priority } = req.body;
+
+    try {
+        var publicityPrev = await Publicity.findByPk(id);
+
+        publicityPrev.priority = priority;
+        await publicityPrev.save();
+
+        const afterChangePub = await Publicity.findByPk(id);
+      
+        if(afterChangePub.priority === parseInt(priority)) {
+            console.log("route publicity/priority - cumplio con el if "  )
+            return res.send(afterChangePub)
+        }else{
+            throw new Error ("error al cambiar la prioridad")
+        }
+
+    }catch (err) {
+        next(err);
+    }
+})
+
 router.post("/", async function (req, res, next){
     var { publicity, user } = req.body;
 
