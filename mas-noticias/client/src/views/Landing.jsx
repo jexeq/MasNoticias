@@ -4,24 +4,43 @@ import MediumReportCard from '../components/report/mediumReportCard/MediumReport
 import {useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getweekReports } from "../redux/actions/report/reportActions";
+import { clearPublicity, getActivePublicities } from '../redux/actions/publicity/publicityActions';
+import filterPublicityByType from '../components/utils/filterPublicityByType';
 import './landing.css';
 
 export default function Landing () {
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(true);
     const storeReports = useSelector(state=>state.reportReducer.reports);
+    const storePublicities = useSelector( state => state.publicityReducer.publicities); 
+    var smallPublicities = [];
+    var mediumPublicities = [];
+    var largePublicities = [];
+    var bannerPublicities = [];
+
 
     useEffect(()=>{
         dispatch(getweekReports());
+        dispatch(getActivePublicities());
+        return ()=> dispatch(clearPublicity());
     },[])
 
     useEffect(()=>{
         if(!storeReports){
             dispatch(getweekReports());
         }else{
-            setLoading(false);
+            if(storePublicities) {
+                let sortedPubs = filterPublicityByType(storePublicities)
+                smallPublicities = sortedPubs.smallPublicities;
+                mediumPublicities = sortedPubs.mediumPublicities;
+                largePublicities = sortedPubs.largePublicities;
+                bannerPublicities = sortedPubs.bannerPublicities;
+                setLoading(false);
+            }
         }
     },[storeReports]);
+
+
 
     return !loading&&(
         <div className="landing-cont">
@@ -32,10 +51,9 @@ export default function Landing () {
                     <MainReportCard report={storeReports[0]}/>
                     <hr />
                     <div className='medium-report-cont'>
-
-                    <MediumReportCard report={storeReports[1]}/>
-                    <MediumReportCard report={storeReports[2]}/>
-                    <MediumReportCard report={storeReports[3]}/>
+                        <MediumReportCard report={storeReports[1]}/>
+                        <MediumReportCard report={storeReports[2]}/>
+                        <MediumReportCard report={storeReports[3]}/>
                     </div>
                 </div>
                 <div className='rigth-column'></div>

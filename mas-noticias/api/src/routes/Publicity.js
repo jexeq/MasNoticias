@@ -24,6 +24,24 @@ router.get("/all-publicity", async function (req, res, next) {
     }
 })
 
+router.get("/active" , async function (req, res, next) {
+
+    try {
+        const activePublicities = await Publicity.findAll({where: {state: "active"}})
+        console.log("activePublicities" , activePublicities)
+        if(activePublicities) {
+           var sortedPublicity = activePublicities.sort( (a, b) => b.priority - a.priority )
+            console.log("sortedPublicity: " , sortedPublicity)
+            return res.send(sortedPublicity)
+        }else{
+            throw new Error("no se encontraron las publicidades")
+        }
+
+    }catch(err) {
+        next(err)
+    }
+})
+
 router.get("/:publicityId", async function (req, res, next) {
     const {publicityId} = req.params;
     try {

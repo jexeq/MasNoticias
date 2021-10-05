@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
-import { getAllPublicities } from '../../../redux/actions/publicity/publicityActions';
+import { getAllPublicities, clearPublicity } from '../../../redux/actions/publicity/publicityActions';
 import PublicityDetailCard from './publicityDetailCard';
 import './publicityManager.css';
 
@@ -28,6 +28,7 @@ export default function PublicityManager () {
 
     useEffect(()=>{
         dispatch(getAllPublicities());
+        return () => dispatch(clearPublicity());
     },[])
 
     useEffect(()=>{

@@ -8,6 +8,13 @@ export const getAllPublicities = () => {
     }
 }
 
+export const getActivePublicities = () => {
+    return async  (dispatch) => {
+        const res = await axios.get('/publicity/active')
+        return dispatch({ type: TYPES.GET_ACTIVE_PUBLICITY, payload: res.data })
+    }
+}
+
 export const getPublicity = (publicityId) => {
     return async (dispatch) => {
         const res = await axios.get(`/publicity/${publicityId}`)
