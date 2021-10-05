@@ -95,12 +95,12 @@ router.post("/", async function (req, res, next){
 
         if(!publicity.init) {
             publicity.init = new Date().toString()
-            console.log("se creo init" , publicity.init)
+            // console.log("se creo init" , publicity.init)
         }
     
         if(!publicity.end) {
             publicity.end = new Date( new Date() + (1000 * 60 * 60 * 24 * 7)).toString()
-            console.log("se creo init" , publicity.end)
+            // console.log("se creo init" , publicity.end)
         }
         
         const newPublicity = await Publicity.create(
@@ -137,6 +137,17 @@ router.post("/", async function (req, res, next){
 
     }catch (err) {
         next(err);
+    }
+})
+
+router.delete("/:publicityId", async function(req, res, next) {
+    const {publicityId} = req.params;
+    try {
+        await Publicity.destroy({where: {id: publicityId}});
+        console.log("se eliminó la publicidad")
+        return res.send("se eliminó la publicidad")
+    }catch(err) {
+        next(err)
     }
 })
 

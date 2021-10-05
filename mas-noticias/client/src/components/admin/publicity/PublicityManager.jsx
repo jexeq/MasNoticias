@@ -50,15 +50,21 @@ export default function PublicityManager () {
                         <button className='btn btn-dark'> Crear Nueva Publicidad </button>
                     </NavLink>
                     <hr />
-                    {selectedPublicity&&
-                    <NavLink to={`/admin/publicity/state/${selectedPublicity.id}`}>
-                        <button className='btn btn-dark'> Cambiar el Estado de una Publicidad </button>
-                    </NavLink>}
-                    <hr />
-                    {selectedPublicity&&
-                    <NavLink to={`/admin/publicity/priority/${selectedPublicity.id}`}>
-                        <button className='btn btn-dark'> Cambiar Prioridad de una Publicidad </button>
-                    </NavLink>}
+                    {selectedPublicity&&<div>
+                        <NavLink to={`/admin/publicity/state/${selectedPublicity.id}`}>
+                            <button className='btn btn-dark'> Cambiar el Estado de una Publicidad </button>
+                        </NavLink>
+                        <hr />
+                        <NavLink to={`/admin/publicity/priority/${selectedPublicity.id}`}>
+                            <button className='btn btn-dark'> Cambiar Prioridad de una Publicidad </button>
+                        </NavLink>
+                        <hr />
+                        <NavLink to={`/admin/publicity/delete/${selectedPublicity.id}`}>
+                        <button className='btn btn-dark'> Eliminar Publicidad </button>
+                        </NavLink>
+                    </div>}
+                    
+                    
                 </div>
                 <div className='container'>
                     <table className="table">
