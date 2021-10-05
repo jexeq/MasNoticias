@@ -52,6 +52,10 @@ export default function PublicityManager () {
                     </NavLink>
                     <hr />
                     {selectedPublicity&&<div>
+                        <NavLink to={`/admin/publicity/update/${selectedPublicity.id}`}>
+                            <button className='btn btn-dark'> Modificar Publicidad </button>
+                        </NavLink>
+                        <hr />
                         <NavLink to={`/admin/publicity/state/${selectedPublicity.id}`}>
                             <button className='btn btn-dark'> Cambiar el Estado de una Publicidad </button>
                         </NavLink>

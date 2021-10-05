@@ -51,6 +51,13 @@ export const updatePublicityPriority = (body) => {
     }
 }
 
+export const updatePublicityGeneral = (body) => {
+    return async  (dispatch) => {
+        const res = await axios.put('/publicity/general', body)
+        return dispatch({ type: TYPES.UPDATE_PUBLICITY_GENERAL, payload: res.data })
+    }
+}
+
 export const clearPublicity = () => {
     return (dispatch) => {
         return dispatch({ type: TYPES.CLEAR_PUBLICITY })

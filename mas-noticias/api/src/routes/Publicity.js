@@ -105,6 +105,30 @@ router.put("/priority", async function (req, res, next) {
     }
 })
 
+router.put("/general", async function (req,res,next){
+    const {publicity} = req.params;
+    try {
+        var prevPublicity = await Publicity.findByPk(publicity.id);
+
+        prevPublicity.owner = publicity.owner;
+        prevPublicity.type = publicity.type;
+        prevPublicity.state = publicity.state;
+        prevPublicity.init = publicity.init;
+        prevPublicity.end = publicity.end;
+        prevPublicity.priority = publicity.priority;
+        prevPublicity.redirect = publicity.redirect;
+
+        await prevPublicity.save();
+
+        var modifiedPub = await Publicity.findByPk(publicity.id);
+
+        return res.send(modifiedPub);
+
+    }catch (err) {
+        next(err)
+    }
+})
+
 router.post("/", async function (req, res, next){
     var { publicity, user } = req.body;
 
@@ -129,7 +153,8 @@ router.post("/", async function (req, res, next){
                 priority: publicity.priority,
                 url: publicity.url,
                 type: publicity.type,
-                state: publicity.state
+                state: publicity.state,
+                redirect: publicity.redirect
             }
         )
 

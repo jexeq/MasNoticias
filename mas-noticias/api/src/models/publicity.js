@@ -37,6 +37,10 @@ module.exports = (sequelize) => {
             type: DataTypes.ENUM("active", "paused", "finished"),
             defaultValue: "paused"
 
+        }, 
+        redirect: {
+            type: DataTypes.STRING,
+            allowNull: true
         }
     });
 }

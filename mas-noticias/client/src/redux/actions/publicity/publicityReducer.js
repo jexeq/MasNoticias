@@ -16,6 +16,8 @@ const publicityReducer = (state = initialState, action) => {
         case TYPES.DELETE_PUBLICITY: return { ...state, publicity: action.payload }
         case TYPES.CLEAR_PUBLICITY: return { ...state, publicity: {}, publicities: []}
         case TYPES.UPDATE_PUBLICITY_PRIORITY: return { ...state, publicity: action.payload}
+        case TYPES.UPDATE_PUBLICITY_STATE: return { ...state, publicity: action.payload}
+        case TYPES.UPDATE_PUBLICITY_GENERAL: return { ...state, publicity: action.payload}
         default:                  return state;
     }
 }
