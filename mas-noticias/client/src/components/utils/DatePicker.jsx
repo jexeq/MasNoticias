@@ -1,18 +1,21 @@
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function DatePickerComponent (props) {
     const { setDate, previousDate } = props;
-    const [ state, setState ] = useState( { date: new Date()});
+    const [ state, setState ] = useState( { date: previousDate?new Date(previousDate):new Date()});
 
     function dateHandler (date) {
         setState({ date: date})
     }
 
-    if(previousDate) {
-        setState({date: previousDate})
-    }
+    useEffect(()=>{
+        
+        if(previousDate) {
+            setState({date: new Date(previousDate)})
+        }
+    },[])
 
     return (
         <div>

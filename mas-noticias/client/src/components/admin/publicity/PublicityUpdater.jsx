@@ -16,16 +16,18 @@ export default function PublicityUpdater (props) {
     const userId = localStorage.getItem("mas-noticias");
     const {publicityId} = props.match.params; 
     const [loading, setLoading] = useState(true);
+    const [images, setImages] = useState([]);
 
     const initial_state = {
-        owner: storePublicity.owner,
-        init: storePublicity.init,
-        end: storePublicity.end,
-        priority: storePublicity.priority,
-        url: storePublicity.url,
-        type: storePublicity.type,
-        state:storePublicity.state,
-        redirect: storePublicity.redirect
+        id: storePublicity?.id,
+        owner: storePublicity?.owner,
+        init: storePublicity?.init,
+        end: storePublicity?.end,
+        priority: storePublicity?.priority,
+        url: storePublicity?.url,
+        type: storePublicity?.type,
+        state:storePublicity?.state,
+        redirect: storePublicity?.redirect
     }
 
     const [ publicity, setPublicity ] = useState(initial_state);
@@ -40,12 +42,18 @@ export default function PublicityUpdater (props) {
 
     useEffect( () => {
         if(storePublicity) {
+            
+            setPublicity({...storePublicity, redirect: storePublicity.redirect?storePublicity.redirect:""})
+            var aux = [];
+            aux.push(storePublicity.url)
+            setImages(aux);
             setLoading(false);
         }
     },[storePublicity])
 
     // var { owner, init, end, priority, url, type, state, redirect } = publicity;
     var { owner, init, end, priority, url, type, state, redirect } = publicity;
+    
 
     function ownerHandler (e) {
         e.preventDefault();
@@ -106,8 +114,8 @@ export default function PublicityUpdater (props) {
         <div className="main-cont-pc">
             <h1>Formulario de MODIFICACION de Publicidades</h1>
             <h3>Propietario de la Publicidad</h3>
-            <input className='input-group-text' name='owner' id="owner" value={owner} type="text" placeholder='ingrese texto' onChange={ownerHandler}/>
-            <label className='danger' hidden={publicity.owner}> *Campo Obligatorio </label>
+            <input className='input-group-text' type="text" name='owner' id="owner" value={owner}  placeholder='ingrese texto' onChange={ownerHandler}/>
+            <label className='danger' hidden={owner}> *Campo Obligatorio </label>
             <hr />
             <h3>URL de redireccionamiento</h3>
             <input className='input-group-text' name='redirect' id="redirect" value={redirect} type="text" placeholder='pegar la URL' onChange={redirectHandler}/>
@@ -117,11 +125,11 @@ export default function PublicityUpdater (props) {
                 <h3>Seleccionar Fechas</h3>
                 <label htmlFor="">Fecha de inicio</label>
                 <DatePickerComponent setDate={initHandler} previousDate={init}/>
-                <label className='danger' hidden={publicity.init}> *Campo Obligatorio </label>
+                <label className='danger' hidden={init}> *Campo Obligatorio </label>
                 <hr />
                 <label htmlFor="">Fecha de fin</label>
                 <DatePickerComponent setDate={endHandler} previousDate={end}/>
-                <label className='danger' hidden={publicity.end}> *Campo Obligatorio </label>
+                <label className='danger' hidden={end}> *Campo Obligatorio </label>
             </div>
             <hr />
             <div>
@@ -140,7 +148,7 @@ export default function PublicityUpdater (props) {
             <div>
                 <h3>Subir Imagen o Gif</h3>
                 <span htmlFor="fileUploader" className='danger' hidden={publicity.url}> *Campo Obligatorio </span>
-                <ReactFirebaseFileUpload id="fileUploader" storeImages={[url]} setStoreImages={urlHandler}/>
+                <ReactFirebaseFileUpload id="fileUploader" storeImages={images} setStoreImages={urlHandler}/>
                 <h5 className='danger'> Tener en cuenta el tipo de Publicidad!</h5>
             </div>
             <hr />

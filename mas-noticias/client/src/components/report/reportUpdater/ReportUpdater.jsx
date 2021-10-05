@@ -91,9 +91,9 @@ export default function ReportUpdater (props) {
             setSection({})
             setTag({})
             dispatch(clearReports())
-            console.log("se limpiaron los estados")
-            console.log("images: " , images)
-            console.log("reportBody: " , reportBody)
+            // console.log("se limpiaron los estados")
+            // console.log("images: " , images)
+            // console.log("reportBody: " , reportBody)
         }
         
     },[])
@@ -137,11 +137,11 @@ export default function ReportUpdater (props) {
                 setSection(prevReport.section)
                 setTag(prevReport.tag)
                 if(prevReport.photo1.length > 0){
-                    console.log("ReportUpdater: entro al 1 if")
+                    // console.log("ReportUpdater: entro al 1 if")
                     if(prevReport.photo2.length > 0 ){
-                        console.log("ReportUpdater: entro al 2 if")
+                        // console.log("ReportUpdater: entro al 2 if")
                         if(prevReport.photo3.length > 0 ){
-                            console.log("ReportUpdater: entro al 3 if")
+                            // console.log("ReportUpdater: entro al 3 if")
                             setImages(concatImages(prevReport?.photo1, prevReport?.photo2. prevReport?.photo3))
                         }else{
                             setImages(concatImages(prevReport.photo1, prevReport.photo2))

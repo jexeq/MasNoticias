@@ -18,7 +18,7 @@ export const getActivePublicities = () => {
 export const getPublicity = (publicityId) => {
     return async (dispatch) => {
         const res = await axios.get(`/publicity/${publicityId}`)
-        console.log("publicityActions, res.data" , res.data)
+        // console.log("publicityActions, res.data" , res.data)
         return dispatch({ type: TYPES.GET_PUBLICITY_BY_ID, payload: res.data})
     }
 }
