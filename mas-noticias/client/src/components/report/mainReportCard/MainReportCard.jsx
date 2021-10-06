@@ -26,7 +26,7 @@ export default function MainReportCard (props) {
                     {report.tag.name}
                 </div>
                 <NavLink className='NavLink' to={`/report/${report.id}`}>
-                    <h2>{report.title1}</h2>
+                    <div className='NavLink'>{report.title1}</div>
                 </NavLink>
 
                 <div className='title2-cont'>

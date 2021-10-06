@@ -41,12 +41,13 @@ export default function PublicityUpdater (props) {
     },[])
 
     useEffect( () => {
-        if(storePublicity) {
+        if(storePublicity?.id) {
             
             setPublicity({...storePublicity, redirect: storePublicity.redirect?storePublicity.redirect:""})
             var aux = [];
             aux.push(storePublicity.url)
             setImages(aux);
+            
             setLoading(false);
         }
     },[storePublicity])
@@ -89,11 +90,11 @@ export default function PublicityUpdater (props) {
     }
 
     function urlHandler (urlArray) {
-        
         setPublicity({...publicity, url: urlArray[0]})
     }
 
     function updatePublicityHandler() {
+        
         if(publicity.owner&&publicity.init&&publicity.end&&publicity.priority !== null &&publicity.type&&publicity.state&&publicity.url){
             dispatch(updatePublicityGeneral(
                 {
@@ -112,7 +113,7 @@ export default function PublicityUpdater (props) {
 
     return !loading&&(
         <div className="main-cont-pc">
-            <h1>Formulario de MODIFICACION de Publicidades</h1>
+            <h1 >Formulario de MODIFICACION de Publicidades</h1>
             <h3>Propietario de la Publicidad</h3>
             <input className='input-group-text' type="text" name='owner' id="owner" value={owner}  placeholder='ingrese texto' onChange={ownerHandler}/>
             <label className='danger' hidden={owner}> *Campo Obligatorio </label>
@@ -182,7 +183,7 @@ export default function PublicityUpdater (props) {
                 <label className='danger' hidden={publicity.state}> *Campo Obligatorio </label>
             </div>
             <hr />
-            <button className='btn btn-dark'onClick={updatePublicityHandler}> Crear Publicidad </button>
+            <button className='btn btn-dark'onClick={updatePublicityHandler}> Actualizar Publicidad </button>
 
         </div>
     )

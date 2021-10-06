@@ -1,0 +1,10 @@
+.small-pub-cont{
+    width: 200px;
+    height: 200px;
+}
+
+.small-pub-img{
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+}

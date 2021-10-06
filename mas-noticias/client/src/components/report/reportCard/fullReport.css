@@ -21,9 +21,21 @@
     background-color: white;
 }
 
+@media screen and (max-width: 640px ) {
+    .report-container {
+        width: 100vw;
+    }
+    .main-img {
+        width: 100vw;
+    }
+    .img-container {
+        width: 100vw;
+    }
+}
+
 .main-img{
     display: inline;
-    width: fill;
+    
     height: auto;
     width: 90vw;
 }

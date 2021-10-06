@@ -19,11 +19,11 @@ export default function PublicityCreator () {
         owner: "",
         init: "",
         end: "",
-        priority: null,
-        url: null,
+        priority: "",
+        url: "",
         type: "",
         state:"",
-        redirect: null
+        redirect: ""
     }
 
     const [ publicity, setPublicity ] = useState(initial_state);

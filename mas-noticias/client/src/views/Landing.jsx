@@ -1,6 +1,7 @@
 
 import MainReportCard from '../components/report/mainReportCard/MainReportCard';
 import MediumReportCard from '../components/report/mediumReportCard/MediumReportCard';
+import SmallPublicityCard from '../components/publicity/SmallPublicityCard';
 import {useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getweekReports } from "../redux/actions/report/reportActions";
@@ -36,10 +37,17 @@ export default function Landing () {
                 largePublicities = sortedPubs.largePublicities;
                 bannerPublicities = sortedPubs.bannerPublicities;
                 setLoading(false);
+                console.log("Landing 40 - smallPublicities: " , smallPublicities)
             }
         }
     },[storeReports]);
 
+    var currentWidth = window.screen.width;
+
+    useEffect(()=> {
+        console.log("width: " , window.screen.width)
+
+    },[currentWidth])
 
 
     return !loading&&(
@@ -55,8 +63,11 @@ export default function Landing () {
                         <MediumReportCard report={storeReports[2]}/>
                         <MediumReportCard report={storeReports[3]}/>
                     </div>
+
                 </div>
-                <div className='rigth-column'></div>
+                <div className='rigth-column'>
+                    {!loading && smallPublicities && <SmallPublicityCard publicity={smallPublicities[0]}/>}
+                </div>
             </div>
         </div>
     );

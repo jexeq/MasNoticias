@@ -94,7 +94,7 @@ router.put("/priority", async function (req, res, next) {
         const afterChangePub = await Publicity.findByPk(id);
       
         if(afterChangePub.priority === parseInt(priority)) {
-            console.log("route publicity/priority - cumplio con el if "  )
+            
             return res.send(afterChangePub)
         }else{
             throw new Error ("error al cambiar la prioridad")
@@ -106,7 +106,7 @@ router.put("/priority", async function (req, res, next) {
 })
 
 router.put("/general", async function (req,res,next){
-    const {publicity} = req.params;
+    const {publicity} = req.body;
     try {
         var prevPublicity = await Publicity.findByPk(publicity.id);
 
