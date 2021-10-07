@@ -4,6 +4,7 @@ import MediumReportCard from '../components/report/mediumReportCard/MediumReport
 import SmallPublicityCard from '../components/publicity/SmallPublicityCard';
 import LargePublicityCard from '../components/publicity/LargePublicityCard';
 import BannerPublicityCard from '../components/publicity/BannerPublicityCard';
+import MediumPublicityCard from '../components/publicity/MediumPublicityCard';
 import {useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getweekReports } from "../redux/actions/report/reportActions";
@@ -35,7 +36,7 @@ export default function Landing () {
     useEffect(()=>{
         if(sortedPubs){
             setLoading(false);
-            console.log("Landing 40 - sortedPubs: " , sortedPubs)
+            // console.log("Landing 40 - sortedPubs: " , sortedPubs)
         }
     },[sortedPubs])
 
@@ -62,6 +63,15 @@ export default function Landing () {
                     </div>
                     <div>
                         {sortedPubs?.largePublicities[0]? <LargePublicityCard publicity={sortedPubs.largePublicities[0]}/>: <div>largepubHere</div>}
+                    </div>
+                    <div className='medium-report-cont'>
+                        <MediumReportCard report={storeReports[1]}/>
+                        <MediumReportCard report={storeReports[2]}/>
+                        <MediumReportCard report={storeReports[3]}/>
+                    </div>
+                    <div>
+                        {sortedPubs?.mediumPublicities[0] ? <MediumPublicityCard publicity={sortedPubs.mediumPublicities[0]}/>:<div>mediumPubHere</div>}
+                        {sortedPubs?.mediumPublicities[1] ? <MediumPublicityCard publicity={sortedPubs.mediumPublicities[1]}/>:<div>mediumPubHere</div>}
                     </div>
 
                 </div>

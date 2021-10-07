@@ -49,18 +49,3 @@ const SignOutButton = compose(
 
 export default LogOutButton;
 export { SignOutButton }
-// export default withFirebase(SignOutButton);
-
-
-// export function SignOutButton  ({ firebase }) {
-//     return (<button type="button" onClick={firebase.doSignOut}>
-//     Sign Out
-//   </button>)
-
-// }
-
-
-
-// export default withFirebase(SignOutButton);
-
-// export {SignOutButton};

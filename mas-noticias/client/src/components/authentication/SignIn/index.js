@@ -61,7 +61,7 @@ function SignInFormBase(props) {
         //verifica si es admin
         if (user.isAdmin === true) {
           localStorage.setItem("mas-noticias", (user.id))
-          localStorage.setItem("admin", user.email)
+          // localStorage.setItem("admin", user.email)
          
           props.history.push("/");
         } else {

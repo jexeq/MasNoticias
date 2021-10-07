@@ -1,0 +1,12 @@
+.medium-pub-cont {
+    display: flex;
+    width: 320px;
+    height: fit-content;
+}
+
+.medium-pub-img{
+    box-sizing: border-box;
+    width: 300px;
+    height: 300px;
+
+}

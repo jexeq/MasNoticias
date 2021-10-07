@@ -138,9 +138,9 @@ export default function ReportUpdater (props) {
                 setTag(prevReport.tag)
                 if(prevReport.photo1.length > 0){
                     // console.log("ReportUpdater: entro al 1 if")
-                    if(prevReport.photo2.length > 0 ){
+                    if(prevReport.photo2?.length > 0 ){
                         // console.log("ReportUpdater: entro al 2 if")
-                        if(prevReport.photo3.length > 0 ){
+                        if(prevReport.photo3?.length > 0 ){
                             // console.log("ReportUpdater: entro al 3 if")
                             setImages(concatImages(prevReport?.photo1, prevReport?.photo2. prevReport?.photo3))
                         }else{
@@ -149,8 +149,10 @@ export default function ReportUpdater (props) {
                     }else{
                         setImages(concatImages(prevReport.photo1))
                     }
+                    setTimeout( ()=> {
+                        setLoading(false)
 
-                    setLoading(false)
+                    }, 600)    
                 }
             }
         }
@@ -210,7 +212,7 @@ export default function ReportUpdater (props) {
             <div>
                 <h2>previsualizacion</h2>
                 <br />
-                    {FullReportCard(reportBody, section, tag)}
+                    {reportBody&&<FullReportCard report={reportBody} section={section} tag={tag}/>}
             </div>
         </div>
     )
