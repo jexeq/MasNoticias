@@ -9,6 +9,7 @@ export const GET_GOOGLE_USER = "get_google_user";
 export const GET_FACEBOOK_USER = "get_facebook_user";
 
 export const GET_REPORT_BY_ID = "get_report";
+export const GET_ALL_REPORTS = "get_all_report";
 export const GET_REPORTS_BY_SECTION = "get_reports_by_section";
 export const GET_REPORTS_BY_TAG = "get_reports_by_tag";
 export const GET_WEEK_REPORTS = "get_week_reports";

@@ -11,7 +11,8 @@ router.get("/week_reports", async function (req, res, next){
             where: {
                 date: {
                     [Op.gt]: new Date(new Date() - (24 * 60 * 60 * 1000 * 7)  )
-                }
+                },
+                status: "publicado"
             },
             include:[
                 {model: Section, attributes: ["name"]},
@@ -23,8 +24,6 @@ router.get("/week_reports", async function (req, res, next){
             limit: 20
         })
 
-        
-
         return res.status(200).send(allReports);
 
     } catch (err) {
@@ -32,12 +31,31 @@ router.get("/week_reports", async function (req, res, next){
     }
 })
 
+router.get("/all-reports" , async function (req, res, next){
+    try{
+        const allReports = await Report.findAll(
+            {include:[
+                {model: Section, attributes: ["name"]},
+                {model: Tag, attributes: ["name"]},
+                {model: Stat , attributes: ["likes", "comments", "shares"]},
+                {model: User, attributes: ["id", "email", "name", "lastname"]}
+            ],
+            order: [["priority", "DESC"]],
+            limit: 20}
+        )
+        return res.send(allReports);
+    }catch(err){
+        next(err)
+    }
+})
+
+
+
 router.get("/:id", async function (req, res, next){
     let {id} = req.params;
     try{
         var reportOk = await Report.findByPk(id, {include: [{model: User, attributes: ["id", "email"]},{model: Section, attributes:["id", "name"]}, {model: Tag, attributes:["id", "name"]}, {model: Stat}] })
-        // var reportOk = await Report.findByPk(id, {include: [{model: Section, attributes:["id", "name"]}, {model: Tag, attributes:["id", "name"]}, {model: Stat}] })
-        // var reportOk = await Report.findByPk(id)
+
         console.log("reportOk: ", reportOk)
         if(reportOk) {
             return res.send(reportOk);

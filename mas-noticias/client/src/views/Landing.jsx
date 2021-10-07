@@ -14,10 +14,7 @@ export default function Landing () {
     const [loading, setLoading] = useState(true);
     const storeReports = useSelector(state=>state.reportReducer.reports);
     const storePublicities = useSelector( state => state.publicityReducer.publicities); 
-    var smallPublicities = [];
-    var mediumPublicities = [];
-    var largePublicities = [];
-    var bannerPublicities = [];
+    const [sortedPubs, setSortedPubs] = useState({})
 
 
     useEffect(()=>{
@@ -27,27 +24,27 @@ export default function Landing () {
     },[])
 
     useEffect(()=>{
-        if(!storeReports){
-            dispatch(getweekReports());
-        }else{
-            if(storePublicities) {
-                let sortedPubs = filterPublicityByType(storePublicities)
-                smallPublicities = sortedPubs.smallPublicities;
-                mediumPublicities = sortedPubs.mediumPublicities;
-                largePublicities = sortedPubs.largePublicities;
-                bannerPublicities = sortedPubs.bannerPublicities;
-                setLoading(false);
-                console.log("Landing 40 - smallPublicities: " , smallPublicities)
-            }
+        // if(!storeReports){
+        //     dispatch(getweekReports());
+        // }
+        if(storePublicities) {
+            setSortedPubs(filterPublicityByType(storePublicities))
         }
-    },[storeReports]);
+    },[storePublicities]);
+    
+    useEffect(()=>{
+        if(sortedPubs){
+            setLoading(false);
+            console.log("Landing 40 - sortedPubs: " , sortedPubs)
+        }
+    },[sortedPubs])
 
-    var currentWidth = window.screen.width;
+    // var currentWidth = window.screen.width;
 
-    useEffect(()=> {
-        console.log("width: " , window.screen.width)
+    // useEffect(()=> {
+    //     console.log("width: " , window.screen.width)
 
-    },[currentWidth])
+    // },[currentWidth])
 
 
     return !loading&&(
@@ -66,7 +63,7 @@ export default function Landing () {
 
                 </div>
                 <div className='rigth-column'>
-                    {!loading && smallPublicities && <SmallPublicityCard publicity={smallPublicities[0]}/>}
+                    {sortedPubs? <SmallPublicityCard publicity={sortedPubs.smallPublicities[0]}/>: <div>...loading</div>}
                 </div>
             </div>
         </div>

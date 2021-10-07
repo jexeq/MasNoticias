@@ -15,6 +15,13 @@ export const getweekReports = () => {
     }
 }
 
+export const getAllReports = () => {
+    return async (dispatch) => {
+        const res = await axios.get("/report/all-reports")
+        return dispatch({type: TYPES.GET_ALL_REPORTS, payload: res.data})
+    }
+}
+
 export const getReportSection = (sectionId) => {
     return async (dispatch) => {
         const res = await axios.get(`/report/section/${sectionId}`)

@@ -1,4 +1,4 @@
-import { getweekReports, clearReports } from '../../../../redux/actions/report/reportActions';
+import { getAllReports, clearReports } from '../../../../redux/actions/report/reportActions';
 import { getUser } from '../../../../redux/actions/user/userActions';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -18,7 +18,7 @@ export default function DisplayAllReports () {
     
 
     useEffect(()=>{
-        dispatch(getweekReports())
+        dispatch(getAllReports())
         if(userId === "guest") {
             history.push("/not-found")
         }
