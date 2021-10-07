@@ -3,6 +3,7 @@ import MainReportCard from '../components/report/mainReportCard/MainReportCard';
 import MediumReportCard from '../components/report/mediumReportCard/MediumReportCard';
 import SmallPublicityCard from '../components/publicity/SmallPublicityCard';
 import LargePublicityCard from '../components/publicity/LargePublicityCard';
+import BannerPublicityCard from '../components/publicity/BannerPublicityCard';
 import {useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getweekReports } from "../redux/actions/report/reportActions";
@@ -52,12 +53,12 @@ export default function Landing () {
                         <MediumReportCard report={storeReports[3]}/>
                     </div>
                     <div>
-                        banner publicity here
+                        {sortedPubs.bannerPublicities[0]? <BannerPublicityCard publicity={sortedPubs.bannerPublicities[0]}/> : <div> publite aqui</div>}
                     </div>
                     <div className='medium-report-cont'>
-                        <MediumReportCard report={storeReports[4]}/>
-                        <MediumReportCard report={storeReports[5]}/>
-                        <MediumReportCard report={storeReports[6]}/>
+                        <MediumReportCard report={storeReports[1]}/>
+                        <MediumReportCard report={storeReports[2]}/>
+                        <MediumReportCard report={storeReports[3]}/>
                     </div>
                     <div>
                         {sortedPubs?.largePublicities[0]? <LargePublicityCard publicity={sortedPubs.largePublicities[0]}/>: <div>largepubHere</div>}

@@ -1,9 +1,13 @@
 .large-pub-cont {
     box-sizing: border-box;
-    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 95%;
     height: auto;
     padding: 5px;
     margin: 10px;
+    background-color: whitesmoke;
 }
 
 .large-pub-img{

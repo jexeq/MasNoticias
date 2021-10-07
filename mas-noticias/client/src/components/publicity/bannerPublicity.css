@@ -1,0 +1,31 @@
+.banner-pub-cont {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    width: 98%;
+    height: auto;
+    padding: 10px;
+    background-color: whitesmoke;
+    border: 1px dotted grey;
+    margin: 10px;
+}
+.banner-pub-img {
+    box-sizing: border-box;
+    width: 100%;
+    height: 150px;
+}
+
+@media screen and (max-width: 425px) {
+    .banner-pub-cont {
+        display: flex;
+        flex-direction: column;
+        box-sizing: border-box;
+        width: fit-content;
+        padding: 0%;
+    }
+    .banner-pub-img {
+        box-sizing: border-box;
+        width: 400px;
+        height: 100px;
+    }
+}
