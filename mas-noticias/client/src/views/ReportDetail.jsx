@@ -21,7 +21,7 @@ export default function ReportDetail (props) {
     useEffect( () => {
         if(storeReport.id){
             setLoading(false)
-            console.log("esto es storeReport" , storeReport)
+            // console.log("esto es storeReport" , storeReport)
         }else{
             setLoading(true)
         }

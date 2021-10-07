@@ -11,3 +11,12 @@
     width: 18vw;
     height: auto;
 }
+
+@media screen and (max-width: 425px ) {
+    .small-pub-cont{
+        display: none;
+    }
+    .small-pub-img{
+        display: none;
+    }
+}

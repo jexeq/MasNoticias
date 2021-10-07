@@ -1,0 +1,13 @@
+.large-pub-cont {
+    box-sizing: border-box;
+    width: 100%;
+    height: auto;
+    padding: 5px;
+    margin: 10px;
+}
+
+.large-pub-img{
+    box-sizing: border-box;
+    width: 100%;
+    height: auto;
+}
