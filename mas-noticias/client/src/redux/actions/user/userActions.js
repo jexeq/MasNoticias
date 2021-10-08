@@ -44,19 +44,19 @@ export const updateUser = (user) => {
 
 export const getGoogleUser = (user) => {
     return async (dispatch) => {
-        console.log("tratando de despachar")
+        // console.log("tratando de despachar")
         try { 
-            console.log("entro al try")
+            // console.log("entro al try")
             const res = await axios.get('/user/' + user.id)
-            console.log("esto es res")
-            console.log("googlereducer - respuesta del back: " ,res.data)
+            // console.log("esto es res")
+            // console.log("googlereducer - respuesta del back: " ,res.data)
             if(res.data.email) {
                 return dispatch({type: TYPES.GET_USER, payload: res.data})
             }else{
 
-                console.log("No encontro el usuario en la DB")
+                // console.log("No encontro el usuario en la DB")
                 const userNew = await axios.post('/user', user)
-                console.log("y esta es la respuesta del back al intentar crear usuario: " , userNew.data)
+                // console.log("y esta es la respuesta del back al intentar crear usuario: " , userNew.data)
                 return dispatch({ type: TYPES.CREATE_USER, payload: userNew.data })
             }
 

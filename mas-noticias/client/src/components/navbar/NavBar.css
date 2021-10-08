@@ -45,9 +45,10 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-around;
-    background-color: lightcoral;
-    height: 7vh;
+    justify-content: center;
+    background-color: #E15A3B;
+    
+    height: fit-content;
 }
 
 .editor-options{

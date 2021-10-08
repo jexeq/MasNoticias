@@ -1,24 +1,25 @@
-import { useEffect } from 'react';
+import getSpanishDateOnly from '../../utils/getSpanishDateOnly';
 import './fullReport.css';
 
 export default function FullReportCard (props) {
-    const {title1, title2, footer1, footer2, footer3, paragraph1, paragraph2, paragraph3, photo1, photo2, photo3} = props.report;
+    const {title1, title2, date, footer1, footer2, footer3, paragraph1, paragraph2, paragraph3, photo1, photo2, photo3} = props.report;
     // console.log("esto esreport" ,report)
     const tag = props.tag;
     const section = props.section
-    
+    console.log("FullReportCard - 9 - date typeof" ,  typeof date)
+    console.log("FullReportCard - 9 - date.toDateString()" ,  new Date(date))
     return (
         <div className="report-container">
             {section&&section.name&&<h5 className='report-section'> - {section.name}</h5>}
             {tag&&tag.name&&<h5 className='report-section'> - {tag.name}</h5>}
                 <div className='header-container'>
-
-                <h1 className='title1'>{title1}</h1>
-                {photo1&&(
-                    <div className='img-container'>
-                        <img className='main-img' src={photo1} alt="sin imagen" />    
-                        <span className='img-foot'>{footer1}</span>
-                    </div>)}
+                    <h1 className='title1'>{title1}</h1>
+                    {getSpanishDateOnly( new Date(date).toDateString() ,{})}
+                    {photo1&&(
+                        <div className='img-container'>
+                            <img className='main-img' src={photo1} alt="sin imagen" />    
+                            <span className='img-foot'>{footer1}</span>
+                        </div>)}
                 </div>
             <h4 className='title2'>{title2}</h4>
             <div className='publicity-container'>

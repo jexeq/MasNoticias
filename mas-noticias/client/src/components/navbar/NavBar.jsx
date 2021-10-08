@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import WeatherReport from '../weather/Weather';
 import LogOutButton from '../authentication/SignOut';
-import CheckUser from '../utils/CheckUser';
+import getSpanishDateOnly from '../utils/getSpanishDateOnly';
 import { getWeather } from '../../redux/actions/weather/weatherActions';
 import { getUser } from '../../redux/actions/user/userActions';
 import { NavLink } from 'react-router-dom';
@@ -12,16 +12,11 @@ import { NavLink } from 'react-router-dom';
 export default function NavBar () {
 
     const dispatch = useDispatch();
-    const [toFind, setToFind] = useState("")
+    // const [toFind, setToFind] = useState("")
     const weather = useSelector(state=>state.weatherReducer.weather.report)
     const storeUser = useSelector(state => state.userReducer.user)
     const userId = localStorage.getItem("mas-noticias")
 
-        function onChangeHandler (e) {
-                e.preventDefault();
-                setToFind(e.target.value);
-                console.log("toFind: " , toFind)
-        }
 
     useEffect( ()=> {
         dispatch(getWeather());
@@ -33,16 +28,14 @@ export default function NavBar () {
     return (
         <div>
             <div className="nav-container">
+                <div>
                 <NavLink to="/">
                     <img className="logo1" src={logo} alt="image"/>
                 </NavLink>
+                {getSpanishDateOnly(new Date().toDateString()  ,{color: "white"})}
+                </div>
                 
-                {/* <div>
-                    <form className="searchbar">
-                    <input type="text" value={toFind} onChange={onChangeHandler}/>
-                    <button type="submit">Buscar</button>
-                    </form>
-                </div> */}
+                
                 {/* {weather?<WeatherReport/>:<p>Loading...</p>} */}
                 {!storeUser && <NavLink to='/signin'> 
                     <button className='btn btn-dark btn-nav btn-lg border-0 rounded-0'>Ingresar </button>
@@ -50,29 +43,32 @@ export default function NavBar () {
                 <div className='btn-nav'>{storeUser?.email}</div>
                 {storeUser&&<LogOutButton/>}
             </div>
+            <div className="editor-navBar">
             {(storeUser?.type === "admin" || storeUser?.type === "editor" || storeUser?.type === "sudo" )&&(
-                <div className="editor-navBar">
+                <div className="editor-navBar btn-group">
                     <div >
                     <NavLink className='btn btn-dark' to="/create-report">Crear Noticia</NavLink>
                     </div>
                     <div >
-                    <NavLink className='btn btn-dark' to="/admin/reports">Administrar Noticias</NavLink>
+                    <NavLink className='btn btn-dark' to="/admin/reports">Noticias</NavLink>
                     </div>
                 </div>
             )}
             {(storeUser?.type === "sudo")&&(
-                <div className="editor-navBar">
+                <div className="editor-navBar btn-group">
                     <div >
-                    <NavLink className='btn btn-dark' to="/admin/users">Administrar Usuarios</NavLink>
+                    <NavLink className='btn btn-dark' to="/admin/users">Usuarios</NavLink>
                     </div>
                     <div >
-                    <NavLink className='btn btn-dark' to="/create-section">Administrar Secciones</NavLink>
+                    <NavLink className='btn btn-dark' to="/create-section">Secciones</NavLink>
                     </div>
                     <div >
-                    <NavLink className='btn btn-dark' to="/admin/publicity">Administrar Publicidades</NavLink>
+                    <NavLink className='btn btn-dark' to="/admin/publicity">Publicidades</NavLink>
                     </div>
                 </div>
             )}
+
+            </div>
 
         </div>
     )

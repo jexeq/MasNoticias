@@ -1,6 +1,7 @@
 
 import MainReportCard from '../components/report/mainReportCard/MainReportCard';
 import MediumReportCard from '../components/report/mediumReportCard/MediumReportCard';
+import SmallReportCard from '../components/report/smallReportCard/SmallReportCard';
 import SmallPublicityCard from '../components/publicity/SmallPublicityCard';
 import LargePublicityCard from '../components/publicity/LargePublicityCard';
 import BannerPublicityCard from '../components/publicity/BannerPublicityCard';
@@ -49,10 +50,17 @@ export default function Landing () {
                     <MainReportCard report={storeReports[0]}/>
                     <hr />
                     <div className='medium-report-cont'>
+                        <SmallReportCard report={storeReports[0]}/>
+                        <SmallReportCard report={storeReports[2]}/>
+                        <SmallReportCard report={storeReports[3]}/>
+                    </div>
+                    <hr />
+                    <div className='medium-report-cont'>
                         <MediumReportCard report={storeReports[1]}/>
                         <MediumReportCard report={storeReports[2]}/>
                         <MediumReportCard report={storeReports[3]}/>
                     </div>
+
                     <div>
                         {sortedPubs.bannerPublicities[0]? <BannerPublicityCard publicity={sortedPubs.bannerPublicities[0]}/> : <div> publite aqui</div>}
                     </div>
