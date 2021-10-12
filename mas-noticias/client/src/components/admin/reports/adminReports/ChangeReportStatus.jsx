@@ -25,9 +25,9 @@ export default function ChangeReportStatus(props) {
         <hr />
         <h5>Estado Actual: {currentStatus}</h5>
         <form>
-        <label htmlFor={props.report.id}>Seleccionar</label>
+        
         <br />
-        <select name="report-status" id={props.report.id} onChange={selectStatusHandler}>
+        <select className='form-control' name="report-status" id={props.report.id} onChange={selectStatusHandler}>
         <option key="seleccionar" value="">--seleccionar--</option>
             {validStatus.map( (e, index) => {
                 if(e!== currentStatus) {
@@ -36,7 +36,7 @@ export default function ChangeReportStatus(props) {
             })}
         </select>
         <hr />
-        {currentStatus!==newStatus&& <button onClick={updateStatusHandler}>Cambiar Estado</button> }
+        {currentStatus!==newStatus&& <button className='btn btn-dark'onClick={updateStatusHandler}>Cambiar Estado</button> }
         </form>
 
     </div>

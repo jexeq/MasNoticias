@@ -1,0 +1,4 @@
+.dynamic-cont {
+    display: flex;
+    flex-wrap: wrap;
+}

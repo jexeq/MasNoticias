@@ -6,8 +6,7 @@ export default function FullReportCard (props) {
     // console.log("esto esreport" ,report)
     const tag = props.tag;
     const section = props.section
-    console.log("FullReportCard - 9 - date typeof" ,  typeof date)
-    console.log("FullReportCard - 9 - date.toDateString()" ,  new Date(date))
+
     return (
         <div className="report-container">
             {section&&section.name&&<h5 className='report-section'> - {section.name}</h5>}

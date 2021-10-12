@@ -98,7 +98,7 @@ export default function DisplayAllReports () {
                         </div>)}
                         <hr />
                         <NavLink to={`/admin/reports/edit-report/${selectedReport.id}`}>
-                            <button>Editar el Contenido de la Noticia</button>
+                            <button className='btn btn-dark'>Editar el Contenido de la Noticia</button>
                         </NavLink>
                         <hr />
                     </div>)}

@@ -1,4 +1,4 @@
-
+import DynamicRenderReports from '../components/report/dynamicRenderReports/DynamicRenderReports';
 import MainReportCard from '../components/report/mainReportCard/MainReportCard';
 import MediumReportCard from '../components/report/mediumReportCard/MediumReportCard';
 import SmallReportCard from '../components/report/smallReportCard/SmallReportCard';
@@ -47,7 +47,7 @@ export default function Landing () {
             <div className='landing-body'>
                 <div className='left-column'></div>
                 <div className='center-column'>
-                    <MainReportCard report={storeReports[0]}/>
+                    {/* <MainReportCard report={storeReports[0]}/>
                     <hr />
                     <div className='medium-report-cont'>
                         <SmallReportCard report={storeReports[0]}/>
@@ -80,7 +80,8 @@ export default function Landing () {
                     <div>
                         {sortedPubs?.mediumPublicities[0] ? <MediumPublicityCard publicity={sortedPubs.mediumPublicities[0]}/>:<div>mediumPubHere</div>}
                         {sortedPubs?.mediumPublicities[1] ? <MediumPublicityCard publicity={sortedPubs.mediumPublicities[1]}/>:<div>mediumPubHere</div>}
-                    </div>
+                    </div> */}
+                    {storeReports&&storePublicities&&<DynamicRenderReports reports={storeReports} publicity={storePublicities}/>}
 
                 </div>
                 <div className='rigth-column'>
