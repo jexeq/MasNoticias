@@ -105,8 +105,8 @@ export default function UsersAdmin(props) {
         </div>
 
         <table id="tableright" className="d-table-cell">
-          <thead class="thead-warning">
-            <tr>
+          <thead >
+            <tr className="thead">
               <th>Email</th>
               <th>Usuario</th>
               <th>Estado</th>

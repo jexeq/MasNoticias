@@ -74,11 +74,13 @@ export default function PublicityManager () {
                 <div className='container'>
                     <table className="table">
                         <thead className="table-responsive ">
-                            <th> Propietario</th>
-                            <th> Tipo </th>
-                            <th> Estado </th>
-                            <th> Prioridad </th>
-                            <th> Seleccionar </th>
+                            <tr>
+                                <th> Propietario</th>
+                                <th> Tipo </th>
+                                <th> Estado </th>
+                                <th> Prioridad </th>
+                                <th> Seleccionar </th>
+                            </tr>
                         </thead>
                         <tbody >
                             {storePublicities.map( p => 

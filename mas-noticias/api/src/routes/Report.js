@@ -20,10 +20,10 @@ router.get("/week_reports", async function (req, res, next){
                 {model: Stat , attributes: ["likes", "comments", "shares"]},
                 {model: User, attributes: ["id", "email", "name", "lastname"]}
             ],
-            order: [["priority", "DESC"]],
+            order: [["priority", "DESC"], ["date", "DESC"]],
             limit: 20
         })
-
+        
         return res.status(200).send(allReports);
 
     } catch (err) {

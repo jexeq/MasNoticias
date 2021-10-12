@@ -28,7 +28,7 @@ export default function NavBar () {
     return (
         <div>
             <div className="nav-container">
-                <div>
+                <div className="container">
                 <NavLink to="/">
                     <img className="logo1" src={logo} alt="image"/>
                 </NavLink>
@@ -38,10 +38,12 @@ export default function NavBar () {
                 
                 {/* {weather?<WeatherReport/>:<p>Loading...</p>} */}
                 {!storeUser && <NavLink to='/signin'> 
-                    <button className='btn btn-dark btn-nav btn-lg border-0 rounded-0'>Ingresar </button>
+                    <button className='btn btn-dark  btn-lg border-0 rounded-0'>Ingresar </button>
                 </NavLink>}
-                <div className='btn-nav'>{storeUser?.email}</div>
-                {storeUser&&<LogOutButton/>}
+                <div className='btn-nav'>
+                    {storeUser?.email}
+                    {storeUser&&userId&&<LogOutButton/>}
+                </div>
             </div>
             <div className="editor-navBar">
             {(storeUser?.type === "admin" || storeUser?.type === "editor" || storeUser?.type === "sudo" )&&(

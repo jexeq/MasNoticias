@@ -28,10 +28,10 @@ router.get("/active" , async function (req, res, next) {
 
     try {
         const activePublicities = await Publicity.findAll({where: {state: "active"}})
-        console.log("activePublicities" , activePublicities)
+        // console.log("activePublicities" , activePublicities)
         if(activePublicities) {
            var sortedPublicity = activePublicities.sort( (a, b) => b.priority - a.priority )
-            console.log("sortedPublicity: " , sortedPublicity)
+            // console.log("sortedPublicity: " , sortedPublicity)
             return res.send(sortedPublicity)
         }else{
             throw new Error("no se encontraron las publicidades")

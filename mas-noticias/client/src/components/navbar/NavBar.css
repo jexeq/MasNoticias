@@ -1,23 +1,21 @@
-.logo1 {
-    width: 70px;
-    height: 70px;
-    margin: 10px;
-    border-radius: 70%;
-    position: static;
-    left: 50px;
-    top: 13px;
-}
-
 .nav-container {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-around;
     height: 110px;
     width: 100vw;
     background-color: black;
-    position: static;
+   
 }
+.logo1 {
+    width: 70px;
+    height: 70px;
+    margin: 10px 0px 10px 30px;
+    border-radius: 70%;
+    left: 50px;
+    top: 13px;
+}
+
 
 .nav-title {
     display: flex;
@@ -35,8 +33,10 @@
 }
 
 .btn-nav{
+    display: flex;
+    flex-direction: column;
     position: relative;
-    right: 0%;
+    right: 3%;
     font-size: 90%;
     color: white;
 }
@@ -47,7 +47,6 @@
     align-items: center;
     justify-content: center;
     background-color: #E15A3B;
-    
     height: fit-content;
 }
 
