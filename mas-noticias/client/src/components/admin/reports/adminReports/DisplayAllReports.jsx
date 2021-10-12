@@ -6,6 +6,7 @@ import ChangeReportStatus from './ChangeReportStatus';
 import ChangeReportPriority from './ChangeReportPriority';
 import { NavLink } from "react-router-dom";
 import { useHistory } from 'react-router';
+import './displayAllReports.css';
 
 export default function DisplayAllReports () {
     const history = useHistory();
@@ -58,25 +59,20 @@ export default function DisplayAllReports () {
         <div className='container align-items-c'>
             <h1>Listado de noticias</h1>
             <div>
-                <table>
-                    <thead>
+                <table className="table">
+                    <thead className="table-responsive">
                         <tr>
+                            <th>check</th>
                             <th>Titulo</th>
-                            <th>Sección</th>
-                            <th>Creador</th>
+                            <th className='hidden-row'>Sección</th>
+                            <th className='hidden-row'>Creador</th>
                             <th>Estado</th>
                             <th>Prioridad</th>
-                            <th>selector</th>
                         </tr>
                     </thead>
                     <tbody>
                         {storeReports.map( (r) => (
                             <tr key={r.id}>
-                                <td>{r.title1}</td>
-                                <td>{r.section.name}</td>
-                                <td>{r.user.email}</td>
-                                <td>{r.status}</td>
-                                <td>{r.priority}</td>
                                 <td>
                                     <input type="radio"
                                             name='select-report'
@@ -84,6 +80,11 @@ export default function DisplayAllReports () {
                                             onChange={(e)=>selectReport(e)}
                                             />
                                 </td>
+                                <td>{r.title1}</td>
+                                <td className='hidden-row'>{r.section.name}</td>
+                                <td className='hidden-row'>{r.user.email}</td>
+                                <td>{r.status}</td>
+                                <td>{r.priority}</td>
                             </tr>
                         ))}
                     </tbody>

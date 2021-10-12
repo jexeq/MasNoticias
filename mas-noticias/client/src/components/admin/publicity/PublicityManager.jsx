@@ -73,7 +73,7 @@ export default function PublicityManager () {
                 </div>
                 <div className='container'>
                     <table className="table">
-                        <thead className="table-responsive ">
+                        <thead className="table-responsive">
                             <tr>
                                 <th> Propietario</th>
                                 <th> Tipo </th>

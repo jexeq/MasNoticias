@@ -1,0 +1,10 @@
+.hidden-row {
+    
+    font-weight: bold;
+}
+
+@media screen and (max-width: 425px) {
+    .hidden-row{
+        display: none;
+    }
+}
