@@ -33,7 +33,7 @@ export default function ChangePublicityState (props) {
         return () => {
             dispatch(clearPublicity())
         }
-    },[])
+    },[]) // eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(()=>{
         if(storePublicity?.id) {

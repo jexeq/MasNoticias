@@ -22,6 +22,7 @@ import ChangePublicityState from './components/admin/publicity/ChangePublicitySt
 import ChangePublicityPriority from './components/admin/publicity/ChangePublicityPriority';
 import DeletePublicity from "./components/admin/publicity/DeletePublicity";
 import PublicityUpdater from './components/admin/publicity/PublicityUpdater';
+import ReportsBySection from './views/ReportsBySection';
 import './App.css';
 
 function App() {
@@ -46,7 +47,8 @@ function App() {
       <Route path="/admin/publicity/state/:publicityId" component={ChangePublicityState}/>
       <Route path="/admin/publicity/priority/:publicityId" component={ChangePublicityPriority}/>
       <Route path="/admin/publicity/update/:publicityId" component={PublicityUpdater}/>
-      <Route path="/admin/publicity/delete/:publicityId" component={DeletePublicity}/>;
+      <Route path="/admin/publicity/delete/:publicityId" component={DeletePublicity}/>
+      <Route path="/sections/:sectionId" component={ReportsBySection}/>
     </React.Fragment>
   );
 }

@@ -29,7 +29,7 @@ export default function PublicityManager () {
     useEffect(()=>{
         dispatch(getAllPublicities());
         return () => dispatch(clearPublicity());
-    },[])
+    },[]) // eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(()=>{
         if(storePublicities) {

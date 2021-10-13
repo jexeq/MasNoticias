@@ -22,7 +22,7 @@ export const getAllReports = () => {
     }
 }
 
-export const getReportSection = (sectionId) => {
+export const getReportsBySection = (sectionId) => {
     return async (dispatch) => {
         const res = await axios.get(`/report/section/${sectionId}`)
         return dispatch({type: TYPES.GET_REPORTS_BY_SECTION, payload: res.data})

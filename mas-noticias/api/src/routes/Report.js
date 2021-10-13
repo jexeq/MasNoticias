@@ -9,9 +9,9 @@ router.get("/week_reports", async function (req, res, next){
         var allReports = await Report.findAll(
             {
             where: {
-                date: {
-                    [Op.gt]: new Date(new Date() - (24 * 60 * 60 * 1000 * 7)  )
-                },
+                // date: {
+                //     [Op.gt]: new Date(new Date() - (24 * 60 * 60 * 1000 * 7)  )
+                // },
                 status: "publicado"
             },
             include:[
@@ -49,6 +49,32 @@ router.get("/all-reports" , async function (req, res, next){
     }
 })
 
+router.get("/section/:sectionId", async function ( req,res, next) {
+    const {sectionId} = req.params;
+    try{
+        var reportsBySection = await Report.findAll({
+            where: {
+                sectionId: sectionId,
+                status: "publicado"
+            },
+            include: [
+                {model: User, attributes: ["id", "name", "lastname", "email"]},
+                {model: Section, attributes: ["id", "name"]},
+                {model: Tag, attributes:["id", "name"]},
+                {model: Stat}
+            ],
+            order: [["priority", "DESC"]]
+        })
+        // console.log("esto es reportsBySection", reportsBySection)
+        if(reportsBySection) {
+            return res.send(reportsBySection)
+        }else{
+            throw new Error ("no se encontraron reportes para esta sección")
+        }
+    }catch (err) {
+        next(err)
+    }
+})
 
 
 router.get("/:id", async function (req, res, next){

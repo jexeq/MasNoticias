@@ -7,7 +7,7 @@ export default function DisplaySections (props) {
         <div className='sections-cont'>
             {sections.map( s=> {
                 return (
-                    <NavLink className='btn btn-sm btn-outline-primary' to={`/sections/${s.id}`}>
+                    <NavLink key={s.id} className='btn btn-sm btn-outline-primary' to={`/sections/${s.id}`}>
                         {s.name}
                     </NavLink>
                 )
