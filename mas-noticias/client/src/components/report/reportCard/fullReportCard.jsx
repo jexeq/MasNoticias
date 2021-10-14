@@ -1,12 +1,16 @@
 import getSpanishDateOnly from '../../utils/getSpanishDateOnly';
 import SocialMediaShare from '../../utils/SocialMediaShare';
+import LargePublicityCard from '../../publicity/LargePublicityCard';
+import BannerPublicityCard from '../../publicity/BannerPublicityCard';
+import filterPublicityByType from '../../utils/filterPublicityByType';
 import './fullReport.css';
 
 export default function FullReportCard(props) {
     const { title1, title2, date, footer1, footer2, footer3, paragraph1, paragraph2, paragraph3, photo1, photo2, photo3 } = props.report;
-    
+    const publicities = props.publicities;
     const tag = props.tag;
-    const section = props.section
+    const section = props.section;
+    const sortedPubs = filterPublicityByType(publicities);
 
     return (
         <div className="report-container">
@@ -34,7 +38,7 @@ export default function FullReportCard(props) {
             <br />
             {paragraph2 && <div className='paragraphs' dangerouslySetInnerHTML={{ __html: paragraph2 }}></div>}
             <div>
-                <div>AQUI TIENE QUE IR UNA PUBLICIDAD</div>
+                <BannerPublicityCard publicity={sortedPubs.bannerPublicities[0]}/>
             </div>
             {photo3 && photo3.map(e => <div className='img-container'>
                 <img className='second-img' src={e} alt="sin imagen" />
@@ -44,7 +48,7 @@ export default function FullReportCard(props) {
             <br />
             {paragraph3 && <div className='paragraphs' dangerouslySetInnerHTML={{ __html: paragraph3 }}></div>}
             <div>
-                <div>AQUI TIENE QUE IR UNA PUBLICIDAD</div>
+                <LargePublicityCard publicity={sortedPubs.largePublicities[0]}/>
             </div>
         </div>
     )

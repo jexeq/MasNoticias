@@ -26,6 +26,22 @@ export default function filterPublicityByType (publicities) {
         }
     });
 
+    smallPublicities = smallPublicities.sort( (a, b) => {
+        return b.priority - a.priority
+    })
+
+    mediumPublicities = mediumPublicities.sort( (a, b) => {
+        return b.priority - a.priority
+    })
+
+    largePublicities = largePublicities.sort( (a, b) => {
+        return b.priority - a.priority
+    })
+
+    bannerPublicities = bannerPublicities.sort( (a, b) => {
+        return b.priority - a.priority
+    })
+
     pubObject = {
         smallPublicities: smallPublicities,
         mediumPublicities: mediumPublicities,
