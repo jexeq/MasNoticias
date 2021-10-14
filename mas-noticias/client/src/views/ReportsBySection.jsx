@@ -22,7 +22,7 @@ export default function ReportsBySection (props) {
             dispatch(clearPublicity());
             dispatch(clearReports());
         }
-    },[])
+    },[sectionId])
 
     useEffect(()=>{
         
