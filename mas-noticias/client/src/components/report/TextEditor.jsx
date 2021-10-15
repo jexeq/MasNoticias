@@ -49,7 +49,7 @@ import './textEditor.css';
         placeholder="ingrese texto"
         toolbar={
             {
-            options: ['inline', 'fontSize', 'list', 'textAlign', 'colorPicker', 'link', 'emoji', 'remove', 'history'],
+            options: ['inline', 'fontSize','fontFamily', 'list', 'textAlign', 'colorPicker', 'link', 'emoji', 'remove', 'history'],
             inline: { inDropdown: true },
             list: { inDropdown: true },
             textAlign: { inDropdown: true },
