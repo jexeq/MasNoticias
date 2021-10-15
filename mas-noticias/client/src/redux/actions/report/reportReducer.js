@@ -20,7 +20,7 @@ const reportReducer = (state = initialState, action) => {
         case TYPES.DELETE_REPORT: return { ...state, report: {} }
         case TYPES.GET_WEEK_REPORTS: return {...state, reports: action.payload }
         case TYPES.CLEAR_REPORTS: return {...state, reports: [], report: {}}
-        
+        case TYPES.FIND_REPORTS: return { ...state, reports: action.payload }
         default:                  return state;
     }
 }

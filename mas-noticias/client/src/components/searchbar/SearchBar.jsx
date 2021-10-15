@@ -10,13 +10,13 @@ export default function SearchBar () {
     const [toFind, setToFind] = useState("");
 
     function onChangeHandler(e) {
-        console.log("se buscará: ", e.target.value)
+        // console.log("se buscará: ", e.target.value)
         setToFind(e.target.value)
     }
 
     function findReportsHandler (e) {
-        dispatch(findReports(toFind))
-        history.push(`/reports/search?find=${toFind}`)
+        
+        history.push(`/reports/search/${toFind}`)
     }
 
     return (

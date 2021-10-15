@@ -1,6 +1,7 @@
 const {Report, Section, Stat, Tag, User} = require("../db");
 const router = require('express').Router();
 const { Op } = require("sequelize");
+const capitalizeEntries = require("../utils/capitalizeEntries");
 
 router.get("/week_reports", async function (req, res, next){
 
@@ -40,11 +41,53 @@ router.get("/all-reports" , async function (req, res, next){
                 {model: Stat , attributes: ["likes", "comments", "shares"]},
                 {model: User, attributes: ["id", "email", "name", "lastname"]}
             ],
-            order: [["priority", "DESC"]],
-            limit: 20}
+            order: [["date", "DESC"]],
+            }
         )
         return res.send(allReports);
     }catch(err){
+        next(err)
+    }
+})
+
+router.get("/search", async function (req, res, next) {
+    const find = req.query.find;
+    const capFind = capitalizeEntries(find);
+    console.log("buscando: " , find)
+    try {
+        const findedReports = await Report.findAll(
+            {
+                where: {
+                    [Op.or]: [
+                        {title1: {[Op.substring]:find}},
+                        {title2: {[Op.substring]:find}},
+                        {paragraph1: {[Op.substring]:find}},
+                        {paragraph2: {[Op.substring]:find}},
+                        {paragraph3: {[Op.substring]:find}},
+                        {title1: {[Op.substring]:capFind}},
+                        {title2: {[Op.substring]:capFind}},
+                        {paragraph1: {[Op.substring]:capFind}},
+                        {paragraph2: {[Op.substring]:capFind}},
+                        {paragraph3: {[Op.substring]:capFind}},
+                    ]
+                },
+                include:[
+                    {model: Section, attributes: ["name"]},
+                    {model: Tag, attributes: ["name"]},
+                    {model: Stat , attributes: ["likes", "comments", "shares"]},
+                    {model: User, attributes: ["id", "email", "name", "lastname"]}
+                ],
+                order: [["date", "DESC"]],
+            }
+        )
+        console.log("findedReports: " , findedReports)
+
+        if(findedReports) {
+            return res.send(findedReports);
+        }else {
+            throw new Error("No se encontraron reportes")
+        }
+    }catch (err){
         next(err)
     }
 })

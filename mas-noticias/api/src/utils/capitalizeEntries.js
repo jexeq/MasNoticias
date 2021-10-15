@@ -1,5 +1,5 @@
 
-export default function capitalizeEntries (entrie) {
+function capitalizeEntries (entrie) {
     let aux = '';
     
     for (let i=0; i<entrie.length;i++) {
@@ -15,3 +15,5 @@ export default function capitalizeEntries (entrie) {
     console.log("capitalizeEntries - entrie despues del for: " , entrie)
     return entrie;
 }
+
+module.exports = capitalizeEntries;
