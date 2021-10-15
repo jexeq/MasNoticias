@@ -27,7 +27,7 @@ export default function FullReportCard(props) {
             </div>
             <h4 className='title2'>{title2}</h4>
             <div className='d-flex align-content-center'>
-                <SocialMediaShare url={window.location.href} hashtag={tag.name} header={title1} />
+                <SocialMediaShare url={window.location.href} hashtag={tag?.name} header={title1} />
             </div>
             <br />
             <div className='paragraphs' dangerouslySetInnerHTML={{ __html: paragraph1 }}></div>

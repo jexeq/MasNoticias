@@ -14,12 +14,12 @@
 }
 .small-img.cont{
     
-    height: 100%;
-    width: 40%
+    height: auto;
+    width: 150px;
 }
 .small-img{
     box-sizing: border-box;
-    width: 50%;
-    height: 100%;
+    width: 100px;
+    height: 100px;
     padding: 10px;
 }

@@ -11,7 +11,7 @@ export default function filterPublicityByType (publicities) {
     var largePublicities = [];
     var bannerPublicities = [];
 
-    publicities.forEach( p => {
+    publicities?.forEach( p => {
         if(p.type === "small") {
             smallPublicities.push(p);
         }

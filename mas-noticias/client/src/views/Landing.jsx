@@ -13,6 +13,7 @@ import { getweekReports } from "../redux/actions/report/reportActions";
 import { clearPublicity, getActivePublicities } from '../redux/actions/publicity/publicityActions';
 import filterPublicityByType from '../components/utils/filterPublicityByType';
 import smallPubHere from '../components/publicity/smallPubHere';
+import Paginator from '../components/utils/Paginator';
 import './landing.css';
 
 export default function Landing () {
@@ -22,7 +23,7 @@ export default function Landing () {
     const storeReports = useSelector(state=>state.reportReducer.reports);
     const storePublicities = useSelector( state => state.publicityReducer.publicities); 
     const currentLocation = window.location;
-    console.log(currentLocation);
+    
 
     useEffect(()=>{
         dispatch(getweekReports());
@@ -49,41 +50,8 @@ export default function Landing () {
             <div className='landing-body'>
                 <div className='left-column'></div>
                 <div className='center-column'>
-                    {/* <MainReportCard report={storeReports[0]}/>
-                    <hr />
-                    <div className='medium-report-cont'>
-                        <SmallReportCard report={storeReports[0]}/>
-                        <SmallReportCard report={storeReports[2]}/>
-                        <SmallReportCard report={storeReports[3]}/>
-                    </div>
-                    <hr />
-                    <div className='medium-report-cont'>
-                        <MediumReportCard report={storeReports[1]}/>
-                        <MediumReportCard report={storeReports[2]}/>
-                        <MediumReportCard report={storeReports[3]}/>
-                    </div>
-
-                    <div>
-                        {sortedPubs.bannerPublicities[0]? <BannerPublicityCard publicity={sortedPubs.bannerPublicities[0]}/> : <div> publite aqui</div>}
-                    </div>
-                    <div className='medium-report-cont'>
-                        <MediumReportCard report={storeReports[1]}/>
-                        <MediumReportCard report={storeReports[2]}/>
-                        <MediumReportCard report={storeReports[3]}/>
-                    </div>
-                    <div>
-                        {sortedPubs?.largePublicities[0]? <LargePublicityCard publicity={sortedPubs.largePublicities[0]}/>: <div>largepubHere</div>}
-                    </div>
-                    <div className='medium-report-cont'>
-                        <MediumReportCard report={storeReports[1]}/>
-                        <MediumReportCard report={storeReports[2]}/>
-                        <MediumReportCard report={storeReports[3]}/>
-                    </div>
-                    <div>
-                        {sortedPubs?.mediumPublicities[0] ? <MediumPublicityCard publicity={sortedPubs.mediumPublicities[0]}/>:<div>mediumPubHere</div>}
-                        {sortedPubs?.mediumPublicities[1] ? <MediumPublicityCard publicity={sortedPubs.mediumPublicities[1]}/>:<div>mediumPubHere</div>}
-                    </div> */}
-                    {storeReports&&storePublicities&&<DynamicRenderReports reports={storeReports} publicity={storePublicities}/>}
+                    
+                    {storeReports&&storePublicities&&<Paginator reports={storeReports} publicity={storePublicities}/>}
 
                 </div>
                 <div className='rigth-column'>

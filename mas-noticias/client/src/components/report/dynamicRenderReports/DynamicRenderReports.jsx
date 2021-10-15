@@ -28,7 +28,7 @@ export default function DynamicRenderReports(props) {
                     aux.push(<SmallReportCard key={r.id} report={r} />)
                 }
                 if (publicity[pubIndex]) {
-                    console.log("publicity[pubIndex]", publicity[pubIndex])
+                    
                     if (publicity[pubIndex].type === "banner") {
                         aux.push(<BannerPublicityCard publicity={publicity[pubIndex]} />)
                         pubIndex++;
@@ -49,7 +49,40 @@ export default function DynamicRenderReports(props) {
     })
     return (
         <div className='dynamic-cont'>
+            {/* <MainReportCard report={storeReports[0]}/>
+                    <hr />
+                    <div className='medium-report-cont'>
+                        <SmallReportCard report={storeReports[0]}/>
+                        <SmallReportCard report={storeReports[2]}/>
+                        <SmallReportCard report={storeReports[3]}/>
+                    </div>
+                    <hr />
+                    <div className='medium-report-cont'>
+                        <MediumReportCard report={storeReports[1]}/>
+                        <MediumReportCard report={storeReports[2]}/>
+                        <MediumReportCard report={storeReports[3]}/>
+                    </div>
 
+                    <div>
+                        {sortedPubs.bannerPublicities[0]? <BannerPublicityCard publicity={sortedPubs.bannerPublicities[0]}/> : <div> publite aqui</div>}
+                    </div>
+                    <div className='medium-report-cont'>
+                        <MediumReportCard report={storeReports[1]}/>
+                        <MediumReportCard report={storeReports[2]}/>
+                        <MediumReportCard report={storeReports[3]}/>
+                    </div>
+                    <div>
+                        {sortedPubs?.largePublicities[0]? <LargePublicityCard publicity={sortedPubs.largePublicities[0]}/>: <div>largepubHere</div>}
+                    </div>
+                    <div className='medium-report-cont'>
+                        <MediumReportCard report={storeReports[1]}/>
+                        <MediumReportCard report={storeReports[2]}/>
+                        <MediumReportCard report={storeReports[3]}/>
+                    </div>
+                    <div>
+                        {sortedPubs?.mediumPublicities[0] ? <MediumPublicityCard publicity={sortedPubs.mediumPublicities[0]}/>:<div>mediumPubHere</div>}
+                        {sortedPubs?.mediumPublicities[1] ? <MediumPublicityCard publicity={sortedPubs.mediumPublicities[1]}/>:<div>mediumPubHere</div>}
+                    </div> */}
             {aux.map(e => e)}
         </div>)
 }

@@ -1,0 +1,35 @@
+.pagination-cont{
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    height: 40px;
+    list-style: none;
+    justify-content: center;
+    margin: 10px;
+    
+}
+
+.pagination-cont a {
+    padding: 10px;
+    margin: 0 8px 0 8px;
+    border-radius: 5px;
+    border: 1px solid black;
+    color: black;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.pagination-cont a:hover {
+    
+    background-color: black;
+    color: white;
+}
+
+.pagination-active a {
+    background-color: black;
+    color: seashell;
+}
+
+.pagination-disabled{
+    display: none;
+}

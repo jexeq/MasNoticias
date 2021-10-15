@@ -20,7 +20,7 @@ router.get("/week_reports", async function (req, res, next){
                 {model: Stat , attributes: ["likes", "comments", "shares"]},
                 {model: User, attributes: ["id", "email", "name", "lastname"]}
             ],
-            order: [["priority", "DESC"], ["date", "DESC"]],
+            order: [["date", "DESC"],["priority", "DESC"] ],
             limit: 20
         })
         
@@ -63,7 +63,7 @@ router.get("/section/:sectionId", async function ( req,res, next) {
                 {model: Tag, attributes:["id", "name"]},
                 {model: Stat}
             ],
-            order: [["priority", "DESC"]]
+            order: [["date", "DESC"]]
         })
         // console.log("esto es reportsBySection", reportsBySection)
         if(reportsBySection) {
@@ -82,7 +82,7 @@ router.get("/:id", async function (req, res, next){
     try{
         var reportOk = await Report.findByPk(id, {include: [{model: User, attributes: ["id", "email"]},{model: Section, attributes:["id", "name"]}, {model: Tag, attributes:["id", "name"]}, {model: Stat}] })
 
-        console.log("reportOk: ", reportOk)
+        
         if(reportOk) {
             return res.send(reportOk);
         }else{
@@ -137,7 +137,7 @@ router.post("/", async function(req, res, next) {
 
             try {
                 let tagOk = await Tag.findByPk(tag.id)
-                // console.log("tagOk es" ,tagOk)
+                
                 if(tagOk){
                     await tagOk.addReport(newReport);
                 }else{
@@ -147,7 +147,7 @@ router.post("/", async function(req, res, next) {
 
             try {
                 let userOk= await User.findByPk(user.id)
-                // console.log("userOk es" ,userOk)
+                
                 if(userOk){
                     await userOk.addReport(newReport);
                 }else{
