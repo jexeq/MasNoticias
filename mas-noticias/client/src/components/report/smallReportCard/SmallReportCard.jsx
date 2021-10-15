@@ -14,5 +14,5 @@ export default function SmallReportCard (props) {
                 <p>{report.title1}</p>
             </NavLink>
         </div>
-    ): <p>...loading</p>
+    ): <p></p>
 }

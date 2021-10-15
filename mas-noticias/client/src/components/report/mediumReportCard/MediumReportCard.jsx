@@ -24,5 +24,5 @@ export default function MediumReportCard (props) {
                 </div>
             </NavLink>
     </div>
-    ): <p>...loading</p>
+    ): <p>{null}</p>
 }

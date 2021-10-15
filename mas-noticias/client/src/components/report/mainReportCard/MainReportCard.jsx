@@ -39,5 +39,5 @@ export default function MainReportCard (props) {
                 <img  className='img-report' src={report.photo1} alt="" />
             </div>
         </div>
-    ): <span>Loading...</span>
+    ): <span></span>
 }

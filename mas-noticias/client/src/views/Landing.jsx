@@ -1,15 +1,8 @@
-import DynamicRenderReports from '../components/report/dynamicRenderReports/DynamicRenderReports';
-import MainReportCard from '../components/report/mainReportCard/MainReportCard';
-import MediumReportCard from '../components/report/mediumReportCard/MediumReportCard';
-import SmallReportCard from '../components/report/smallReportCard/SmallReportCard';
 import SmallPublicityCard from '../components/publicity/SmallPublicityCard';
-import LargePublicityCard from '../components/publicity/LargePublicityCard';
-import BannerPublicityCard from '../components/publicity/BannerPublicityCard';
-import MediumPublicityCard from '../components/publicity/MediumPublicityCard';
 import SocialMediaShare from '../components/utils/SocialMediaShare';
 import {useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getweekReports } from "../redux/actions/report/reportActions";
+import { getweekReports, clearReports } from "../redux/actions/report/reportActions";
 import { clearPublicity, getActivePublicities } from '../redux/actions/publicity/publicityActions';
 import filterPublicityByType from '../components/utils/filterPublicityByType';
 import smallPubHere from '../components/publicity/smallPubHere';
@@ -28,7 +21,9 @@ export default function Landing () {
     useEffect(()=>{
         dispatch(getweekReports());
         dispatch(getActivePublicities());
-        return ()=> dispatch(clearPublicity());
+        return ()=> {
+            dispatch(clearReports());
+            dispatch(clearPublicity())};
     },[])
 
     useEffect(()=>{

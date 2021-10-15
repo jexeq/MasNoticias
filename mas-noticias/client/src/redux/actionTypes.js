@@ -19,6 +19,7 @@ export const UPDATE_REPORT_STATUS = "update_report_status";
 export const UPDATE_REPORT_PRIORITY = "update_report_priority";
 export const DELETE_REPORT = "delete_report";
 export const CLEAR_REPORTS = "clear_reports";
+export const FIND_REPORTS = 'find_reports';
 
 export const CREATE_SECTION = "create_section";
 export const GET_SECTIONS = "get_sections";

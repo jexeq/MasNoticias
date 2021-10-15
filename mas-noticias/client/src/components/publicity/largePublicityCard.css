@@ -1,9 +1,9 @@
 .large-pub-cont {
-    box-sizing: border-box;
+    
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 95%;
+    width: 98%;
     height: auto;
     padding: 5px;
     margin: 10px;

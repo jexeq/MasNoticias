@@ -22,6 +22,13 @@ export const getAllReports = () => {
     }
 }
 
+export const findReports = (find) => {
+    return async (dispatch) => {
+        const res = await axios.get(`/report/search?find=${find}`)
+        return dispatch({type: TYPES.FIND_REPORTS, payload: res.data})
+    }
+}
+
 export const getReportsBySection = (sectionId) => {
     return async (dispatch) => {
         const res = await axios.get(`/report/section/${sectionId}`)
