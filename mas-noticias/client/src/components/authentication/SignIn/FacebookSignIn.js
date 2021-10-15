@@ -40,9 +40,6 @@ const FacebookBase = (props) => {
       .catch(err => alert(err.message))
   }
 
-  useEffect(() => {
-    console.log("se ejecuto dispatch")
-  }, [getFacebookUser])
 
 
   useEffect(() => {
@@ -82,6 +79,7 @@ const FacebookBase = (props) => {
       <a
         className="btn btn-outline-dark"
         role="button"
+        href=''
         style={{ textTransform: "none" }}
         onClick={(e) => handleFacebook(e)}
       >

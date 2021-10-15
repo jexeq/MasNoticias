@@ -12,7 +12,7 @@ export default function PublicityDetailCard (publicity) {
                 return <img style={{"width": "750px", "height": "auto"}} src={publicity.url} alt="" />;    
             case "banner": 
                 return <img style={{"width": "100%", "height": "200px"}} src={publicity.url} alt="" />;    
-                default: return <img src={publicity.url} alt="this is an image" />
+                default: return <img src={publicity.url} alt="" />
         }
     }
 

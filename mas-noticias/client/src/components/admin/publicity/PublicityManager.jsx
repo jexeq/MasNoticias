@@ -1,14 +1,15 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-
+import { useHistory } from 'react-router';
 import { getAllPublicities, clearPublicity } from '../../../redux/actions/publicity/publicityActions';
+import { getUser } from '../../../redux/actions/user/userActions';
 import PublicityDetailCard from './publicityDetailCard';
 import './publicityManager.css';
 
 
 export default function PublicityManager () {
-
+    const history = useHistory();
     const dispatch = useDispatch();
     const storePublicities = useSelector( state => state.publicityReducer.publicities);
     const storeUser = useSelector( state => state.userReducer.user);
@@ -28,15 +29,21 @@ export default function PublicityManager () {
 
     useEffect(()=>{
         dispatch(getAllPublicities());
+        if(!storeUser) {
+            dispatch(getUser(userId))
+        }
         return () => dispatch(clearPublicity());
     },[]) // eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(()=>{
         if(storePublicities) {
-            setLoading(false)
+            if(storeUser?.type==='admin'||storeUser?.type==='sudo' ){
+                setLoading(false)
+            }else{
+                history.push('/not-found')
+            }
         }
-    },[storePublicities])
-
+    },[storePublicities, storeUser])
 
 
     return !loading?(

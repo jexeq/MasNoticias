@@ -8,7 +8,7 @@ import { createUser, clearUser } from '../../../redux/actions/user/userActions';
 import { sendEmailConfirmation } from '../../../redux/actions/email/emailActions';
 import { withFirebase } from '../../firebase/index';
 // import * as ROUTES from '../../../routes';
-import { validateUserName, validateUserEmail } from "./errorsControl"
+import { validateUserEmail } from "./errorsControl"
 
 import { NavLink } from 'react-router-dom';
 import './index.css';

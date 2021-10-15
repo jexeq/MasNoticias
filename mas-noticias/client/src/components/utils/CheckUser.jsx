@@ -1,15 +1,17 @@
 
+
+
 export default function CheckUser (user) {
-    if(user.type === "admin") {
-        localStorage.setItem("admin", user.id)
-    }
+    
+    const userId = localStorage.getItem("mas-noticias");
+    var userOk = false
 
-    switch (user.type) {
-        case "admin": localStorage.setItem("admin", user.id)
-        case "sudo": localStorage.setItem("sudo", user.id)
-        case "editor": localStorage.setItem("editor", user.id)
-        default: localStorage.setItem("mas-noticias", "guest")
-    }
-
-    return user.type;
+    
+        if(userId !== "guest" && userId!==undefined) {
+            if(user.type === "admin" || user.type === "sudo") {
+                userOk = true;
+            }
+        }
+    
+    return userOk
 }

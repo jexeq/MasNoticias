@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { findReports } from "../redux/actions/report/reportActions";
 import MediumReportCard from "../components/report/mediumReportCard/MediumReportCard";
+
 export default function SearchReports (props) {
     const dispatch = useDispatch()
     const {find} = props.match.params;

@@ -40,12 +40,12 @@ export default function NavBar() {
                 </div>
 
                 {/* {weather?<WeatherReport/>:<p>Loading...</p>} */}
-                {!storeUser && <NavLink to='/signin'>
+                {!storeUser?.id && <NavLink to='/signin'>
                     <button className='btn btn-dark btn-sm '>Ingresar </button>
                 </NavLink>}
                 <div className='btn-nav'>
                     {storeUser?.email}
-                    {storeUser && userId && <LogOutButton />}
+                    {storeUser && userId && userId !== "guest" && <LogOutButton />}
                 </div>
             </div>
             <div>

@@ -13,7 +13,7 @@ export default function SetAdminUser(props) {
 
   function toogleAdmin(e, users) {
     users.forEach((u) => {
-      if(u.type != "admin") {
+      if(u.type !== "admin") {
         aux.push({ id: u.id, changes: { type: "admin" } });
       }
       if(u.type === "admin") {

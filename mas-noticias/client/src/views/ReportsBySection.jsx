@@ -39,7 +39,7 @@ export default function ReportsBySection (props) {
             
             {storeReports&&storeReports.map( r=> {
                 return (
-                <div  className='container'>
+                <div key={r.id} className='container'>
                     <MainReportCard report={r}/>
                 </div>)
             })}

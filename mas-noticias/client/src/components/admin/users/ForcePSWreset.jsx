@@ -8,14 +8,14 @@ const ForcePasswordResetButton = (props) => (
 );
 
 function ForcePasswordResetBase(props) {
-  console.log("esto es props dentro del boton: ", Object.keys(props));
+  
   var users = props.props.users;
   var setChanged = props.props.setChanged;
   var changed = props.props.changed;
-  console.log("esto es user FUERA del hanlder ", users);
+  
 
   const handlePasswordReset = async (event, users) => {
-    console.log("esto es user dentro del hanlder ", users);
+    
     event.preventDefault();
     let aux = [];
 

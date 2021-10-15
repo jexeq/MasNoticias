@@ -1,4 +1,4 @@
-import { getAllPublicities, createPublicity } from "../../../redux/actions/publicity/publicityActions";
+import {  createPublicity } from "../../../redux/actions/publicity/publicityActions";
 import { getUser } from '../../../redux/actions/user/userActions';
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector} from 'react-redux';
@@ -6,11 +6,12 @@ import { useHistory } from "react-router";
 import DatePickerComponent from "../../utils/DatePicker";
 import ReactFirebaseFileUpload from '../../fileUploader/FileUploader';
 import './publicityCreator.css';
+import CheckUser from "../../utils/CheckUser";
 
 export default function PublicityCreator () {
     const history = useHistory();
     const dispatch = useDispatch();
-    const storePublicities = useSelector( state => state.publicityReducer.publicities);
+    // const storePublicities = useSelector( state => state.publicityReducer.publicities);
     const storeUser = useSelector( state => state.userReducer.user);
     const userId = localStorage.getItem("mas-noticias");
     const [loading, setLoading] = useState(true);
@@ -29,17 +30,22 @@ export default function PublicityCreator () {
     const [ publicity, setPublicity ] = useState(initial_state);
 
     useEffect(()=> {
-        if(!storeUser?.id){
+        if(!storeUser){
             dispatch(getUser(userId));
         }else{
-            setLoading(false);
+            if(!CheckUser(storeUser)) {
+                history.push("/not-found")
+            }else{
+
+                setLoading(false);
+            }
         }
 
     },[])
 
-    useEffect( () => {
-        console.log("publicity es: " , publicity)
-    },[publicity])
+    // useEffect( () => {
+    //     console.log("publicity es: " , publicity)
+    // },[publicity])
 
     // var { owner, init, end, priority, url, type, state, redirect } = publicity;
     var { owner, redirect } = publicity;

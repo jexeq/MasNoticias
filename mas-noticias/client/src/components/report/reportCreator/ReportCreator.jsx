@@ -10,6 +10,7 @@ import FullReportCard from '../reportCard/fullReportCard';
 import checkReportErrors from '../checkReportErrors';
 import TagCreator from '../../tag/TagCreator';
 import './reportCreator.css';
+import CheckUser from "../../utils/CheckUser";
 
 export default function ReportCreator () {
     const history = useHistory()
@@ -72,11 +73,17 @@ export default function ReportCreator () {
     }
 
     useEffect(()=>{
-        dispatch(getSections())
+        if(!allSections) dispatch(getSections());
         if(!storeUser) {
             dispatch(getUser(userId))
+        }else{
+            if(!CheckUser()){
+                if(storeUser.type !== 'editor') {
+                    history.push("/not-found")
+                }
+            }
         }
-    },[])
+    })
 
     useEffect(()=>{
         setReportBody({...reportBody, paragraph1: paragraph1})
@@ -93,7 +100,7 @@ export default function ReportCreator () {
     useEffect(()=>{
         setLoading(true)
         setReportBody({...reportBody, photo1: images[0], photo2: images[1], photo3: images.slice(2)})
-        console.log("photo3 es: " , reportBody.photo3)
+        // console.log("photo3 es: " , reportBody.photo3)
         setLoading(false)
     },[images])
 

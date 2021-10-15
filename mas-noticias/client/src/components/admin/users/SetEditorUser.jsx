@@ -13,7 +13,7 @@ export default function SetEditorUser(props) {
 
   function toogleEditor(e, users) {
     users.forEach((u) => {
-      if(u.type != "editor") {
+      if(u.type !== "editor") {
         aux.push({ id: u.id, changes: { type: "editor" } });
       }
       if(u.type === "editor") {

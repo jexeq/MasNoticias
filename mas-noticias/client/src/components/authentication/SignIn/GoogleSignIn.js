@@ -1,8 +1,8 @@
 import { withFirebase } from '../../firebase/index'
 import './google.css';
-import { useState, useEffect } from 'react';
+import {  useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getGoogleUser, clearUser, getUser } from '../../../redux/actions/user/userActions';
+import { getGoogleUser, clearUser } from '../../../redux/actions/user/userActions';
 import { useHistory } from 'react-router-dom';
 import { sendEmailConfirmation } from '../../../redux/actions/email/emailActions';
 
@@ -40,9 +40,9 @@ const GoogleBase = (props) => {
       .catch(err => alert(err.message))
   }
 
-  useEffect(() => {
-    console.log("se ejecuto dispatch")
-  }, [getGoogleUser])
+  // useEffect(() => {
+  //   console.log("se ejecuto dispatch")
+  // }, [getGoogleUser])
 
 
   useEffect(() => {

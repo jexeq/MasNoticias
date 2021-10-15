@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { updateUser } from "../../../redux/actions/user/userActions";
 import "./ButtonUsers.css";
 
@@ -8,7 +8,6 @@ export default function BannAdminUser(props) {
   var users = props.users;
   var setChanged = props.setChanged;
   var changed = props.changed;
-  console.log("changed es: ", changed);
   var aux = [];
 
   function toogleActive(e, users) {

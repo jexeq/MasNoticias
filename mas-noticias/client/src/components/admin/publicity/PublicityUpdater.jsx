@@ -53,7 +53,7 @@ export default function PublicityUpdater (props) {
     },[storePublicity])
 
     // var { owner, init, end, priority, url, type, state, redirect } = publicity;
-    var { owner, init, end, priority, url, type, state, redirect } = publicity;
+    var { owner, init, end, priority, type, state, redirect } = publicity;
     
 
     function ownerHandler (e) {

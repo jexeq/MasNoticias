@@ -31,7 +31,7 @@ export default function ChangeReportPriority(props) {
         <br />
         <select className='form-control' name="report-priority" id={props.report.id} onChange={selectPriorityHandler}>
             <option key="seleccionar" value="">--seleccionar--</option>
-            {validPriority.map( (e, index) => {
+            {validPriority.map( (e, index) =>  {
                 if(e!== currentPriority) {
                     return <option key={index} value={e}>{e}</option>
                 }

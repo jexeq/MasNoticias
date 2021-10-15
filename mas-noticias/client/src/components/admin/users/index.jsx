@@ -7,6 +7,7 @@ import SetAdminUser from "./SetAdminUser";
 import SetEditorUser from "./SetEditorUser";
 import BannAdminUser from "./BannUser";
 import ForcePasswordResetButton from "./ForcePSWreset";
+import CheckUser from "../../utils/CheckUser";
 
 
 
@@ -42,9 +43,8 @@ export default function UsersAdmin(props) {
   }, []);
 
   useEffect(() => {
-    if(storeUser?.id){
-      if(storeUser.type === "admin" || storeUser.type === "sudo" )
-      {}else{
+    if(storeUser){
+      if(!CheckUser(storeUser)){
         history.push("/not-found")
       }
     }
@@ -124,7 +124,7 @@ export default function UsersAdmin(props) {
                 <td>{u.active ? "Habilitado" : "Inhabilitado"}</td>
                 <td>{u.type}</td>
                 <td>
-                  {u.type != "sudo"?<input
+                  {u.type !== "sudo"?<input
                     className="checkbox"
                     type="checkbox"
                     value={u.id}
