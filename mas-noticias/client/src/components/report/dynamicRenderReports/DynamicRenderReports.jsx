@@ -43,9 +43,9 @@ export default function DynamicRenderReports(props) {
                         <MediumReportCard report={reports[9]}/>
                     </div>
                     
-                    <div className='d-flex align-items-center '>
+                    <div className='d-flex align-content-center '>
                         {sortedPubs?.mediumPublicities[0] ? <MediumPublicityCard publicity={sortedPubs.mediumPublicities[0]}/>:<div>mediumPubHere</div>}
-                        {sortedPubs?.mediumPublicities[1] ? <MediumPublicityCard publicity={sortedPubs.mediumPublicities[1]}/>:<div>mediumPubHere</div>}
+                        {sortedPubs?.mediumPublicities[1] ? <MediumPublicityCard publicity={sortedPubs.mediumPublicities[1]}/>:<div></div>}
                     </div>
             {/* {aux.map(e => e)} */}
         </div>)

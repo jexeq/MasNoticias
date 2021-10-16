@@ -48,31 +48,31 @@ export default function NavBar() {
                     {storeUser && userId && userId !== "guest" && <LogOutButton />}
                 </div>
             </div>
-            <div>
+            <div className='sections-cont'>
                 {storeSections && <DisplaySections sections={storeSections} />}
             </div>
             
             <div className="editor-navBar">
                 {(storeUser?.type === "admin" || storeUser?.type === "editor" || storeUser?.type === "sudo") && (
-                    <div className="editor-navBar btn-group">
+                    <div className="btn-group">
                         <div >
-                            <NavLink className='btn btn-dark' to="/create-report">Crear Noticia</NavLink>
+                            <NavLink className='btn-sm btn-primary' to="/create-report">Crear Noticia</NavLink>
                         </div>
                         <div >
-                            <NavLink className='btn btn-dark' to="/admin/reports">Noticias</NavLink>
+                            <NavLink className='btn-sm btn-primary' to="/admin/reports">Noticias</NavLink>
                         </div>
                     </div>
                 )}
                 {(storeUser?.type === "sudo") && (
                     <div className="editor-navBar btn-group">
                         <div >
-                            <NavLink className='btn btn-dark' to="/admin/users">Usuarios</NavLink>
+                            <NavLink className='btn-sm btn-primary' to="/admin/users">Usuarios</NavLink>
                         </div>
                         <div >
-                            <NavLink className='btn btn-dark' to="/create-section">Secciones</NavLink>
+                            <NavLink className='btn-sm btn-primary' to="/create-section">Secciones</NavLink>
                         </div>
                         <div >
-                            <NavLink className='btn btn-dark' to="/admin/publicity">Publicidades</NavLink>
+                            <NavLink className='btn-sm btn-primary' to="/admin/publicity">Publicidades</NavLink>
                         </div>
                     </div>
                 )}

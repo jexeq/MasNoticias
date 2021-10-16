@@ -8,7 +8,7 @@ export default function CheckUser (user) {
 
     
         if(userId !== "guest" && userId!==undefined) {
-            if(user.type === "admin" || user.type === "sudo") {
+            if(user?.type === "admin" || user?.type === "sudo") {
                 userOk = true;
             }
         }

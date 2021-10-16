@@ -77,7 +77,7 @@ export default function ReportCreator () {
         if(!storeUser) {
             dispatch(getUser(userId))
         }else{
-            if(!CheckUser()){
+            if(!CheckUser(storeUser)){
                 if(storeUser.type !== 'editor') {
                     history.push("/not-found")
                 }

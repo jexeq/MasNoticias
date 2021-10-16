@@ -27,3 +27,10 @@
     font-weight: bold;
     text-decoration: none;
 }
+
+@media screen and (max-width: 425px ) {
+    .footer-logo{
+        width: 75px;
+        height: 75px;
+    }
+}

@@ -47,7 +47,8 @@
     align-items: center;
     justify-content: center;
     background-color: #E15A3B;
-    height: fit-content;
+    height: 30px;
+    padding: auto;
 }
 
 .editor-options{
@@ -62,4 +63,14 @@
     text-decoration: none;
     color: black;
     font-weight: bold;
+}
+
+.sections-cont{
+    display: flex;
+}
+
+@media screen and (max-width: 425px) {
+    .sections-cont{
+        display:none;
+    }
 }

@@ -6,3 +6,9 @@
     justify-content: center;
     background-color: black;
 }
+
+@media screen and (max-width: 425px) {
+    .searchbar-cont{
+        display: none;
+    }
+}
