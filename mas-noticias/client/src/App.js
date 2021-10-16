@@ -24,6 +24,7 @@ import DeletePublicity from "./components/admin/publicity/DeletePublicity";
 import PublicityUpdater from './components/admin/publicity/PublicityUpdater';
 import ReportsBySection from './views/ReportsBySection';
 import SearchReports from './views/SearchReports';
+import ContactUs from './views/ContactUs';
 import './App.css';
 
 function App() {
@@ -51,6 +52,7 @@ function App() {
       <Route path="/admin/publicity/delete/:publicityId" component={DeletePublicity}/>
       <Route path="/sections/:sectionId" component={ReportsBySection}/>
       <Route path="/reports/search/:find" component={SearchReports}/>
+      <Route path="/contacto" component={ContactUs}/>
     </React.Fragment>
   );
 }

@@ -47,6 +47,6 @@ export default function DynamicRenderReports(props) {
                         {sortedPubs?.mediumPublicities[0] ? <MediumPublicityCard publicity={sortedPubs.mediumPublicities[0]}/>:<div>mediumPubHere</div>}
                         {sortedPubs?.mediumPublicities[1] ? <MediumPublicityCard publicity={sortedPubs.mediumPublicities[1]}/>:<div></div>}
                     </div>
-            {/* {aux.map(e => e)} */}
+            
         </div>)
 }

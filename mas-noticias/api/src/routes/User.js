@@ -91,7 +91,7 @@ router.put("/",async function (req,res,next) {
     
          })
     
-         const allUsers= await User.findAll()
+         const allUsers = await User.findAll()
         //solo el admi puede modificar su active
         return res.send(allUsers)
     })

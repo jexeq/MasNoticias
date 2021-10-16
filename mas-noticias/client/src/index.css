@@ -1,8 +1,14 @@
+/* @font-face {
+  font-family: fuente_1;
+  src: url('../fuentes/Impacted2.0.tff');
+} */
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
+    /* font-family: 'fuente_1'; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

@@ -35,10 +35,10 @@ export const clearUser = () => {
     }
 }
 
-export const updateUser = (user) => {
+export const updateUser = (usersArr) => {
     return async  (dispatch) => {
-        const res = await axios.put('/user', user)
-        return dispatch({ type: TYPES.DELETE_USER, payload: res.data })
+        const res = await axios.put('/user', usersArr)
+        return dispatch({ type: TYPES.UPDATE_USER, payload: res.data })
     }
 }
 

@@ -16,7 +16,7 @@ export default function BannAdminUser(props) {
     });
     dispatch(updateUser(aux));
     setChanged(!changed);
-    console.log("changed AHORA ES es: ", changed);
+    alert("Solicitud Enviada")
   }
 
   return (

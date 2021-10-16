@@ -43,3 +43,4 @@ export const DELETE_PUBLICITY = "delete_publicity";
 export const CLEAR_PUBLICITY = "clear_publicity";
 
 export const ACCOUNT_CONFIRMATION_EMAIL = "account_confirmation_email";
+export const CONTACT_EMAIL = "contact_email"

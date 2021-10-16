@@ -12,6 +12,10 @@ const mailReducer = (state = initialState, action) => {
             ...state,
             sentMail:action.payload
         }
+        case TYPES.CONTACT_EMAIL: return {
+            ...state,
+            sentMail: action.payload
+        }
        
         default:                  return state;
     }
