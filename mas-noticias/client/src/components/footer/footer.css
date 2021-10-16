@@ -1,0 +1,29 @@
+.footer-main-cont{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    background-color: black;
+    width: 100vw;
+    padding: 10px;
+}
+
+
+.footer-logo{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.footer-icons{
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+
+.footer-redirect{
+    color: white;
+    font-size: larger;
+    font-weight: bold;
+    text-decoration: none;
+}

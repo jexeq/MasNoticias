@@ -36,7 +36,7 @@ function SignUpFormBase(props) {
 
 
   var [state, setState] = useState(initial_state)
-  // var [loading, setLoading] = useState(true)
+  
  
   var [emailError, setEmailError] = useState(false)
 

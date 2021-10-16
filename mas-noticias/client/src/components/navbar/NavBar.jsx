@@ -10,7 +10,7 @@ import { getSections } from '../../redux/actions/section/sectionActions';
 import { getUser } from '../../redux/actions/user/userActions';
 import DisplaySections from '../section/DisplaySections';
 import { NavLink } from 'react-router-dom';
-import SearchBar from '../searchbar/SearchBar';
+
 export default function NavBar() {
 
     const dispatch = useDispatch();
@@ -36,7 +36,7 @@ export default function NavBar() {
                     <NavLink to="/">
                         <img className="logo1" src={logo} alt="image" />
                     </NavLink>
-                    {getSpanishDateOnly(new Date().toDateString(), { color: "white" })}
+                    {getSpanishDateOnly(new Date().toDateString(), { color: "white" , fontWeight: "bold"})}
                 </div>
 
                 {/* {weather?<WeatherReport/>:<p>Loading...</p>} */}
@@ -51,9 +51,7 @@ export default function NavBar() {
             <div>
                 {storeSections && <DisplaySections sections={storeSections} />}
             </div>
-            <div>
-                <SearchBar />
-            </div>
+            
             <div className="editor-navBar">
                 {(storeUser?.type === "admin" || storeUser?.type === "editor" || storeUser?.type === "sudo") && (
                     <div className="editor-navBar btn-group">

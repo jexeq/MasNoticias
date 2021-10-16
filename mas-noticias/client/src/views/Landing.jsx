@@ -4,6 +4,7 @@ import {useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getweekReports, clearReports } from "../redux/actions/report/reportActions";
 import { clearPublicity, getActivePublicities } from '../redux/actions/publicity/publicityActions';
+import Footer from '../components/footer/Footer';
 import filterPublicityByType from '../components/utils/filterPublicityByType';
 import smallPubHere from '../components/publicity/smallPubHere';
 import Paginator from '../components/utils/Paginator';
@@ -54,6 +55,7 @@ export default function Landing () {
                     {sortedPubs?.smallPublicities[1] ? <SmallPublicityCard publicity={sortedPubs.smallPublicities[1]}/>: smallPubHere()}
                 </div>
             </div>
+            <Footer />
         </div>
     );
 }
