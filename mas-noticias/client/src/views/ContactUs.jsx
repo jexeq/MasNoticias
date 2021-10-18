@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { useEffect } from 'react';
 import { useDispatch} from 'react-redux';
+import { useHistory } from 'react-router';
 import { sendEmailConsult } from '../redux/actions/email/emailActions';
 
 export default function ContactUs () {
+    const history = useHistory()
     const dispatch = useDispatch();
 
     const initial_state = {name:'', email:'', phone:'', consult:''};
@@ -26,14 +27,19 @@ export default function ContactUs () {
     function onSubmitHandler (e) {
         e.preventDefault();
         dispatch(sendEmailConsult(message))
+        alert("mensaje enviado")
+        history.push("/")
     }
 
     return (
-        <div >
-            <form onSubmit={onSubmitHandler} className='d-md-flex flex-lg-column align-items-center'>
+        <div className='d-flex flex-md-column align-content-center'>
+            <form onSubmit={onSubmitHandler} className='d-md-flex flex-lg-column align-items-center w-100'>
+                <p className='align-self-center'>* Este mensaje será enviado al Administrador vie E-Mail</p>
                 <h3>Sus Datos</h3>
-                <input className='col-md-5 form-text' type="text" name='name' value={name} placeholder='Nombre y Apellido' onChange={onchangeHandler}/>
-                <label className='danger' hidden={name}>*Campo Obligatorio</label>
+                <div className='d-flex flex-md-column col-md-5 form-text'>
+                    <input  type="text" name='name' value={name} placeholder='Nombre y Apellido' onChange={onchangeHandler}/>
+                    <label className='danger' hidden={name}>*Campo Obligatorio</label>
+                </div>
                 <input className='col-md-5 form-text' type="text" name='email' value={email} placeholder='Email' onChange={onchangeHandler}/>
                 <label className='danger' hidden={email}>*Campo Obligatorio</label>
                 <label hidden={!email||!emailError} className='danger'>Debe ingresar un email válido</label>

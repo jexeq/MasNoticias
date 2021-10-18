@@ -23,7 +23,7 @@ import './textEditor.css';
 
       return ()=>{
         setState({editorState: null})
-        console.log("TEXTE EDITOR: state" ,state)
+        // console.log("TEXTE EDITOR: state" ,state)
       }
     },[])
 

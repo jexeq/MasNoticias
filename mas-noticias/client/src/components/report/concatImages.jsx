@@ -6,13 +6,13 @@ export default function concatImages (img1, img2, imgArr) {
     console.log("concatImages: imgArr es" , imgArr)
     if(img1) {
         aux.push(img1);
-        console.log("concatImages: entro al primer if" , aux)
+        // console.log("concatImages: entro al primer if" , aux)
         if(img2){
             aux.push(img2);
-            console.log("concatImages: entro al segundo if" , aux)
+            // console.log("concatImages: entro al segundo if" , aux)
             if(imgArr){
                 let concatedAux = aux.concat(imgArr);
-                console.log("concatImages: entro al tercer if" , concatedAux)
+                // console.log("concatImages: entro al tercer if" , concatedAux)
                 return concatedAux;
             }else{
                 return aux
@@ -21,7 +21,7 @@ export default function concatImages (img1, img2, imgArr) {
             return aux
         }
     }else{
-        console.log("concatImages: No se pasaron imagenes como argumento")
+        // console.log("concatImages: No se pasaron imagenes como argumento")
         return aux;
     }
 }

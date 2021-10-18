@@ -67,19 +67,19 @@ export default function UsersAdmin(props) {
   }, [storeUsers]);
 
   return !loading ? (
-    <div className="table-responsive">
+    <div>
       <h1 className="text-center mt-4">Control de usuarios</h1>
-      <div className="table">
-        <div id="tableleft" className="d-table-cell me-5">
+      <div className="container">
+        <div  id="tableleft" className="d-flex">
           {storeUser?.type === "sudo" &&
-          <div className="mt-3">
+          <div hidden={usersSelected.length === 0} className="mt-3">
             <SetAdminUser
               users={usersSelected}
               changed={changed}
               setChanged={setChanged}
             />
           </div>}
-          <div className="mt-3">
+          <div hidden={usersSelected.length === 0} className="mt-3">
             <SetEditorUser
               users={usersSelected}
               changed={changed}
@@ -87,7 +87,7 @@ export default function UsersAdmin(props) {
             />
           </div>
 
-          <div className="mt-3">
+          <div hidden={usersSelected.length === 0} className="mt-3">
             <BannAdminUser
               users={usersSelected}
               changed={changed}
@@ -95,7 +95,7 @@ export default function UsersAdmin(props) {
             />
           </div>
 
-          <div className="mt-3">
+          <div hidden={usersSelected.length === 0} className="mt-3">
             <ForcePasswordResetButton
               users={usersSelected}
               changed={changed}
@@ -104,9 +104,9 @@ export default function UsersAdmin(props) {
           </div>
         </div>
 
-        <table id="tableright" className="d-table-cell">
-          <thead >
-            <tr className="thead">
+        <table id="tableright" className="table">
+          <thead className='table-responsive'>
+            <tr >
               <th>Email</th>
               <th>Usuario</th>
               <th>Estado</th>

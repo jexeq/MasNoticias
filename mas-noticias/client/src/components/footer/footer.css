@@ -28,6 +28,18 @@
     text-decoration: none;
 }
 
+.media-cont{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.media-item{
+    margin: 5px;
+    padding: 5px;
+    cursor: pointer;
+}
+
 @media screen and (max-width: 425px ) {
     .footer-logo{
         width: 75px;
