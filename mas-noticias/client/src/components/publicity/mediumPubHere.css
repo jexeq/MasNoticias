@@ -1,0 +1,19 @@
+.med-pubhere-cont{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 320px;
+    margin: 5px;
+}
+
+.med-pubhere-cont-sub{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 280px;
+    height: 320px;
+    border: 2px dotted grey;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: aqua;
+}

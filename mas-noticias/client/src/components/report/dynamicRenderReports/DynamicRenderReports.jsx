@@ -5,6 +5,7 @@ import BannerPublicityCard from '../../publicity/BannerPublicityCard';
 import MediumPublicityCard from '../../publicity/MediumPublicityCard';
 import LargePublicityCard from '../../publicity/LargePublicityCard';
 import filterPublicityByType from '../../utils/filterPublicityByType';
+import mediumPubHere from '../../publicity/mediumPubHere';
 import './dynamicRender.css';
 
 export default function DynamicRenderReports(props) {
@@ -43,9 +44,10 @@ export default function DynamicRenderReports(props) {
                         <MediumReportCard report={reports[9]}/>
                     </div>
                     
-                    <div className='d-flex align-content-center '>
-                        {sortedPubs?.mediumPublicities[0] ? <MediumPublicityCard publicity={sortedPubs.mediumPublicities[0]}/>:<div>mediumPubHere</div>}
-                        {sortedPubs?.mediumPublicities[1] ? <MediumPublicityCard publicity={sortedPubs.mediumPublicities[1]}/>:<div></div>}
+                    <div className='medium-report-cont'>
+                        {sortedPubs?.mediumPublicities[0] ? <MediumPublicityCard publicity={sortedPubs.mediumPublicities[0]}/>:mediumPubHere()}
+                        {sortedPubs?.mediumPublicities[1] ? <MediumPublicityCard publicity={sortedPubs.mediumPublicities[1]}/>:mediumPubHere()}
+                        {sortedPubs?.mediumPublicities[1] ? <MediumPublicityCard publicity={sortedPubs.mediumPublicities[2]}/>:mediumPubHere()}
                     </div>
             
         </div>)

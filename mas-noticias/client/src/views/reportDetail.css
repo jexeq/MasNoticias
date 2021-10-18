@@ -1,0 +1,14 @@
+.rep-det-cont{
+    display: flex;
+    flex-direction: row;
+}
+
+.left-col{
+    width: 8vw;
+}
+
+@media screen and(max-width: 425px) {
+    .left-col{
+        display: none;
+    }
+}
