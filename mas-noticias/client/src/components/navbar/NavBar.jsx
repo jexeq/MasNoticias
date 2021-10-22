@@ -1,6 +1,6 @@
 import logo from '../../images/mas-noticias.png';
 import "./NavBar.css";
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import WeatherReport from '../weather/Weather';
 import LogOutButton from '../authentication/SignOut';
@@ -14,7 +14,6 @@ import { NavLink } from 'react-router-dom';
 export default function NavBar() {
 
     const dispatch = useDispatch();
-    // const [toFind, setToFind] = useState("")
     const weather = useSelector(state => state.weatherReducer.weather.report)
     const storeUser = useSelector(state => state.userReducer.user)
     const storeSections = useSelector(state => state.sectionReducer.sections)
@@ -55,23 +54,14 @@ export default function NavBar() {
             <div className="editor-navBar">
                 {(storeUser?.type === "admin" || storeUser?.type === "editor" || storeUser?.type === "sudo") && (
                     <div className="editor-navBar btn-group">
-                        
-                            <NavLink className='btn-sm btn-primary' to="/create-report">Crear Noticia</NavLink>
-                        
-                        
-                            <NavLink className='btn-sm btn-primary' to="/admin/reports">Noticias</NavLink>
-                        
+                        <NavLink className='btn-sm btn-primary' to="/create-report">Crear Noticia</NavLink>                      
+                        <NavLink className='btn-sm btn-primary' to="/admin/reports">Noticias</NavLink>   
                     </div>
                 )}
                 {(storeUser?.type === "sudo") && (
                     <div className="editor-navBar btn-group">
-                        
                             <NavLink className='btn-sm btn-primary' to="/admin/users">Usuarios</NavLink>
-                        
-                        
                             <NavLink className='btn-sm btn-primary' to="/create-section">Secciones</NavLink>
-                        
-                        
                             <NavLink className='btn-sm btn-primary' to="/admin/publicity">Publicidades</NavLink>
                         
                     </div>
