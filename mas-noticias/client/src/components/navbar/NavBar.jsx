@@ -36,7 +36,7 @@ export default function NavBar() {
                     <NavLink to="/">
                         <img className="logo1" src={logo} alt="image" />
                     </NavLink>
-                    {getSpanishDateOnly(new Date().toDateString(), { color: "white" , fontWeight: "bold"})}
+                    {getSpanishDateOnly(new Date().toDateString(), { color: "white" , fontWeight: "bold", fontSize: "auto"})}
                 </div>
 
                 {/* {weather?<WeatherReport/>:<p>Loading...</p>} */}
@@ -54,26 +54,26 @@ export default function NavBar() {
             
             <div className="editor-navBar">
                 {(storeUser?.type === "admin" || storeUser?.type === "editor" || storeUser?.type === "sudo") && (
-                    <div className="btn-group">
-                        <div >
+                    <div className="editor-navBar btn-group">
+                        
                             <NavLink className='btn-sm btn-primary' to="/create-report">Crear Noticia</NavLink>
-                        </div>
-                        <div >
+                        
+                        
                             <NavLink className='btn-sm btn-primary' to="/admin/reports">Noticias</NavLink>
-                        </div>
+                        
                     </div>
                 )}
                 {(storeUser?.type === "sudo") && (
                     <div className="editor-navBar btn-group">
-                        <div >
+                        
                             <NavLink className='btn-sm btn-primary' to="/admin/users">Usuarios</NavLink>
-                        </div>
-                        <div >
+                        
+                        
                             <NavLink className='btn-sm btn-primary' to="/create-section">Secciones</NavLink>
-                        </div>
-                        <div >
+                        
+                        
                             <NavLink className='btn-sm btn-primary' to="/admin/publicity">Publicidades</NavLink>
-                        </div>
+                        
                     </div>
                 )}
 

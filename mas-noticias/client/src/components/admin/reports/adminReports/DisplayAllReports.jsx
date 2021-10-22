@@ -82,7 +82,7 @@ export default function DisplayAllReports () {
                                 </td>
                                 <td>{r.title1}</td>
                                 <td className='hidden-row'>{r.section.name}</td>
-                                <td className='hidden-row'>{r.user.email}</td>
+                                <td className='hidden-row'>{r.user?.email}</td>
                                 <td>{r.status}</td>
                                 <td>{r.priority}</td>
                             </tr>
