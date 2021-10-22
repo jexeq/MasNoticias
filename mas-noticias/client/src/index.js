@@ -11,8 +11,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 
 
-axios.defaults.baseURL = process.env.REACT_APP_API_URL || "http://localhost:3001"
-
+// axios.defaults.baseURL = process.env.REACT_APP_API_URL || "http://localhost:3001"
+axios.defaults.baseURL = "http://localhost:3001/api"
 const store = ConfigureStore();
 
 ReactDOM.render(

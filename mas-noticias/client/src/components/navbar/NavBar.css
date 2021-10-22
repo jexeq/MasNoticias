@@ -47,7 +47,7 @@
     align-items: center;
     justify-content: center;
     background-color: #E15A3B;
-    height: 30px;
+    height: fit-content;
     padding: auto;
 }
 
