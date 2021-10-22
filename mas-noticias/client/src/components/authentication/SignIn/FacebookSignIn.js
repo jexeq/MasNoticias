@@ -72,6 +72,7 @@ const FacebookBase = (props) => {
       //si user es guest, setea la session a guest
       localStorage.setItem("mas-noticias", 'guest')
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [storeUser])
 
   return (
@@ -79,7 +80,6 @@ const FacebookBase = (props) => {
       <a
         className="btn btn-outline-dark"
         role="button"
-        href=''
         style={{ textTransform: "none" }}
         onClick={(e) => handleFacebook(e)}
       >

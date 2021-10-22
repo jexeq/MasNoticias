@@ -11,6 +11,7 @@ export default function SearchReports (props) {
     
     useEffect(()=>{
         dispatch(findReports(find))
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
     
     useEffect(()=> {

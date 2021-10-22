@@ -25,6 +25,7 @@ export default function Landing () {
         return ()=> {
             dispatch(clearReports());
             dispatch(clearPublicity())};
+            // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
     useEffect(()=>{
@@ -36,7 +37,6 @@ export default function Landing () {
     useEffect(()=>{
         if(sortedPubs){
             setLoading(false);
-            // console.log("Landing 40 - sortedPubs: " , sortedPubs)
         }
     },[sortedPubs])
 

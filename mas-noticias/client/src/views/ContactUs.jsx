@@ -16,7 +16,7 @@ export default function ContactUs () {
         e.preventDefault();
 
         if(e.target.name==='email'&& e.target.value.length>3) {
-            const isEmail = new RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/);
+            const isEmail = new RegExp(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/);
             isEmail.test(e.target.value)? setEmailError(false):setEmailError(true);
             console.log("emailError?" , emailError)
         }

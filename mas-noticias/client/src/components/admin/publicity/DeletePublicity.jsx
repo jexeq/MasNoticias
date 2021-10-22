@@ -24,6 +24,7 @@ export default function DeletePublicity (props) {
 
     useEffect(()=> {
         dispatch(getPublicity(publicityId))
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
     useEffect( ()=> {

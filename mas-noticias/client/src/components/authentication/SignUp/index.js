@@ -103,6 +103,7 @@ function SignUpFormBase(props) {
       dispatch(clearUser())
       props.history.push("/")
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [storeUser])
 
 

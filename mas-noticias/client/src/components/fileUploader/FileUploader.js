@@ -66,11 +66,12 @@ const ReactFirebaseFileUpload = ({ storeImages, setStoreImages }) => {
         if (urls.length > 0) {
             setStoreImages(urls)
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [urls])
 
     useEffect(() => {
         if (storeImages?.length > 0 && urls.length === 0) setUrls(storeImages)
-        
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [storeImages])
 
     useEffect(()=>{
@@ -78,6 +79,7 @@ const ReactFirebaseFileUpload = ({ storeImages, setStoreImages }) => {
             setUrls([])
             setStoreImages([])
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
 
@@ -99,7 +101,7 @@ const ReactFirebaseFileUpload = ({ storeImages, setStoreImages }) => {
                     <img
                         style={{ width: "150px" }}
                         src={url || "http://via.placeholder.com/300"}
-                        alt="firebase-image"
+                        alt="Foto perdida"
                     />
                     <button className="btn1" name={i} value={url} onClick={quitImageHandler}>quitar</button>
                 </div>

@@ -75,6 +75,7 @@ const GoogleBase = (props) => {
       //si user es guest, setea la session a guest
       localStorage.setItem("mas-noticias", 'guest')
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [storeUser])
 
   return (

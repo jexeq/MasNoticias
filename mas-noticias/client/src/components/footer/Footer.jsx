@@ -17,11 +17,11 @@ export default function Footer () {
                 
             </div>
             <div className='media-cont'>
-                <a className='media-item' href="https://www.facebook.com/MasNoticiasTuc" target="_blank">
+                <a className='media-item' href="https://www.facebook.com/MasNoticiasTuc" target="_blank" rel='noreferrer'>
                     <img className='footer-icons' src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Facebook_logo_%28square%29.png/240px-Facebook_logo_%28square%29.png" alt="se" />
                 </a>
 
-                <a className='media-item' href="https://www.instagram.com/masnoticias.tuc/" target="_blank">
+                <a className='media-item' href="https://www.instagram.com/masnoticias.tuc/" target="_blank" rel='noreferrer'>
                     <img className='footer-icons' src="https://www.msm.gov.ar/wp-content/uploads/2020/05/new-instagram-logo-png-transparent-light.png" alt="se" />
                 </a>
 

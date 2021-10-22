@@ -87,21 +87,24 @@ export default function ReportCreator () {
 
     useEffect(()=>{
         setReportBody({...reportBody, paragraph1: paragraph1})
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[paragraph1])
 
     useEffect(()=>{
         setReportBody({...reportBody, paragraph2: paragraph2})
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[paragraph2])
 
     useEffect(()=>{
         setReportBody({...reportBody, paragraph3: paragraph3})
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[paragraph3])
 
     useEffect(()=>{
         setLoading(true)
         setReportBody({...reportBody, photo1: images[0], photo2: images[1], photo3: images.slice(2)})
-        // console.log("photo3 es: " , reportBody.photo3)
         setLoading(false)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[images])
 
     useEffect(()=>{
@@ -111,6 +114,7 @@ export default function ReportCreator () {
             });
             setLoading(false)
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[allSections])
 
     return !loading&&(

@@ -1,4 +1,4 @@
-import { createTag, getAllTags,getTagsBySectionId } from "../../redux/actions/tag/tagActions";
+import { createTag } from "../../redux/actions/tag/tagActions";
 import { getSections } from "../../redux/actions/section/sectionActions";
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
@@ -6,9 +6,7 @@ import TagErrorControl from './tagErrorControl';
 import capitalizeEntries from '../utils/capitalizeEntries';
 
 export default function TagCreator (props) {
-    // var higherSection= props.higherSection;
     var setHigherSection = props.setHigherSection;
-    // var higherTag = props.higherTag;
     var setHigherTag = props.setHigherTag;
     const dispatch = useDispatch();
     const storeSections = useSelector( state => state.sectionReducer.sections)
@@ -18,6 +16,7 @@ export default function TagCreator (props) {
 
     useEffect(()=>{
          dispatch(getSections())
+         // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
     useEffect(()=>{
@@ -27,10 +26,7 @@ export default function TagCreator (props) {
     },[storeSections])
 
     useEffect(()=>{
-    },[selectedSection])
-
-    useEffect(()=>{
-    },[loading])
+    },[selectedSection, loading])
 
     async function selectSectionHandler (e) {
             e.preventDefault()

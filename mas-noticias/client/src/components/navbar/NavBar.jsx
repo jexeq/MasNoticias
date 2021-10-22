@@ -26,6 +26,7 @@ export default function NavBar() {
         if (!storeUser && userId !== "guest") {
             dispatch(getUser(userId));
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (
@@ -33,7 +34,7 @@ export default function NavBar() {
             <div className="nav-container">
                 <div className="container">
                     <NavLink to="/">
-                        <img className="logo1" src={logo} alt="image" />
+                        <img className="logo1" src={logo} alt="foto perdida" />
                     </NavLink>
                     {getSpanishDateOnly(new Date().toDateString(), { color: "white" , fontWeight: "bold", fontSize: "auto"})}
                 </div>

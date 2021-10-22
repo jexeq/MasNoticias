@@ -22,6 +22,7 @@ export default function ReportsBySection (props) {
             dispatch(clearPublicity());
             dispatch(clearReports());
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[sectionId])
 
     useEffect(()=>{
@@ -32,6 +33,7 @@ export default function ReportsBySection (props) {
                 setLoading(false);
             }
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[storeReports])
 
     return !loading&&(

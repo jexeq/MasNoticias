@@ -24,6 +24,7 @@ export default function ReportDetail (props) {
                 dispatch(clearReports())
             }
         )
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
     useEffect( () => {
@@ -31,6 +32,7 @@ export default function ReportDetail (props) {
                 setSortedPubs(filterPublicityByType(storePublicities))
                 setLoading(false);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[storeReport, storePublicities])
 
     return !loading&&(

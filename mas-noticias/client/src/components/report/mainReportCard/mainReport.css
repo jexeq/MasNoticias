@@ -57,7 +57,7 @@
     .main-report-cont{
         display: flex;
         flex-direction: column;
-        width: 100%;
+        width: 95%;
         height: auto;
     }
 

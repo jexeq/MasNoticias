@@ -27,6 +27,7 @@ export default function DisplayAllReports () {
             dispatch(getUser(userId))
         }
         return ()=>{dispatch(clearReports())}
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
     useEffect(()=>{
@@ -37,6 +38,7 @@ export default function DisplayAllReports () {
                 history.push("/not-found")
             }
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[storeUser])
 
     useEffect(()=>{
