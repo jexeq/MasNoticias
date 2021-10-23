@@ -12,7 +12,7 @@ export default function DisplaySections (props) {
             
             {sections.map( s=> {
                 return (
-                    <NavLink key={s.id} className='btn btn-sm btn-outline-primary' to={`/sections/${s.id}`}>
+                    <NavLink key={s.id} className='btn btn-sm btn-dark' to={`/sections/${s.id}`}>
                         {s.name}
                     </NavLink>
                 )

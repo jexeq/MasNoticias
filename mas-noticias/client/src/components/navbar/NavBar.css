@@ -4,8 +4,8 @@
     align-items: center;
     height: 110px;
     width: 100vw;
-    background-color: black;
-   
+    background:  #404040 no-repeat center url('../../images/red-background.jpg');
+    background-size: cover;
 }
 .logo1 {
     width: 70px;
@@ -14,6 +14,8 @@
     border-radius: 70%;
     left: 50px;
     top: 13px;
+    padding: 3px;;
+    border: 2px solid black;
 }
 
 
@@ -46,7 +48,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    background-color: #E15A3B;
+    background-color: black;
     height: fit-content;
     padding: auto;
 }

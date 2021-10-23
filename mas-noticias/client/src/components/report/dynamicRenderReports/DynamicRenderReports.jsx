@@ -44,8 +44,8 @@ export default function DynamicRenderReports(props) {
 
             <div className='medium-report-cont'>
                 {sortedPubs?.mediumPublicities[0] ? <MediumPublicityCard publicity={sortedPubs.mediumPublicities[0]} /> : mediumPubHere()}
-                {sortedPubs?.mediumPublicities[1] ? <MediumPublicityCard publicity={sortedPubs.mediumPublicities[1]} /> : mediumPubHere()}
-                {sortedPubs?.mediumPublicities[1] ? <MediumPublicityCard publicity={sortedPubs.mediumPublicities[2]} /> : mediumPubHere()}
+                {sortedPubs?.mediumPublicities[1] ? <MediumPublicityCard publicity={sortedPubs.mediumPublicities[1]} /> : null}
+                {sortedPubs?.mediumPublicities[1] ? <MediumPublicityCard publicity={sortedPubs.mediumPublicities[2]} /> : null}
             </div>
 
         </div>)
