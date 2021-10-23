@@ -7,6 +7,7 @@ import { clearPublicity, getActivePublicities } from '../redux/actions/publicity
 import Footer from '../components/footer/Footer';
 import filterPublicityByType from '../components/utils/filterPublicityByType';
 import smallPubHere from '../components/publicity/smallPubHere';
+import MicroReportCard from '../components/report/microReportCard/MicroReportCard';
 import Paginator from '../components/utils/Paginator';
 import './landing.css';
 
@@ -45,14 +46,13 @@ export default function Landing () {
             <SocialMediaShare url={currentLocation.href} header={"Más Noticias Tucumán"} hastag={"masnoticiastucuman"}/>
             <div className='landing-body'>
                 <div className='left-column'></div>
-                <div className='center-column'>
-                    
+                <div className='center-column'> 
                     {storeReports&&storePublicities&&<Paginator reports={storeReports} publicity={storePublicities}/>}
-
                 </div>
                 <div className='rigth-column'>
                     {sortedPubs?.smallPublicities[0] ? <SmallPublicityCard publicity={sortedPubs.smallPublicities[0]}/>: smallPubHere()}
                     {sortedPubs?.smallPublicities[1] ? <SmallPublicityCard publicity={sortedPubs.smallPublicities[1]}/>: smallPubHere()}
+                    {storeReports.map( (r, index) => index<10? <MicroReportCard key={r.id} report={r}/>:null)}
                 </div>
             </div>
             <Footer />

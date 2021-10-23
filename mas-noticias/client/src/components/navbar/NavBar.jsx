@@ -14,11 +14,9 @@ import { NavLink } from 'react-router-dom';
 export default function NavBar() {
 
     const dispatch = useDispatch();
-    const weather = useSelector(state => state.weatherReducer.weather.report)
     const storeUser = useSelector(state => state.userReducer.user)
     const storeSections = useSelector(state => state.sectionReducer.sections)
     const userId = localStorage.getItem("mas-noticias")
-
 
     useEffect(() => {
         dispatch(getWeather());
@@ -36,13 +34,13 @@ export default function NavBar() {
                     <NavLink to="/">
                         <img className="logo1" src={logo} alt="foto perdida" />
                     </NavLink>
-                    {getSpanishDateOnly(new Date().toDateString(), { color: "white" , fontWeight: "bold", fontSize: "auto"})}
+                    <div className='spanish-date'>
+                        {getSpanishDateOnly(new Date().toDateString(), { color: "white" , fontWeight: "bold", fontSize: "auto"})}
+                    </div>
                 </div>
-
-                {/* {weather?<WeatherReport/>:<p>Loading...</p>} */}
-                {!storeUser?.id && <NavLink to='/signin'>
-                    <button className='btn btn-dark btn-sm '>Ingresar </button>
-                </NavLink>}
+                {!storeUser?.id && <NavLink className='logout-cont' to='/signin'>
+                                        <button className='btn btn-dark btn-sm'>Ingresar </button>
+                                    </NavLink>}
                 <div className='btn-nav'>
                     {storeUser?.email}
                     {storeUser && userId && userId !== "guest" && <LogOutButton />}
@@ -63,13 +61,10 @@ export default function NavBar() {
                     <div className="editor-navBar btn-group">
                             <NavLink className='btn-sm btn-primary' to="/admin/users">Usuarios</NavLink>
                             <NavLink className='btn-sm btn-primary' to="/create-section">Secciones</NavLink>
-                            <NavLink className='btn-sm btn-primary' to="/admin/publicity">Publicidades</NavLink>
-                        
+                            <NavLink className='btn-sm btn-primary' to="/admin/publicity">Publicidades</NavLink>                  
                     </div>
                 )}
-
             </div>
-
         </div>
     )
 }

@@ -69,8 +69,21 @@
     display: flex;
 }
 
+.spanish-date{
+    display: inline;
+}
+
+.logout-cont{
+    display: inline;
+    position: relative;
+    right: 10%;
+}
+
 @media screen and (max-width: 425px) {
     .sections-cont{
         display:none;
+    }
+    .spanish-date{
+        display: none;
     }
 }

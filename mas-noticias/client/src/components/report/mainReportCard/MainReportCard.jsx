@@ -23,20 +23,20 @@ export default function MainReportCard (props) {
         <div className="main-report-cont">
             <div className='text-cont'>
                 <div className="tag-cont">
-                    {report.tag.name}
+                    {report?.tag?.name}
                 </div>
-                <NavLink className='NavLink' to={`/report/${report.id}`}>
-                    <div className='NavLink'>{report.title1}</div>
+                <NavLink className='NavLink' to={`/report/${report?.id}`}>
+                    <div className='NavLink'>{report?.title1}</div>
                 </NavLink>
 
                 <div className='title2-cont'>
                     <p>
-                    {report.title2}
+                    {report?.title2}
                     </p>
                 </div>
             </div>
             <div className='img-cont'>
-                <img  className='img-report' src={report.photo1} alt="" />
+                <img  className='img-report' src={report?.photo1} alt="" />
             </div>
         </div>
     ): <span></span>
