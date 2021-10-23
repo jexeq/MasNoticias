@@ -15,5 +15,6 @@
     border: 2px dotted grey;
     border-radius: 5px;
     padding: 10px;
-    background-color: aqua;
+    background-color: honeydew;
+    font-weight: bold;
 }

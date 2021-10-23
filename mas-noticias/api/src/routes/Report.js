@@ -42,6 +42,7 @@ router.get("/all-reports" , async function (req, res, next){
                 {model: User, attributes: ["id", "email", "name", "lastname"]}
             ],
             order: [["date", "DESC"]],
+            limit: 50
             }
         )
         return res.send(allReports);
@@ -53,7 +54,7 @@ router.get("/all-reports" , async function (req, res, next){
 router.get("/search", async function (req, res, next) {
     const find = req.query.find;
     const capFind = capitalizeEntries(find);
-    console.log("buscando: " , find)
+    
     try {
         const findedReports = await Report.findAll(
             {
