@@ -197,9 +197,8 @@ function SignUpFormBase(props) {
 }
 
 const SignUpLink = () => {
-  return (<div>
-    <hr />
-    <NavLink className="text-dark" to={"/signup"}>crear cuenta</NavLink>
+  return (<div className='container d-flex align-items-center justify-content-center'>
+    <NavLink className="btn btn-dark" to={"/signup"}>crear cuenta</NavLink>
   </div>)
 }
 

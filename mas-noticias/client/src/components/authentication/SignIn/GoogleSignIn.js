@@ -14,8 +14,6 @@ const GoogleButton = (props) => {
   </div>)
 }
 
-
-
 const GoogleBase = (props) => {
   
   const { history } = props
@@ -26,24 +24,16 @@ const GoogleBase = (props) => {
     props.firebase
       .doSignInWithGoogle()
       .then(credentials => {
-        //capturo datos con credentials.additionalUserInfo.profile  .email o .family_name o .given_name
         var user = {
           id: credentials.user.uid,
           email: credentials.additionalUserInfo.profile.email,
           name: credentials.additionalUserInfo.profile.given_name,
           lastname: credentials.additionalUserInfo.profile.family_name,
         }
-        console.log("userfromFirebase: " , user)
         dispatch(getGoogleUser(user))
-        // console.log("paso el dispatch?")
       })
       .catch(err => alert(err.message))
   }
-
-  // useEffect(() => {
-  //   console.log("se ejecuto dispatch")
-  // }, [getGoogleUser])
-
 
   useEffect(() => {
     if (storeUser?.active !== undefined) {

@@ -10,6 +10,7 @@ import { getWeather } from '../../redux/actions/weather/weatherActions';
 import { getSections } from '../../redux/actions/section/sectionActions';
 import { getUser } from '../../redux/actions/user/userActions';
 import DisplaySections from '../section/DisplaySections';
+import SocialMediaShare from '../utils/SocialMediaShare';
 import { NavLink } from 'react-router-dom';
 
 export default function NavBar() {
@@ -18,6 +19,7 @@ export default function NavBar() {
     const storeUser = useSelector(state => state.userReducer.user)
     const storeSections = useSelector(state => state.sectionReducer.sections)
     const userId = localStorage.getItem("mas-noticias")
+    var currentLocation= window.location.href;
 
     useEffect(() => {
         dispatch(getWeather());
@@ -49,7 +51,9 @@ export default function NavBar() {
             </div>
             <div className='sections-cont'>
                 {storeSections && <DisplaySections sections={storeSections} />}
+                <SocialMediaShare url={currentLocation} header='Mas Noticias Tucuman' hashtag='masnoticiastuc'/>
             </div>
+            
             
             <div className="editor-navBar">
                 {(storeUser?.type === "admin" || storeUser?.type === "editor" || storeUser?.type === "sudo") && (

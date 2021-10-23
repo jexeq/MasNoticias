@@ -3,23 +3,23 @@ import { FacebookShareButton, WhatsappShareButton, FacebookIcon, WhatsappIcon, T
 export default function SocialMediaShare ({url, header, hashtag}) {
     
     return (
-        <div className='d-flex align-content-center'>
+        <div  className='d-flex align-content-center bg-dark'>
             <FacebookShareButton
                 url={url}
                 quote={header}
                 hashtag={hashtag}>
-                <FacebookIcon iconFillColor="white" round={true} size={40}></FacebookIcon>
+                <FacebookIcon iconFillColor="black" round={true} size={30}></FacebookIcon>
             </FacebookShareButton>
             <WhatsappShareButton
                 url={url}
                 title={header}>
-                <WhatsappIcon iconFillColor="white" round={true} size={40}></WhatsappIcon>
+                <WhatsappIcon iconFillColor="black" round={true} size={30}></WhatsappIcon>
             </WhatsappShareButton>
             <TwitterShareButton
                 via={url}
                 title={header}
                 hashtags={[hashtag]}>
-                <TwitterIcon iconFillColor="white" round={true} size={40}></TwitterIcon>
+                <TwitterIcon iconFillColor="black" round={true} size={30}></TwitterIcon>
             </TwitterShareButton>
         </div>
     )

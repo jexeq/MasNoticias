@@ -1,5 +1,4 @@
 import SmallPublicityCard from '../components/publicity/SmallPublicityCard';
-import SocialMediaShare from '../components/utils/SocialMediaShare';
 import {useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getweekReports, clearReports } from "../redux/actions/report/reportActions";
@@ -17,7 +16,6 @@ export default function Landing () {
     const [sortedPubs, setSortedPubs] = useState({})
     const storeReports = useSelector(state=>state.reportReducer.reports);
     const storePublicities = useSelector( state => state.publicityReducer.publicities); 
-    const currentLocation = window.location;
     
 
     useEffect(()=>{
@@ -43,7 +41,6 @@ export default function Landing () {
 
     return !loading&&(
         <div className="landing-cont">
-            <SocialMediaShare url={currentLocation.href} header={"Más Noticias Tucumán"} hastag={"masnoticiastucuman"}/>
             <div className='landing-body'>
                 <div className='left-column'></div>
                 <div className='center-column'> 

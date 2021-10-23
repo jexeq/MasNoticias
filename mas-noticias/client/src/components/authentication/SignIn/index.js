@@ -128,10 +128,13 @@ function SignInFormBase(props) {
               </div>
 
               {error && <p className="text-danger text-center">{error.message}</p>}
-              <div className="d-grip gap-2">
+              <div className="flex-col">
                 <PasswordForgetLink />
+                <hr/>
                 <SignUpLink />
+                <hr/>
                 <GoogleButton props={props} />
+                <hr/>
                 <FacebookButton props={props} />
               </div>
             </form>

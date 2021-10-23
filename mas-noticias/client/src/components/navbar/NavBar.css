@@ -15,7 +15,7 @@
     left: 50px;
     top: 13px;
     padding: 3px;;
-    border: 2px solid black;
+    border: 2px solid red;
 }
 
 
@@ -83,7 +83,7 @@
 
 @media screen and (max-width: 425px) {
     .sections-cont{
-        display:none;
+        flex-wrap: wrap;
     }
     .spanish-date{
         display: none;
