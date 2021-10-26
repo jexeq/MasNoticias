@@ -11,7 +11,7 @@ import SignUpPage from "./components/authentication/SignUp";
 import PasswordForgetPage from "./components/authentication/PasswordForget";
 import AccountConfirmation from "./components/authentication/Account/AccountConfirmation";
 import UsersAdmin from "./components/admin/users/index";
-import ReportCreator from'./components/report/reportCreator/ReportCreator';
+import ReportCreator from'./components/admin/reports/reportCreator/ReportCreator';
 import DisplayAllReports from './components/admin/reports/adminReports/DisplayAllReports';
 import ReportUpdater from './components/report/reportUpdater/ReportUpdater';
 import NotFound from "./components/notFound/NotFound";
@@ -25,6 +25,7 @@ import PublicityUpdater from './components/admin/publicity/PublicityUpdater';
 import ReportsBySection from './views/ReportsBySection';
 import SearchReports from './views/SearchReports';
 import ContactUs from './views/ContactUs';
+import SelectReportToCreate from './components/admin/reports/adminReports/SelectReportToCreate';
 import './App.css';
 
 function App() {
@@ -40,7 +41,7 @@ function App() {
       <Route path="/AccountConfirmation" component={AccountConfirmation}/>
       <Route path="/admin/users" component={UsersAdmin}/>
       <Route exact path="/admin/reports" component={DisplayAllReports}/>
-      <Route path="/create-report" component={ReportCreator} />
+      <Route exact path="/create-report" component={SelectReportToCreate} />
       <Route path="/admin/reports/edit-report/:reportId" component={ReportUpdater}/>
       <Route path="/not-found" component={NotFound}/>
       <Route path="/report/:reportId" component={ReportDetail}/>
@@ -53,6 +54,7 @@ function App() {
       <Route path="/sections/:sectionId" component={ReportsBySection}/>
       <Route path="/reports/search/:find" component={SearchReports}/>
       <Route path="/contacto" component={ContactUs}/>
+      <Route path='/admin/create-report/draft' component={ReportCreator}/>
     </React.Fragment>
   );
 }

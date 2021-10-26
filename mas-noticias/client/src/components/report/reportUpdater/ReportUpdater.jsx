@@ -9,7 +9,7 @@ import FullReportCard from '../reportCard/fullReportCard';
 import checkReportErrors from '../checkReportErrors';
 import TagCreator from '../../tag/TagCreator';
 import concatImages from "../concatImages";
-import '../reportCreator/reportCreator.css';
+import '../../admin/reports/reportCreator/reportCreator.css';
 
 export default function ReportUpdater (props) {
     const dispatch = useDispatch();

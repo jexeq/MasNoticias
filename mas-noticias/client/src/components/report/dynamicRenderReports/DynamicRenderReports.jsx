@@ -15,7 +15,7 @@ export default function DynamicRenderReports(props) {
 
     //recibo 10 noticias
     return (
-        <div className='dynamic-cont'>
+        <div className='medium-report-cont'>
             <MainReportCard report={reports[0]} />
             <hr />
             <div className='medium-report-cont'>

@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from 'react-router-dom';
-import { createReport } from '../../../redux/actions/report/reportActions'
-import { getSections } from '../../../redux/actions/section/sectionActions';
-import { getUser } from '../../../redux/actions/user/userActions';
-import  ControlledEditor  from '../TextEditor'
-import ReactFirebaseFileUpload from '../../fileUploader/FileUploader';
-import FullReportCard from '../reportCard/fullReportCard';
-import checkReportErrors from '../checkReportErrors';
-import TagCreator from '../../tag/TagCreator';
+import { createReport } from '../../../../redux/actions/report/reportActions'
+import { getSections } from '../../../../redux/actions/section/sectionActions';
+import { getUser } from '../../../../redux/actions/user/userActions';
+import  ControlledEditor  from '../../../report/TextEditor'
+import ReactFirebaseFileUpload from '../../../fileUploader/FileUploader';
+import FullReportCard from '../../../report/reportCard/fullReportCard';
+import checkReportErrors from '../../../report/checkReportErrors';
+import TagCreator from '../../../tag/TagCreator';
+import CheckUser from "../../../utils/CheckUser";
 import './reportCreator.css';
-import CheckUser from "../../utils/CheckUser";
 
 export default function ReportCreator () {
     const history = useHistory()

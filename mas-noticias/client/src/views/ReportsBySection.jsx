@@ -37,11 +37,10 @@ export default function ReportsBySection (props) {
     },[storeReports])
 
     return !loading&&(
-        <div className='center-col'>
-            
+        <div className='d-flex flex-column align-items-center justify-content-center'>  
             {storeReports&&storeReports.map( r=> {
                 return (
-                <div key={r.id} className='container'>
+                <div className='d-flex flex-column align-items-center justify-content-center' key={r.id} className='container'>
                     <MainReportCard report={r}/>
                 </div>)
             })}
