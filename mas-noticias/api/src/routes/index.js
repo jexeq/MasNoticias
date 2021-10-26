@@ -7,7 +7,7 @@ const User = require("./User");
 const Weather = require("./Weather");
 const Mail = require("./mailing");
 const Publicity = require("./Publicity");
-
+const VideoReport = require('./VideoReport');
 
 
 const router = Router();
@@ -19,7 +19,6 @@ router.use("/user", User)
 router.use("/weather" , Weather);
 router.use("/mail" , Mail);
 router.use("/publicity", Publicity);
-
-
+router.use('/video', VideoReport);
 
 module.exports = router;

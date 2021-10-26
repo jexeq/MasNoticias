@@ -212,7 +212,7 @@ router.post("/", async function(req, res, next) {
     
             }catch(err) {return res.send(err)}
         }
-        console.log("reporte creado exitosamente")
+        
         res.status(200).send(newReport);
 
     }catch (err) {
