@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { updateReportStatus } from "../../../../redux/actions/report/reportActions";
+import { changeVideoStatus } from "../../../../redux/actions/video/videoActions";
 
 
-export default function ChangeReportStatus(props) {
+export default function ChangeVideoStatus(props) {
     const dispatch = useDispatch();
-    const currentStatus = props.report.status;
+    const currentStatus = props.video.status;
     const [newStatus, setNewStatus] = useState(currentStatus)
     const validStatus = ["pendiente", "publicado", "oculto"]
 
@@ -14,19 +14,21 @@ export default function ChangeReportStatus(props) {
     }
 
     function updateStatusHandler (e) {
-        dispatch(updateReportStatus(props.report.id, newStatus))
+        dispatch(changeVideoStatus(props.video.id, newStatus))
         setTimeout( ()=>{
             alert("Se envió el cambio de Estado")
         } , 600)
     }
 
-    return <div>
+    return (
+    <div>
         <h4>Cambiar estado del Video</h4>
         <hr />
         <h5>Estado Actual: {currentStatus}</h5>
         <form>
+        
         <br />
-        <select className='form-control' name="report-status" id={props.report.id} onChange={selectStatusHandler}>
+        <select className='form-control' name="video-status" id={props.video.id} onChange={selectStatusHandler}>
         <option key="seleccionar" value="">--seleccionar--</option>
             {validStatus.map( (e, index) => {
                 if(e!== currentStatus) {
@@ -38,5 +40,5 @@ export default function ChangeReportStatus(props) {
         {currentStatus!==newStatus&& <button className='btn btn-dark'onClick={updateStatusHandler}>Cambiar Estado</button> }
         </form>
 
-    </div>
+    </div>)
 }

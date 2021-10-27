@@ -13,6 +13,7 @@ import AccountConfirmation from "./components/authentication/Account/AccountConf
 import UsersAdmin from "./components/admin/users/index";
 import ReportCreator from'./components/admin/reports/reportCreator/ReportCreator';
 import DisplayAllReports from './components/admin/reports/adminReports/DisplayAllReports';
+import DisplayAllVideos from './components/admin/reports/adminReports/DisplayAllVideos';
 import ReportUpdater from './components/report/reportUpdater/ReportUpdater';
 import NotFound from "./components/notFound/NotFound";
 import ReportDetail from './views/ReportDetail';
@@ -27,6 +28,7 @@ import SearchReports from './views/SearchReports';
 import ContactUs from './views/ContactUs';
 import SelectReportToCreate from './components/admin/reports/adminReports/SelectReportToCreate';
 import VideoReportCreator from './components/admin/reports/reportCreator/VideoReportCreator';
+import ReportTypeSelector from './components/admin/reports/adminReports/index';
 import './App.css';
 
 function App() {
@@ -41,7 +43,9 @@ function App() {
       <Route path="/password-forget" component={PasswordForgetPage}/>
       <Route path="/AccountConfirmation" component={AccountConfirmation}/>
       <Route path="/admin/users" component={UsersAdmin}/>
-      <Route exact path="/admin/reports" component={DisplayAllReports}/>
+      <Route exact path="/admin/reports/draft" component={DisplayAllReports}/>
+      <Route exact path='/admin/reports/video' component={DisplayAllVideos}/>
+      <Route exact path='/admin/reports' component={ReportTypeSelector}/>
       <Route exact path="/create-report" component={SelectReportToCreate} />
       <Route path="/admin/reports/edit-report/:reportId" component={ReportUpdater}/>
       <Route path="/not-found" component={NotFound}/>

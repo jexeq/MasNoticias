@@ -29,14 +29,14 @@ export const createVideoReport = (data) => {
     }
 }
 
-export const changeVideoStatus = ({videoId, newStatus}) => {
+export const changeVideoStatus = (videoId, newStatus) => {
     return async  (dispatch) => {
         const res = await axios.put(`/video/status?videoId=${videoId}&newStatus=${newStatus}`)
         return dispatch({ type: TYPES.CHANGE_VIDEO_STATUS, payload: res.data })
     }
 }
 
-export const changeVideoPriority = ({videoId, newPriority}) => {
+export const changeVideoPriority = (videoId, newPriority) => {
     return async  (dispatch) => {
         const res = await axios.put(`/video/priority?videoId=${videoId}&newPriority=${newPriority}`)
         return dispatch({ type: TYPES.CHANGE_VIDEO_PRIORITY, payload: res.data })
