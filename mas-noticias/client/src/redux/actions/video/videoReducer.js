@@ -13,6 +13,7 @@ const videoReducer = (state = initialState, action) => {
         case TYPES.CREATE_VIDEO_REPORT: return  { ...state, video: action.payload }
         case TYPES.CHANGE_VIDEO_STATUS: return { ...state, video: action.payload}
         case TYPES.CHANGE_VIDEO_PRIORITY: return { ...state, video: action.payload}
+        case TYPES.UPDATE_VIDEO_REPORT: return { ...state, video: action.payload}
         case TYPES.DELETE_VIDEO_REPORT: return { ...state, video: {} }
         default:                  return state;
     }

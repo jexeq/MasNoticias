@@ -43,6 +43,13 @@ export const changeVideoPriority = ({videoId, newPriority}) => {
     }
 }
 
+export const updateVideoReport = (data) => {
+    return async  (dispatch) => {
+        const res = await axios.put('/video', data)
+        return dispatch({ type: TYPES.UPDATE_VIDEO_REPORT, payload: res.data })
+    }
+}
+
 export const deleteVideoReport = (videoId) =>{
     return async  (dispatch) => {
         const res = await axios.delete(`/video/${videoId}`)

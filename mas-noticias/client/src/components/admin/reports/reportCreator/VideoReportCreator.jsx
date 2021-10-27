@@ -87,12 +87,6 @@ export default function VideoReportCreator () {
         }
     })
 
-    // useEffect(()=>{
-    //     console.log("videoReport es: " , videoReport)
-    //     console.log("section es: " , section)
-    //     console.log("tag es: " , tag)
-    // },[videoReport, section, tag])
-
     useEffect(()=>{
         setVideoReport({...videoReport, paragraph1: paragraph1})
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -101,7 +95,7 @@ export default function VideoReportCreator () {
     return !loading&&(
         <div className='container'>
             <form className='form-control' onSubmit={onSubmitHandler}>
-                <div className='d-flex flex-sm-column justify-content-center'>
+                <div className='flex-sm-column justify-content-center'>
                     <h1>Formulario de creación de Noticias con Video</h1>
                     <hr />
                     <label className="danger" hidden={section}>* Elegir Sección (campo obligatorio)</label>
@@ -109,18 +103,18 @@ export default function VideoReportCreator () {
                     {tag&&<label htmlFor="tag-selected">Etiqueta Seleccionada:</label>}
                     {tag&&<h5 id={"tag-selected"}>{tag.name}</h5>}
                     <hr />
-                    <input className='form-text' type="text" placeholder="Título Principal" name="title1" value={title1} onChange={onChangeHandler}/>
+                    <input className='input-group-text' type="text" placeholder="Título Principal" name="title1" value={title1} onChange={onChangeHandler}/>
                     <label className="danger" hidden={!(title1.length === 0)}>* Título es un campo obligatorio</label>
                     <hr />
-                    <textarea  className='form-text' placeholder="Título Secundario" name="title2" value={title2} onChange={onChangeHandler}/>    
+                    <textarea  className='input-group-text' placeholder="Título Secundario" name="title2" value={title2} onChange={onChangeHandler}/>    
                     <label className="danger" hidden={!(title2.length === 0)}>* Título 2 es un campo obligatorio</label>
                     <hr />
                     <label>Párrafo 1</label>
-                    <ControlledEditor className='form-text' paragraph={paragraph1} setParagraph={setParagraph1}/>    
+                    <ControlledEditor className='input-group-text' paragraph={paragraph1} setParagraph={setParagraph1}/>    
                     <hr />
-                    <input className='input-creator' type="text" placeholder="Pie del Video" name="footer1" value={footer1} onChange={onChangeHandler}/>
+                    <input className='input-group-text' type="text" placeholder="Pie del Video" name="footer1" value={footer1} onChange={onChangeHandler}/>
                     <hr />
-                    <input  className='input-text' type="text" placeholder="URL de Youtube" onChange={getYTid}/>
+                    <input  className='input-group-text' type="text" placeholder="URL de Youtube" onChange={getYTid}/>
                     <label className="danger" hidden={!(video?.length === 0)}>* URL es un campo obligatorio</label>
                     <hr />
                     <button className='btn btn-dark' type='submit'> Crear VideoNoticia</button>

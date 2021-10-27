@@ -53,11 +53,9 @@ export default function ReportCreator () {
         })
     } 
 
-    
-
     function onSubmitHandler (e) {
         e.preventDefault();
-        if(!checkReportErrors(reportBody, section, storeUser)) {
+        if(!checkReportErrors(reportBody, section, storeUser, tag)) {
             dispatch(createReport({
                 user: storeUser,
                 section: section,

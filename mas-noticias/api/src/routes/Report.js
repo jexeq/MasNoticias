@@ -277,7 +277,7 @@ router.put("/:reportId", async function(req, res, next){
             prevReport.photo3 = report.photo3;
             await prevReport.save();
 
-            if(prevReport.tag.id !== tag.id) {
+            if(prevReport.tag?.id !== tag.id) {
                 try {
                     const newTag = await Tag.findByPk(tag.id)
                     await prevReport.setTag(newTag)
@@ -287,7 +287,7 @@ router.put("/:reportId", async function(req, res, next){
                 }
             }
 
-            if(prevReport.section.id!== section.id){
+            if(prevReport.section?.id!== section.id){
                 try{
                     const newSection = await Section.findByPk(section.id)
                     await prevReport.setSection(newSection)

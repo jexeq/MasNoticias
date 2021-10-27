@@ -14,12 +14,12 @@
 .img-cont{
     display: flex;
     box-sizing: border-box;
-    width: 100%;
+    width: 200px;
     height: auto;
 }
 .img-report{
     box-sizing: border-box;
-    width: 100%;
+    width: 200px;
     height: auto;
     padding: 0;
 }

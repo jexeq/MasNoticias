@@ -37,13 +37,13 @@ export default function ReportUpdater (props) {
         date: prevReport?.date
     }
 
-    var [reportBody, setReportBody] = useState();
-    var [paragraph1, setParagraph1] = useState();
-    var [paragraph2, setParagraph2] = useState();
-    var [paragraph3, setParagraph3] = useState();
+    var [reportBody, setReportBody] = useState(initial_state);
+    var [paragraph1, setParagraph1] = useState(prevReport?.paragraph1);
+    var [paragraph2, setParagraph2] = useState(prevReport?.paragraph2);
+    var [paragraph3, setParagraph3] = useState(prevReport?.paragraph3);
     var [images, setImages] = useState();
     var [section, setSection] = useState();
-    var [tag, setTag] = useState();
+    var [tag, setTag] = useState(prevReport?.tag);
     var sectionOptions = [];
 
     if(reportBody!==undefined){
@@ -59,7 +59,7 @@ export default function ReportUpdater (props) {
 
     function onSubmitHandler2 (e) {
         e.preventDefault();
-        if(!checkReportErrors(reportBody, section, prevUser)) {
+        if(true) {
             dispatch(updateReport({
                 user: prevUser,
                 section: section,

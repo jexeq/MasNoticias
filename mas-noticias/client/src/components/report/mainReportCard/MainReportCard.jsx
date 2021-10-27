@@ -16,7 +16,6 @@ export default function MainReportCard (props) {
         }else{
             setLoading(true)
         }
-
     },[report])
 
     return !loading?(
