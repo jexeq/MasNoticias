@@ -10,9 +10,9 @@ router.get("/week_reports", async function (req, res, next){
         var allReports = await Report.findAll(
             {
             where: {
-                // date: {
-                //     [Op.gt]: new Date(new Date() - (24 * 60 * 60 * 1000 * 7)  )
-                // },
+                date: {
+                    [Op.gt]: new Date(new Date() - (24 * 60 * 60 * 1000 * 7 *2)  )
+                },
                 status: "publicado"
             },
             include:[
@@ -304,7 +304,6 @@ router.put("/:reportId", async function(req, res, next){
 
         }else{
             throw new Error("no se encontró el reporte")
-            return;
         }
     }catch (err) {next(err)}
 })

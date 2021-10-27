@@ -10,7 +10,9 @@ router.get('/' , async function (req, res, next) {
                 {model: Tag, attributes: ["name"]},
                 {model: Stat , attributes: ["likes", "comments", "shares"]},
                 {model: User, attributes: ["id", "email", "name", "lastname"]}
-            ]
+            ],
+            limit: 50,
+            order: [["date", "DESC"],["priority", "DESC"] ]
         })
         if(videos){
             return res.send(videos);
@@ -26,13 +28,20 @@ router.get('/' , async function (req, res, next) {
 router.get('/active', async function (req,res,next){
     try {
         const videos = await Videoreport.findAll({
-            where: {status: 'publicado'},
+            where: {
+                date: {
+                    [Op.gt]: new Date(new Date() - (24 * 60 * 60 * 1000 * 7 *2)  )
+                },
+                status: 'publicado'
+            },
             include: [
                 {model: Section, attributes: ["name"]},
                 {model: Tag, attributes: ["name"]},
                 {model: Stat , attributes: ["likes", "comments", "shares"]},
                 {model: User, attributes: ["id", "email", "name", "lastname"]}
-            ]
+            ],
+            limit: 50,
+            order: [["date", "DESC"],["priority", "DESC"] ]
         })
         if(videos){
             return res.send(videos);
@@ -48,8 +57,9 @@ router.get('/active', async function (req,res,next){
 router.post('/' , async function (req, res, next) {
     const { videoReport, userId, sectionId, tagId} = req.body;
 
-    const { title1, title2, video, footer1, paragraph1 } = videoReport;
-   
+    const { title1, title2, video, footer1, paragraph1, date } = videoReport;
+    
+
     try{
         const [newVideoReport, videoCreated] = await Videoreport.findOrCreate(
             {
@@ -60,7 +70,7 @@ router.post('/' , async function (req, res, next) {
                     video: video,
                     footer1: footer1,
                     paragraph1: paragraph1,
-                    date: new Date()
+                    date: date
                 }
             }
         )
@@ -99,9 +109,9 @@ router.post('/' , async function (req, res, next) {
                 next(err);
             }
             try{
-                let userOk = User.findByPk(userId);
+                let userOk = await User.findByPk(userId);
                 if(userOk){
-                    userOk.addVideoreport(newVideoReport);
+                    await userOk.addVideoreport(newVideoReport);
                 }else{
                     throw new Error('no se encontró el usuario');
                 }
@@ -113,6 +123,49 @@ router.post('/' , async function (req, res, next) {
     return res.send(newVideoReport);    
 
     }catch(err) {
+        next(err);
+    }
+})
+
+router.put('/status', async function (req,res,next){
+    const { videoId, newStatus } = req.query;
+
+    try{
+        const video = await Videoreport.findByPk(videoId);
+        if(video){
+            video.status = newStatus;
+            await video.save();
+            return res.send(video);
+        }else{
+            return res.status(407).end("no se encontró el video")
+        }
+    }catch(err){
+        next(err);
+    }
+})
+
+router.put('/priority', async function (req,res,next){
+    const { videoId, newPriority } = req.query;
+    try{
+        const video = await Videoreport.findByPk(videoId);
+        if(video){
+            video.priority = newPriority;
+            await video.save();
+            return res.send(video);
+        }else{
+            return res.status(407).end("no se encontró el video")
+        }
+    }catch(err){
+        next(err);
+    }
+})
+
+router.delete('/:videoId', async function (req,res,next){
+    const {videoId} = req.params;
+    try{
+        await Videoreport.destroy({where:{id:videoId}});
+        res.send("se eliminó el video")
+    }catch(err){
         next(err);
     }
 })
