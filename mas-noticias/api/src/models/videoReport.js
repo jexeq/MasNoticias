@@ -23,11 +23,11 @@ module.exports = (sequelize) => {
         },
         footer1: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         },
         paragraph1: {
             type: DataTypes.TEXT,
-            allowNull: false
+            allowNull: true
         },
         date: {
             type: DataTypes.STRING,

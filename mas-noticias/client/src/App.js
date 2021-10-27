@@ -26,6 +26,7 @@ import ReportsBySection from './views/ReportsBySection';
 import SearchReports from './views/SearchReports';
 import ContactUs from './views/ContactUs';
 import SelectReportToCreate from './components/admin/reports/adminReports/SelectReportToCreate';
+import VideoReportCreator from './components/admin/reports/reportCreator/VideoReportCreator';
 import './App.css';
 
 function App() {
@@ -55,6 +56,7 @@ function App() {
       <Route path="/reports/search/:find" component={SearchReports}/>
       <Route path="/contacto" component={ContactUs}/>
       <Route path='/admin/create-report/draft' component={ReportCreator}/>
+      <Route path='/admin/create-report/video' component={VideoReportCreator}/>
     </React.Fragment>
   );
 }
