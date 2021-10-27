@@ -8,6 +8,7 @@ import CheckUser from "../../../utils/CheckUser";
 import { getSections } from "../../../../redux/actions/section/sectionActions";
 import { getUser } from "../../../../redux/actions/user/userActions";
 import getYouTubeID from 'get-youtube-id';
+import MainVideoCard from '../../../videoReports/mainVideoCard/MainVideoCard';
 
 export default function VideoReportCreator () {
     const dispatch = useDispatch();
@@ -86,11 +87,11 @@ export default function VideoReportCreator () {
         }
     })
 
-    useEffect(()=>{
-        console.log("videoReport es: " , videoReport)
-        console.log("section es: " , section)
-        console.log("tag es: " , tag)
-    },[videoReport, section, tag])
+    // useEffect(()=>{
+    //     console.log("videoReport es: " , videoReport)
+    //     console.log("section es: " , section)
+    //     console.log("tag es: " , tag)
+    // },[videoReport, section, tag])
 
     useEffect(()=>{
         setVideoReport({...videoReport, paragraph1: paragraph1})
@@ -120,11 +121,16 @@ export default function VideoReportCreator () {
                     <input className='input-creator' type="text" placeholder="Pie del Video" name="footer1" value={footer1} onChange={onChangeHandler}/>
                     <hr />
                     <input  className='input-text' type="text" placeholder="URL de Youtube" onChange={getYTid}/>
-                    <label className="danger" hidden={!(video.length === 0)}>* URL es un campo obligatorio</label>
+                    <label className="danger" hidden={!(video?.length === 0)}>* URL es un campo obligatorio</label>
                     <hr />
                     <button className='btn btn-dark' type='submit'> Crear VideoNoticia</button>
                 </div>
             </form>
+            <hr />
+            <div>
+                <h2>Previsualizacion</h2>
+                <MainVideoCard videoReport={videoReport} tagName={tag?.name}/>
+            </div>
         </div>
     )
 }
