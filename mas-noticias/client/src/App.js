@@ -14,7 +14,7 @@ import UsersAdmin from "./components/admin/users/index";
 import ReportCreator from'./components/admin/reports/reportCreator/ReportCreator';
 import DisplayAllReports from './components/admin/reports/adminReports/DisplayAllReports';
 import DisplayAllVideos from './components/admin/reports/adminReports/DisplayAllVideos';
-import ReportUpdater from './components/report/reportUpdater/ReportUpdater';
+import ReportUpdater from './components/admin/reports/reportUpdater/ReportUpdater';
 import NotFound from "./components/notFound/NotFound";
 import ReportDetail from './views/ReportDetail';
 import PublicityCreator from "./components/admin/publicity/PublicityCreator";
@@ -29,6 +29,7 @@ import ContactUs from './views/ContactUs';
 import SelectReportToCreate from './components/admin/reports/adminReports/SelectReportToCreate';
 import VideoReportCreator from './components/admin/reports/reportCreator/VideoReportCreator';
 import ReportTypeSelector from './components/admin/reports/adminReports/index';
+import VideoReportUpdater from './components/admin/reports/reportCreator/videoReportUpdater';
 import './App.css';
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
       <Route exact path='/admin/reports' component={ReportTypeSelector}/>
       <Route exact path="/create-report" component={SelectReportToCreate} />
       <Route path="/admin/reports/edit-report/:reportId" component={ReportUpdater}/>
+      <Route path='/admin/videos/edit-video/:videoId' component={VideoReportUpdater}/>
       <Route path="/not-found" component={NotFound}/>
       <Route path="/report/:reportId" component={ReportDetail}/>
       <Route path="/admin/create-publicity" component={PublicityCreator}/>

@@ -54,6 +54,21 @@ router.get('/active', async function (req,res,next){
     }
 })
 
+router.get('/:videoId', async function (req, res, next) {
+    const {videoId} = req.params;
+    console.log("videoId " , videoId)
+    try {
+        const videoOk = await Videoreport.findByPk(videoId, {include: [{model: User, attributes: ["id", "email"]},{model: Section, attributes:["id", "name"]}, {model: Tag, attributes:["id", "name"]}, {model: Stat}]})
+        if(videoOk?.id){
+            return res.send(videoOk)
+        }else{
+            throw new Error("No se encontró el video");
+        }
+    }catch(err){
+        next(err)
+    }
+})
+
 router.post('/' , async function (req, res, next) {
     const { videoReport, userId, sectionId, tagId} = req.body;
 
@@ -154,6 +169,28 @@ router.put('/priority', async function (req,res,next){
             return res.send(video);
         }else{
             return res.status(407).end("no se encontró el video")
+        }
+    }catch(err){
+        next(err);
+    }
+})
+
+router.put('/', async function(req,res,next){
+    const { sectionId, tagId, videoReport} = req.body;
+    try{
+        const sectionOk = await Section.findByPk(sectionId);
+        const tagOk = await Tag.findByPk(tagId);
+        const videoOk = await Videoreport.findByPk(videoReport.id)
+        if(videoOk?.id){
+            videoOk.setTag(tagOk);
+            videoOk.setSection(sectionOk);
+            videoOk.title1 = videoReport.title1;
+            videoOk.title2 = videoReport.title2;
+            videoOk.paragraph1 = videoReport.paragraph1;
+            videoOk.video = videoReport.video;
+            videoOk.footer1 = videoReport.footer1;
+            await videoOk.save();
+            return res.send(videoOk);
         }
     }catch(err){
         next(err);

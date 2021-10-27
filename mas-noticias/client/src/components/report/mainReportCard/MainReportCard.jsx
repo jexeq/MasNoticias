@@ -19,7 +19,7 @@ export default function MainReportCard (props) {
     },[report])
 
     return !loading?(
-        <div className="main-report-cont">
+        <div className="main-report-container">
             <div className='text-cont'>
                 <div className="tag-cont">
                     {report?.tag?.name}
@@ -27,15 +27,14 @@ export default function MainReportCard (props) {
                 <NavLink className='NavLink' to={`/report/${report?.id}`}>
                     <div className='NavLink'>{report?.title1}</div>
                 </NavLink>
-
                 <div className='title2-cont'>
                     <p>
                     {report?.title2}
                     </p>
                 </div>
             </div>
-            <div className='img-cont'>
-                <img  className='img-report' src={report?.photo1} alt="" />
+            <div className='img-cont-r'>
+                <img className='report-img' src={report?.photo1} alt="foto no disponible" />
             </div>
         </div>
     ): <span></span>

@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router";
-import { createVideoReport } from "../../../../redux/actions/video/videoActions";
+import { updateVideoReport } from "../../../../redux/actions/video/videoActions";
 import TagCreator from "../../../tag/TagCreator";
 import ControlledEditor from "../../../report/TextEditor";
 import CheckUser from "../../../utils/CheckUser";
@@ -9,26 +9,29 @@ import { getSections } from "../../../../redux/actions/section/sectionActions";
 import { getUser } from "../../../../redux/actions/user/userActions";
 import getYouTubeID from 'get-youtube-id';
 import MainVideoCard from '../../../videoReports/mainVideoCard/MainVideoCard';
+import { getVideoById } from "../../../../redux/actions/video/videoActions";
 
-export default function VideoReportCreator (props) {
+export default function VideoReportUpdater (props) {
     const dispatch = useDispatch();
     const history = useHistory();
     const userId = localStorage.getItem('mas-noticias')
     const storeUser = useSelector( state => state.userReducer.user);
-    const allSections = useSelector(state=>state.sectionReducer.sections);
-    const prevReport = props.report;
+    const allSections = useSelector( state=> state.sectionReducer.sections);
+    const prevVideo = useSelector( state => state.videoReducer.video);
+    const {videoId} = props.match.params;
     const initial_state = {
-        title1: prevReport.title1,
-        title2: prevReport.title2,
-        paragraph1: prevReport.paragraph1,
-        footer1: prevReport.footer1,
-        video: prevReport.video,
-        date: prevReport.date
+        id: prevVideo.id,
+        title1: prevVideo.title1,
+        title2: prevVideo.title2,
+        paragraph1: prevVideo.paragraph1,
+        footer1: prevVideo.footer1,
+        video: prevVideo.video,
+        date: prevVideo.date
     }
     const [videoReport, setVideoReport] = useState(initial_state);
-    const [paragraph1, setParagraph1] = useState(videoReport.paragraph1);
-    const [section, setSection] = useState(prevReport.section);
-    const [tag, setTag] = useState(prevReport.tag);
+    const [paragraph1, setParagraph1] = useState(prevVideo.paragraph1);
+    const [section, setSection] = useState(prevVideo.section);
+    const [tag, setTag] = useState(prevVideo.tag);
     const [error, setError] =useState(true);
     const [loading, setLoading] = useState(true);
     var {title1, title2, video, footer1} = videoReport;
@@ -37,13 +40,10 @@ export default function VideoReportCreator (props) {
         e.preventDefault();
         if(videoReport.title1.length>0&&videoReport.title2.length>0&&videoReport.video.length>0&&tag.id&&section.id) {
             setError(false);
-        }else{
-            setError(true);
-            alert("Se deben Completar todos los campos")
         }
-        console.log("Error es: " , error);
+        
         if(!error) {
-            dispatch(createVideoReport({
+            dispatch(updateVideoReport({
                 userId: storeUser.id,
                 sectionId: section.id,
                 tagId: tag.id,
@@ -68,15 +68,14 @@ export default function VideoReportCreator (props) {
         setVideoReport({
             ...videoReport , video: getYouTubeID(e.target.value)
         })
-        console.log("videoReport.video", videoReport.video)
     }
 
     useEffect(()=>{
+        dispatch(getVideoById(videoId))
         if(!allSections) {
             dispatch(getSections())
-        }else{
-            setLoading(false)
         }
+
         if(!storeUser) {
             dispatch(getUser(userId))
         }else{
@@ -86,7 +85,17 @@ export default function VideoReportCreator (props) {
                 }
             }
         }
-    })
+    },[])
+
+    useEffect( ()=>{
+        if(prevVideo?.id) {
+            setSection(prevVideo.section);
+            setParagraph1(prevVideo.paragraph1);
+            setTag(prevVideo.tag);
+            setVideoReport(prevVideo);
+            setLoading(false);  
+        };
+    },[prevVideo])
 
     useEffect(()=>{
         setVideoReport({...videoReport, paragraph1: paragraph1})
@@ -97,18 +106,20 @@ export default function VideoReportCreator (props) {
         <div className='container'>
             <form className='form-control' onSubmit={onSubmitHandler}>
                 <div className='flex-sm-column justify-content-center'>
-                    <h1>Formulario de creación de Noticias con Video</h1>
+                    <h1>Formulario de Actualización de Noticias con Video</h1>
                     <hr />
                     <label className="danger" hidden={section}>* Elegir Sección (campo obligatorio)</label>
                     <TagCreator higherSection={section} setHigherSection={setSection} higherTag={tag} setHigherTag={setTag}/>
+                    {section&&<label htmlFor="section-selected">Sección Seleccionada:</label>}
+                    {section&&<h5 id="section-selected">{section?.name} </h5> }
                     {tag&&<label htmlFor="tag-selected">Etiqueta Seleccionada:</label>}
-                    {tag&&<h5 id={"tag-selected"}>{tag.name}</h5>}
+                    {tag&&<h5 id={"tag-selected"}>{tag?.name}</h5>}
                     <hr />
                     <input className='input-group-text' type="text" placeholder="Título Principal" name="title1" value={title1} onChange={onChangeHandler}/>
-                    <label className="danger" hidden={!(title1.length === 0)}>* Título es un campo obligatorio</label>
+                    <label className="danger" hidden={!(title1?.length === 0)}>* Título es un campo obligatorio</label>
                     <hr />
                     <textarea  className='input-group-text' placeholder="Título Secundario" name="title2" value={title2} onChange={onChangeHandler}/>    
-                    <label className="danger" hidden={!(title2.length === 0)}>* Título 2 es un campo obligatorio</label>
+                    <label className="danger" hidden={!(title2?.length === 0)}>* Título 2 es un campo obligatorio</label>
                     <hr />
                     <label>Párrafo 1</label>
                     <ControlledEditor className='input-group-text' paragraph={paragraph1} setParagraph={setParagraph1}/>    

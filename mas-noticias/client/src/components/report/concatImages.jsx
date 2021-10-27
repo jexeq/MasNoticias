@@ -1,9 +1,9 @@
 
 export default function concatImages (img1, img2, imgArr) {
     var aux= []
-    console.log("concatImages: img1 es" , img1)
-    console.log("concatImages: img2 es" , img2)
-    console.log("concatImages: imgArr es" , imgArr)
+    // console.log("concatImages: img1 es" , img1)
+    // console.log("concatImages: img2 es" , img2)
+    // console.log("concatImages: imgArr es" , imgArr)
     if(img1) {
         aux.push(img1);
         // console.log("concatImages: entro al primer if" , aux)

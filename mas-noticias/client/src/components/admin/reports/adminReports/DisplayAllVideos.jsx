@@ -117,7 +117,7 @@ export default function DisplayAllVideos () {
                         <ChangeVideoPriority video={selectedReport} />
                         </div>)}
                         <hr />
-                        <NavLink to={`/admin/reports/edit-report/${selectedReport.id}`}>
+                        <NavLink to={`/admin/videos/edit-video/${selectedReport.id}`}>
                             <button className='btn btn-dark'>Editar el Contenido del Video</button>
                         </NavLink>
                         <hr />
