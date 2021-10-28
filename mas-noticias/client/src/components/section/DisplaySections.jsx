@@ -9,7 +9,6 @@ export default function DisplaySections (props) {
             <div className='searchbar-cont'>
                 <SearchBar/>
             </div>
-            
             {sections.map( s=> {
                 return (
                     <NavLink key={s.id} className='btn btn-sm btn-dark' to={`/sections/${s.id}`}>
@@ -17,6 +16,10 @@ export default function DisplaySections (props) {
                     </NavLink>
                 )
             })}
+            <NavLink className='btn btn-sm btn-danger' to={`/videos/`}>
+                VIDEOS
+            </NavLink>
+            <br/>
         </div>
     )
 }

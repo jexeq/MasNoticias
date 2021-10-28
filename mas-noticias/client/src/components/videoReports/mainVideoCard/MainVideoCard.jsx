@@ -5,7 +5,7 @@ import "./mainVideo.css";
 
 export default function MainVideoCard (props) {
     
-    const {videoReport, tagName, sectionName} = props
+    const {videoReport, tagName, sectionName} = props;
     const [loading, setLoading] = useState(true)
 
     console.log("videoReport.title1" ,videoReport.title1 )

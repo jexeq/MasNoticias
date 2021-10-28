@@ -260,7 +260,7 @@ router.put("/update-priority/:reportId", async function(req, res, next){
 
 router.put("/:reportId", async function(req, res, next){
     const {reportId} = req.params;
-    const { user, section, tag, report } = req.body;
+    const { section, tag, report } = req.body;
     try{
         const prevReport = await Report.findByPk(reportId, {include:[{model: User},{model: Section}, {model: Tag},{model: Stat}]})
         if(prevReport){

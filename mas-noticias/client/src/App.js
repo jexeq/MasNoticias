@@ -30,6 +30,7 @@ import SelectReportToCreate from './components/admin/reports/adminReports/Select
 import VideoReportCreator from './components/admin/reports/reportCreator/VideoReportCreator';
 import ReportTypeSelector from './components/admin/reports/adminReports/index';
 import VideoReportUpdater from './components/admin/reports/reportCreator/videoReportUpdater';
+import Videos from './views/Videos';
 import './App.css';
 
 function App() {
@@ -63,6 +64,7 @@ function App() {
       <Route path="/contacto" component={ContactUs}/>
       <Route path='/admin/create-report/draft' component={ReportCreator}/>
       <Route path='/admin/create-report/video' component={VideoReportCreator}/>
+      <Route path='/videos'component={Videos}/>
     </React.Fragment>
   );
 }
