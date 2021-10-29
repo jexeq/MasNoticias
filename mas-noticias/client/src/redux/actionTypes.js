@@ -23,6 +23,7 @@ export const FIND_REPORTS = 'find_reports';
 
 export const GET_VIDEO_BY_ID = 'get_video_by_id';
 export const GET_ALL_VIDEO = 'get_all_video';
+export const GET_ACTIVE_VIDEO = 'get_active_video';
 export const CREATE_VIDEO_REPORT = 'create_video_report';
 export const CHANGE_VIDEO_STATUS = 'change_video_status';
 export const CHANGE_VIDEO_PRIORITY = 'change_video_priority';

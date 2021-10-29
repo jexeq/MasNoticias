@@ -32,7 +32,7 @@ router.get('/active', async function (req,res,next){
                 date: {
                     [Op.gt]: new Date(new Date() - (24 * 60 * 60 * 1000 * 7 *2)  )
                 },
-                status: 'publicado'
+                status: "publicado"
             },
             include: [
                 {model: Section, attributes: ["name"]},

@@ -18,7 +18,7 @@ export const getAllVideo = () => {
 export const getActiveVideo = () => {
     return async  (dispatch) => {
         const res = await axios.get('/video/active')
-        return dispatch({ type: TYPES.GET_ALL_VIDEO, payload: res.data })
+        return dispatch({ type: TYPES.GET_ACTIVE_VIDEO, payload: res.data })
     }
 }
 
