@@ -3,6 +3,7 @@ import SocialMediaShare from '../../utils/SocialMediaShare';
 import LargePublicityCard from '../../publicity/LargePublicityCard';
 import BannerPublicityCard from '../../publicity/BannerPublicityCard';
 import filterPublicityByType from '../../utils/filterPublicityByType';
+import bannerPubHere from '../../publicity/bannerPubHere';
 import './fullReport.css';
 
 export default function FullReportCard(props) {
@@ -38,7 +39,7 @@ export default function FullReportCard(props) {
             <br />
             {paragraph2 && <div className='paragraphs' dangerouslySetInnerHTML={{ __html: paragraph2 }}></div>}
             <div>
-                <BannerPublicityCard publicity={sortedPubs.bannerPublicities[0]}/>
+                {sortedPubs.bannerPublicities[0]?<BannerPublicityCard publicity={sortedPubs.bannerPublicities[0]}/>:bannerPubHere()}
             </div>
             {photo3 && photo3.map(e => <div className='img-container'>
                 <img className='second-img' src={e} alt="sin imagen" />
@@ -48,7 +49,7 @@ export default function FullReportCard(props) {
             <br />
             {paragraph3 && <div className='paragraphs' dangerouslySetInnerHTML={{ __html: paragraph3 }}></div>}
             <div>
-                <LargePublicityCard publicity={sortedPubs.largePublicities[0]}/>
+                {sortedPubs.largePublicities[0]?<LargePublicityCard publicity={sortedPubs.largePublicities[0]}/>:null}
             </div>
         </div>
     )

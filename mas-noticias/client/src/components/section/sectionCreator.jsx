@@ -9,24 +9,23 @@ export default function SectionCreator() {
     const history = useHistory()
     const dispatch = useDispatch();
     const allSections = useSelector(state => state.sectionReducer.sections)
-    const storeUser = useSelector( state => state.userReducer.user);
+    const storeUser = useSelector(state => state.userReducer.user);
     const [userInput, setUserInput] = useState("")
     const [error, setError] = useState("")
 
     useEffect(() => {
         dispatch(getSections());
-        if(!CheckUser(storeUser)){
+        if (!CheckUser(storeUser)) {
             history.push('/not-found')
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     useEffect(() => {
-
     }, [allSections])
 
     function confirmSection() {
         var response = window.confirm("Confirmar Sección (no se podrá eliminar)")
-
         return response
     }
 
@@ -65,7 +64,6 @@ export default function SectionCreator() {
     }
 
     function onChangeHandler(e) {
-        // e.preventDefault();
         console.log("e.target.value", e.target.value)
         let capitalyzed;
         if (!e.target.value?.length === 0) {
@@ -88,7 +86,7 @@ export default function SectionCreator() {
             <div>
                 <h3>Secciones Existentes</h3>
                 {allSections.length > 0 && allSections.map(s =>
-                <div key={s.id}>{s.name}</div>
+                    <div key={s.id}>{s.name}</div>
                 )}
             </div>
             <br />

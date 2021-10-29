@@ -21,6 +21,14 @@ export const DELETE_REPORT = "delete_report";
 export const CLEAR_REPORTS = "clear_reports";
 export const FIND_REPORTS = 'find_reports';
 
+export const GET_VIDEO_BY_ID = 'get_video_by_id';
+export const GET_ALL_VIDEO = 'get_all_video';
+export const CREATE_VIDEO_REPORT = 'create_video_report';
+export const CHANGE_VIDEO_STATUS = 'change_video_status';
+export const CHANGE_VIDEO_PRIORITY = 'change_video_priority';
+export const UPDATE_VIDEO_REPORT = 'update_video_report';
+export const DELETE_VIDEO_REPORT = 'delete_vide_report';
+
 export const CREATE_SECTION = "create_section";
 export const GET_SECTIONS = "get_sections";
 export const DELETE_SECTION = "delete_section";

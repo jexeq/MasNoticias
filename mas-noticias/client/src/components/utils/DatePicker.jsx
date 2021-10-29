@@ -15,6 +15,7 @@ export default function DatePickerComponent (props) {
         if(previousDate) {
             setState({date: new Date(previousDate)})
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
     return (

@@ -6,6 +6,7 @@ import ChangeReportStatus from './ChangeReportStatus';
 import ChangeReportPriority from './ChangeReportPriority';
 import { NavLink } from "react-router-dom";
 import { useHistory } from 'react-router';
+import ReactPaginate from 'react-paginate';
 import './displayAllReports.css';
 
 export default function DisplayAllReports () {
@@ -16,6 +17,10 @@ export default function DisplayAllReports () {
     const userId = localStorage.getItem("mas-noticias")
     const [loading, setLoading] = useState(true);
     const [selectedReport, setSelectedReport] = useState(null)
+    const [pageNumber, setPageNumber] = useState(0);
+    const dataPerPage = 5;
+    const pagesVisited = pageNumber * dataPerPage;
+    const dataToDisplay = storeReports.slice(pagesVisited, pagesVisited + dataPerPage); 
     
 
     useEffect(()=>{
@@ -27,6 +32,7 @@ export default function DisplayAllReports () {
             dispatch(getUser(userId))
         }
         return ()=>{dispatch(clearReports())}
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
     useEffect(()=>{
@@ -37,6 +43,7 @@ export default function DisplayAllReports () {
                 history.push("/not-found")
             }
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[storeUser])
 
     useEffect(()=>{
@@ -53,7 +60,10 @@ export default function DisplayAllReports () {
             setSelectedReport(null)
         }
     }
-
+    
+    function changePage ({selected}) {
+        setPageNumber(selected)
+    }
 
     return !loading&&(
         <div className='container align-items-c'>
@@ -71,7 +81,7 @@ export default function DisplayAllReports () {
                         </tr>
                     </thead>
                     <tbody>
-                        {storeReports.map( (r) => (
+                        {dataToDisplay.map( (r) => (
                             <tr key={r.id}>
                                 <td>
                                     <input type="radio"
@@ -89,6 +99,16 @@ export default function DisplayAllReports () {
                         ))}
                     </tbody>
                 </table>
+                <ReactPaginate 
+                className="d-flex align-content-center"
+                previousLabel={"Anterior"}
+                nextLabel={"Siguiente"}
+                pageCount= {Math.ceil(storeReports.length / 5)}
+                onPageChange={changePage}
+                containerClassName='pagination-cont'
+                activeClassName='pagination-active'
+                disabledClassName='pagination-disabled'
+            />
                 <hr />
                 {selectedReport&&(
                     <div>

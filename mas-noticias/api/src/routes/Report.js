@@ -10,9 +10,9 @@ router.get("/week_reports", async function (req, res, next){
         var allReports = await Report.findAll(
             {
             where: {
-                // date: {
-                //     [Op.gt]: new Date(new Date() - (24 * 60 * 60 * 1000 * 7)  )
-                // },
+                date: {
+                    [Op.gt]: new Date(new Date() - (24 * 60 * 60 * 1000 * 7 *2)  )
+                },
                 status: "publicado"
             },
             include:[
@@ -42,6 +42,7 @@ router.get("/all-reports" , async function (req, res, next){
                 {model: User, attributes: ["id", "email", "name", "lastname"]}
             ],
             order: [["date", "DESC"]],
+            limit: 50
             }
         )
         return res.send(allReports);
@@ -53,7 +54,7 @@ router.get("/all-reports" , async function (req, res, next){
 router.get("/search", async function (req, res, next) {
     const find = req.query.find;
     const capFind = capitalizeEntries(find);
-    console.log("buscando: " , find)
+    
     try {
         const findedReports = await Report.findAll(
             {
@@ -211,7 +212,7 @@ router.post("/", async function(req, res, next) {
     
             }catch(err) {return res.send(err)}
         }
-        console.log("reporte creado exitosamente")
+        
         res.status(200).send(newReport);
 
     }catch (err) {
@@ -259,7 +260,7 @@ router.put("/update-priority/:reportId", async function(req, res, next){
 
 router.put("/:reportId", async function(req, res, next){
     const {reportId} = req.params;
-    const { user, section, tag, report } = req.body;
+    const { section, tag, report } = req.body;
     try{
         const prevReport = await Report.findByPk(reportId, {include:[{model: User},{model: Section}, {model: Tag},{model: Stat}]})
         if(prevReport){
@@ -276,7 +277,7 @@ router.put("/:reportId", async function(req, res, next){
             prevReport.photo3 = report.photo3;
             await prevReport.save();
 
-            if(prevReport.tag.id !== tag.id) {
+            if(prevReport.tag?.id !== tag.id) {
                 try {
                     const newTag = await Tag.findByPk(tag.id)
                     await prevReport.setTag(newTag)
@@ -286,7 +287,7 @@ router.put("/:reportId", async function(req, res, next){
                 }
             }
 
-            if(prevReport.section.id!== section.id){
+            if(prevReport.section?.id!== section.id){
                 try{
                     const newSection = await Section.findByPk(section.id)
                     await prevReport.setSection(newSection)
@@ -303,7 +304,6 @@ router.put("/:reportId", async function(req, res, next){
 
         }else{
             throw new Error("no se encontró el reporte")
-            return;
         }
     }catch (err) {next(err)}
 })

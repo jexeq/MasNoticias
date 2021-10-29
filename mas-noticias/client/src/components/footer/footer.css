@@ -7,42 +7,37 @@
     width: 100vw;
     padding: 10px;
 }
-
-
 .footer-logo{
     width: 150px;
     height: 150px;
     border-radius: 50%;
+    padding: 3px;
+    border: 2px solid red;
 }
-
 .footer-icons{
     width: 25px;
     height: 25px;
     cursor: pointer;
 }
-
 .footer-redirect{
     color: white;
     font-size: larger;
     font-weight: bold;
     text-decoration: none;
 }
-
 .media-cont{
     display: flex;
     align-items: center;
     justify-content: center;
 }
-
 .media-item{
     margin: 5px;
     padding: 5px;
     cursor: pointer;
 }
-
 @media screen and (max-width: 425px ) {
     .footer-logo{
-        width: 75px;
-        height: 75px;
+        width: 70px;
+        height: 70px;
     }
 }

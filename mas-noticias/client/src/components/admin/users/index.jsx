@@ -40,6 +40,7 @@ export default function UsersAdmin(props) {
     if(!storeUser){
       dispatch(getUser(userId))
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -48,6 +49,7 @@ export default function UsersAdmin(props) {
         history.push("/not-found")
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [storeUser])
 
   useEffect(() => {
@@ -58,6 +60,7 @@ export default function UsersAdmin(props) {
     }
     setUsersSelected([]);
     dispatch(getAllUser());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [changed]);
 
   useEffect(() => {

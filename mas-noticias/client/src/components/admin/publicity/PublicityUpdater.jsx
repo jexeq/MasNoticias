@@ -38,6 +38,7 @@ export default function PublicityUpdater (props) {
             dispatch(getUser(userId));
         }
         return ()=> dispatch(clearPublicity());
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
     useEffect( () => {

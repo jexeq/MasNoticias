@@ -1,0 +1,34 @@
+.micro-rep-cont {
+    display: inline;
+    box-sizing: border-box;
+    margin: 5px;
+    text-decoration: none;
+}
+
+.micro-rep-title{
+    display: flex;
+    box-sizing: border-box;
+    width: 18vw;
+    padding: 10px;
+    margin: 10px;
+    color: white;
+    font-weight: bold;
+    background-color: #F74343;
+    text-decoration: none;
+    border-radius: 3px;
+}
+
+
+
+@media screen and (max-width: 425px) {
+    .micro-rep-cont{
+        display: none;
+    }
+    .micro-rep-title{
+        display: none;
+        width:0%;
+    }
+    .micro-rep-link{
+        display: none;
+    }
+}

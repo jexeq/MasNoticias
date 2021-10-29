@@ -40,14 +40,9 @@ export default function PublicityCreator () {
                 setLoading(false);
             }
         }
-
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
-    // useEffect( () => {
-    //     console.log("publicity es: " , publicity)
-    // },[publicity])
-
-    // var { owner, init, end, priority, url, type, state, redirect } = publicity;
     var { owner, redirect } = publicity;
 
     function ownerHandler (e) {

@@ -43,6 +43,7 @@ export default function PublicityManager () {
                 history.push('/not-found')
             }
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[storePublicities, storeUser])
 
 

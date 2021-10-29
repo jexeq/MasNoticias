@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from 'react-router-dom';
-import { createReport } from '../../../redux/actions/report/reportActions'
-import { getSections } from '../../../redux/actions/section/sectionActions';
-import { getUser } from '../../../redux/actions/user/userActions';
-import  ControlledEditor  from '../TextEditor'
-import ReactFirebaseFileUpload from '../../fileUploader/FileUploader';
-import FullReportCard from '../reportCard/fullReportCard';
-import checkReportErrors from '../checkReportErrors';
-import TagCreator from '../../tag/TagCreator';
+import { createReport } from '../../../../redux/actions/report/reportActions'
+import { getSections } from '../../../../redux/actions/section/sectionActions';
+import { getUser } from '../../../../redux/actions/user/userActions';
+import  ControlledEditor  from '../../../report/TextEditor'
+import ReactFirebaseFileUpload from '../../../fileUploader/FileUploader';
+import FullReportCard from '../../../report/reportCard/fullReportCard';
+import checkReportErrors from '../../../report/checkReportErrors';
+import TagCreator from '../../../tag/TagCreator';
+import CheckUser from "../../../utils/CheckUser";
 import './reportCreator.css';
-import CheckUser from "../../utils/CheckUser";
 
 export default function ReportCreator () {
     const history = useHistory()
@@ -53,11 +53,9 @@ export default function ReportCreator () {
         })
     } 
 
-    
-
     function onSubmitHandler (e) {
         e.preventDefault();
-        if(!checkReportErrors(reportBody, section, storeUser)) {
+        if(!checkReportErrors(reportBody, section, storeUser, tag)) {
             dispatch(createReport({
                 user: storeUser,
                 section: section,
@@ -87,21 +85,24 @@ export default function ReportCreator () {
 
     useEffect(()=>{
         setReportBody({...reportBody, paragraph1: paragraph1})
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[paragraph1])
 
     useEffect(()=>{
         setReportBody({...reportBody, paragraph2: paragraph2})
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[paragraph2])
 
     useEffect(()=>{
         setReportBody({...reportBody, paragraph3: paragraph3})
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[paragraph3])
 
     useEffect(()=>{
         setLoading(true)
         setReportBody({...reportBody, photo1: images[0], photo2: images[1], photo3: images.slice(2)})
-        // console.log("photo3 es: " , reportBody.photo3)
         setLoading(false)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[images])
 
     useEffect(()=>{
@@ -111,6 +112,7 @@ export default function ReportCreator () {
             });
             setLoading(false)
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[allSections])
 
     return !loading&&(

@@ -6,6 +6,7 @@ import tagReducer from '../actions/tag/tagReducer';
 import userReducer from '../actions/user/userReducer';
 import weatherReducer from '../actions/weather/weatherReducer';
 import mailReducer from '../actions/email/emailReducer';
+import videoReducer from '../actions/video/videoReducer';
 
 const rootReducer = combineReducers(
     {
@@ -15,7 +16,8 @@ const rootReducer = combineReducers(
         tagReducer,
         userReducer,
         weatherReducer,
-        mailReducer
+        mailReducer,
+        videoReducer
     }
 );
 

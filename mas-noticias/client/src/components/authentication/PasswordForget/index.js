@@ -56,7 +56,7 @@ function PasswordForgetFormBase(props) {
               <h3 className="mb-4 text-center fs-1">¿Olvidaste tu contraseña?</h3>
               <form className="mb-3" onSubmit={onSubmit}>
                 <div className="form mb-3">
-                  <label for="floatingInput">Ingresa tu email</label>
+                  <label htmlFor="floatingInput">Ingresa tu email</label>
                   <input
                     name="email"
                     value={state.email}
@@ -87,9 +87,9 @@ function PasswordForgetFormBase(props) {
 }
 
 const PasswordForgetLink = () => (
-
-  <NavLink className="text-dark" to={"/password-forget"}>Olvide mi contraseña</NavLink>
-
+  <div className='container d-flex align-items-center justify-content-center'>
+    <NavLink className="btn btn-dark" to={"/password-forget"}>Olvidé mi contraseña</NavLink>
+  </div>
 );
 
 export default PasswordForgetPage;

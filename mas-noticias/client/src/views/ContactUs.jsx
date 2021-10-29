@@ -16,7 +16,7 @@ export default function ContactUs () {
         e.preventDefault();
 
         if(e.target.name==='email'&& e.target.value.length>3) {
-            const isEmail = new RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/);
+            const isEmail = new RegExp(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/);
             isEmail.test(e.target.value)? setEmailError(false):setEmailError(true);
             console.log("emailError?" , emailError)
         }
@@ -32,7 +32,7 @@ export default function ContactUs () {
     }
 
     return (
-        <div className='d-flex flex-md-column align-content-center'>
+        <div className='d-flex flex-md-column align-items-center'>
             <form onSubmit={onSubmitHandler} className='d-md-flex flex-lg-column align-items-center w-100'>
                 <p className='align-self-center'>* Este mensaje será enviado al Administrador vie E-Mail</p>
                 <h3>Sus Datos</h3>

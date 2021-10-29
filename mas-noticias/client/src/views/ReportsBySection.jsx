@@ -22,6 +22,7 @@ export default function ReportsBySection (props) {
             dispatch(clearPublicity());
             dispatch(clearReports());
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[sectionId])
 
     useEffect(()=>{
@@ -32,15 +33,15 @@ export default function ReportsBySection (props) {
                 setLoading(false);
             }
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[storeReports])
 
     return !loading&&(
-        <div className='center-col'>
-            
-            {storeReports&&storeReports.map( r=> {
+        <div className='d-flex flex-column align-items-center justify-content-center'>  
+            {storeReports&&storeReports.map( element => {
                 return (
-                <div key={r.id} className='container'>
-                    <MainReportCard report={r}/>
+                <div className='d-flex flex-column align-items-center justify-content-center' key={element.id} className='container'>
+                    <MainReportCard report={element}/>
                 </div>)
             })}
         </div>

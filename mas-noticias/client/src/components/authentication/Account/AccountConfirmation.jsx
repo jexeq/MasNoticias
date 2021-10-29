@@ -28,6 +28,7 @@ export default function AccountConfirmation(props) {
     localStorage.setItem("mas-noticias", id)
     dispatch(getUser(id))
     show()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
 },[])
 
  

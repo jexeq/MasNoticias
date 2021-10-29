@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateReport, getReportById, clearReports } from '../../../redux/actions/report/reportActions'
-import { getSections } from '../../../redux/actions/section/sectionActions';
-import { getUser } from '../../../redux/actions/user/userActions';
-import  ControlledEditor  from '../TextEditor';
-import ReactFirebaseFileUpload from '../../fileUploader/FileUploader';
-import FullReportCard from '../reportCard/fullReportCard';
-import checkReportErrors from '../checkReportErrors';
-import TagCreator from '../../tag/TagCreator';
-import concatImages from "../concatImages";
+import { updateReport, getReportById, clearReports } from '../../../../redux/actions/report/reportActions'
+import { getSections } from '../../../../redux/actions/section/sectionActions';
+import { getUser } from '../../../../redux/actions/user/userActions';
+import  ControlledEditor  from '../../../report/TextEditor';
+import ReactFirebaseFileUpload from '../../../fileUploader/FileUploader';
+import FullReportCard from '../../../report/reportCard/fullReportCard';
+import checkReportErrors from '../../../report/checkReportErrors';
+import TagCreator from '../../../tag/TagCreator';
+import concatImages from "../../../report/concatImages";
 import '../reportCreator/reportCreator.css';
 
 export default function ReportUpdater (props) {
@@ -18,11 +18,8 @@ export default function ReportUpdater (props) {
     const [loading, setLoading] = useState(true);
     const userId = localStorage.getItem("mas-noticias")
     const {reportId} = props.match.params;
-    // const { prevReport, prevSection, prevTag, prevUser} = props.prevReport;
     const prevReport = useSelector( state => state.reportReducer.report)
-    
     const prevUser = prevReport.user;
-    // console.log("reportId es " , reportId)
 
     var initial_state = {
         id: prevReport?.id,
@@ -40,10 +37,10 @@ export default function ReportUpdater (props) {
         date: prevReport?.date
     }
 
-    var [reportBody, setReportBody] = useState();
-    var [paragraph1, setParagraph1] = useState();
-    var [paragraph2, setParagraph2] = useState();
-    var [paragraph3, setParagraph3] = useState();
+    var [reportBody, setReportBody] = useState(initial_state);
+    var [paragraph1, setParagraph1] = useState(prevReport?.paragraph1);
+    var [paragraph2, setParagraph2] = useState(prevReport?.paragraph2);
+    var [paragraph3, setParagraph3] = useState(prevReport?.paragraph3);
     var [images, setImages] = useState();
     var [section, setSection] = useState();
     var [tag, setTag] = useState();
@@ -62,7 +59,7 @@ export default function ReportUpdater (props) {
 
     function onSubmitHandler2 (e) {
         e.preventDefault();
-        if(!checkReportErrors(reportBody, section, prevUser)) {
+        if(!checkReportErrors(reportBody, section, tag, prevUser)) {
             dispatch(updateReport({
                 user: prevUser,
                 section: section,
@@ -91,35 +88,33 @@ export default function ReportUpdater (props) {
             setSection({})
             setTag({})
             dispatch(clearReports())
-            // console.log("se limpiaron los estados")
-            // console.log("images: " , images)
-            // console.log("reportBody: " , reportBody)
         }
-        
+    // eslint-disable-next-line react-hooks/exhaustive-deps    
     },[])
 
     
 
     useEffect(()=>{
         setReportBody({...reportBody, paragraph1: paragraph1})
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[paragraph1])
 
     useEffect(()=>{
         setReportBody({...reportBody, paragraph2: paragraph2})
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[paragraph2])
 
     useEffect(()=>{
         setReportBody({...reportBody, paragraph3: paragraph3})
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[paragraph3])
 
     useEffect(()=>{
         setLoading(true)
         if(images){
-
             setReportBody({...reportBody, photo1: images[0], photo2: images[1], photo3: images.slice(2)})
-            // console.log("photo3 es: " , reportBody.photo3)
             setLoading(false)
-        }
+        }// eslint-disable-next-line react-hooks/exhaustive-deps
     },[images])
 
     useEffect(()=>{
@@ -128,8 +123,6 @@ export default function ReportUpdater (props) {
                 sectionOptions.push(s.name)
             });
             if(prevReport.id){
-
-                // var prevImages = concatImages(prevReport.photo1, prevReport.photo2. prevReport.photo3)
                 setReportBody(initial_state)
                 setParagraph1(prevReport.paragraph1) 
                 setParagraph2(prevReport.paragraph2)
@@ -137,17 +130,14 @@ export default function ReportUpdater (props) {
                 setSection(prevReport.section)
                 setTag(prevReport.tag)
                 if(prevReport.photo1.length > 0){
-                    // console.log("ReportUpdater: entro al 1 if")
                     if(prevReport.photo2?.length > 0 ){
-                        // console.log("ReportUpdater: entro al 2 if")
                         if(prevReport.photo3?.length > 0 ){
-                            // console.log("ReportUpdater: entro al 3 if")
-                            setImages(concatImages(prevReport?.photo1, prevReport?.photo2. prevReport?.photo3))
+                            setImages(concatImages(prevReport?.photo1, prevReport?.photo2, prevReport?.photo3))
                         }else{
-                            setImages(concatImages(prevReport.photo1, prevReport.photo2))
+                            setImages(concatImages(prevReport?.photo1, prevReport?.photo2))
                         }
                     }else{
-                        setImages(concatImages(prevReport.photo1))
+                        setImages(concatImages(prevReport?.photo1))
                     }
                     setTimeout( ()=> {
                         setLoading(false)
@@ -155,7 +145,7 @@ export default function ReportUpdater (props) {
                     }, 600)    
                 }
             }
-        }
+        }// eslint-disable-next-line react-hooks/exhaustive-deps
     },[allSections, prevReport])
 
     return !loading&&(

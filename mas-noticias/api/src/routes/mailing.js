@@ -183,7 +183,7 @@ ol ol ol ol {
           <tbody>
             <tr>
             <td align="center" bgcolor="#FA3004" class="inner-td" style="border-radius:6px; font-size:16px; text-align:center; background-color:inherit;">
-              <a href=${`http://localhost:3000/AccountConfirmation?email=${email}&id=${id}`} style="background-color:#FA3004; border:0px solid 0; border-color:0; border-radius:0px; border-width:0px; color:#ffffff; display:inline-block; font-size:16px; font-weight:300; letter-spacing:0px; line-height:normal; padding:15px 5px 15px 5px; text-align:center; text-decoration:none; border-style:solid; font-family:trebuchet ms,helvetica,sans-serif;" target="_blank">Confirmar mi cuenta</a>
+              <a href=${`http://185.28.23.14/AccountConfirmation?email=${email}&id=${id}`} style="background-color:#FA3004; border:0px solid 0; border-color:0; border-radius:0px; border-width:0px; color:#ffffff; display:inline-block; font-size:16px; font-weight:300; letter-spacing:0px; line-height:normal; padding:15px 5px 15px 5px; text-align:center; text-decoration:none; border-style:solid; font-family:trebuchet ms,helvetica,sans-serif;" target="_blank">Confirmar mi cuenta</a>
             </td>
             </tr>
           </tbody>

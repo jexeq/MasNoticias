@@ -1,8 +1,9 @@
 .text-editor-toolbar{
     display: flex;
     flex-direction: row;
+    box-sizing: border-box;
+    width: 90%;
     border: 1px solid black;
-    width: 90vw;
     background-color: grey;
 }
 
@@ -12,12 +13,14 @@
     align-items: center;
     justify-content: center;
     border: 1px solid black;
-    width: 90vw;
+    box-sizing: border-box;
+    width: 90%;
 }
 
 .text-editor-container{
     display: flex;
     flex-direction: row;
     border: 1px solid black;
-    width: 90vw;
+    box-sizing: border-box;
+    width: 90%;
 }

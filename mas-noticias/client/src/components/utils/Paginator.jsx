@@ -14,7 +14,6 @@ export default function Paginator ({reports, publicity}) {
     }
     return (
         <div>
-            {/* here must be displayed elements to show */}
             <DynamicRenderReports reports={dataToDisplay} publicity={publicity}/>
             <ReactPaginate 
                 className="d-flex align-content-center"
