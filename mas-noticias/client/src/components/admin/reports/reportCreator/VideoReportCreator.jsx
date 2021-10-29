@@ -9,6 +9,7 @@ import { getSections } from "../../../../redux/actions/section/sectionActions";
 import { getUser } from "../../../../redux/actions/user/userActions";
 import getYouTubeID from 'get-youtube-id';
 import MainVideoCard from '../../../videoReports/mainVideoCard/MainVideoCard';
+import checkVideoErrors from "./checkVideoErrors";
 
 export default function VideoReportCreator () {
     const dispatch = useDispatch();
@@ -30,30 +31,26 @@ export default function VideoReportCreator () {
     const [tag, setTag] = useState();
     const [error, setError] =useState(true);
     const [loading, setLoading] = useState(true);
+    const [url, setUrl ] = useState("");
     var {title1, title2, video, footer1} = videoReport;
-
+ 
     function onSubmitHandler (e) {
         e.preventDefault();
-        if(videoReport.title1.length>0&&videoReport.title2.length>0&&videoReport.video.length>0&&tag.id&&section.id) {
-            setError(false);
-        }else{
-            setError(true);
-            alert("Se deben Completar todos los campos")
-        }
-        console.log("Error es: " , error);
-        if(!error) {
-            dispatch(createVideoReport({
-                userId: storeUser.id,
-                sectionId: section.id,
-                tagId: tag.id,
-                videoReport: videoReport
-            }))
-            setTimeout(()=>{
-                alert("se envió el formulario")
-                history.push("/admin/reports/video")}, 600)
-        }else{
-            alert("Todos los Campos Obligatorios deben ser Completados")
-        }
+
+            if(!checkVideoErrors(videoReport, tag, section)) {
+                dispatch(createVideoReport({
+                    userId: storeUser.id,
+                    sectionId: section.id,
+                    tagId: tag.id,
+                    videoReport: videoReport
+                }))
+                setTimeout(()=>{
+                    alert("se envió el formulario")
+                    history.push("/admin/reports/video")}, 400)
+            }else{
+                alert("Todos los Campos Obligatorios deben ser Completados")
+            }
+        
     }
 
     function onChangeHandler (e) {
@@ -63,9 +60,11 @@ export default function VideoReportCreator () {
         })
     }
 
-    function getYTid (e) {    
+    function getYTid (e) {   
+        e.preventDefault(); 
+        console.log("esto es url: ", url)
         setVideoReport({
-            ...videoReport , video: getYouTubeID(e.target.value)
+            ...videoReport , video: getYouTubeID(url)
         })
         console.log("videoReport.video", videoReport.video)
     }
@@ -95,7 +94,7 @@ export default function VideoReportCreator () {
     return !loading&&(
         <div className='container'>
             <form className='form-control' onSubmit={onSubmitHandler}>
-                <div className='flex-sm-column justify-content-center'>
+                <div className='flex-sm-column align-content-center justify-content-center'>
                     <h1>Formulario de creación de Noticias con Video</h1>
                     <hr />
                     <label className="danger" hidden={section}>* Elegir Sección (campo obligatorio)</label>
@@ -114,10 +113,14 @@ export default function VideoReportCreator () {
                     <hr />
                     <input className='input-group-text' type="text" placeholder="Pie del Video" name="footer1" value={footer1} onChange={onChangeHandler}/>
                     <hr />
-                    <input  className='input-group-text' type="text" placeholder="URL de Youtube" onChange={getYTid}/>
-                    <label className="danger" hidden={!(video?.length === 0)}>* URL es un campo obligatorio</label>
+                    <div>
+                        <input  className='input-group-text' type="text" placeholder="URL de Youtube" value={url} onChange={ e => setUrl(e.target.value)}/>
+                        <label className="danger" hidden={!(url?.length === 0)}>* URL es un campo obligatorio</label>
+                        <button className='btn btn-dark' hidden={!url} onClick={e => getYTid(e)}> Obtener Código de video </button>
+                        <h6 className='mt-3' hidden={!videoReport?.video}>Código de Video: {videoReport?.video}</h6>
+                    </div>
                     <hr />
-                    <button className='btn btn-dark' type='submit'> Crear VideoNoticia</button>
+                    <button className='btn btn-primary' type='submit'> Crear VideoNoticia</button>
                 </div>
             </form>
             <hr />

@@ -1,5 +1,5 @@
 import logo from '../../images/mas-noticias.png';
-import logoOk from '../../images/mas-noticias-ok.png';
+import logoOk from '../../images/Logo-Ok2.png';
 import "./NavBar.css";
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -35,7 +35,7 @@ export default function NavBar() {
             <div className="nav-container">
                 <div className="container">
                     <NavLink to="/">
-                        <img className="logo1" src={logo} alt="foto perdida" />
+                        <img className="logo1" src={logoOk} alt="foto perdida" />
                     </NavLink>
                     <div className='spanish-date'>
                         {getSpanishDateOnly(new Date().toDateString(), { color: "white" , fontWeight: "bold", fontSize: "auto"})}
